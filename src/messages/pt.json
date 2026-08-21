@@ -32,11 +32,25 @@
     "disponivel": "Disponível",
     "reservada": "Reservada",
     "vendida": "Vendida",
-    "acervo": "Acervo"
+    "acervo": "Acervo",
+    "principal": "Vista frontal",
+    "angulo": "Ângulo",
+    "detalhe": "Detalhe",
+    "escala": "Escala"
   },
-  "portfolio": { "titulo": "Portfólio", "verObra": "Ver a obra" },
-  "sobre": { "titulo": "Quem sou eu" },
-  "textos": { "titulo": "Textos", "vazio": "Nenhum texto publicado ainda.", "ler": "Ler" },
+  "portfolio": {
+    "titulo": "Portfólio",
+    "verObra": "Ver a obra"
+  },
+  "sobre": {
+    "titulo": "Quem sou eu",
+    "retratoAlt": "Retrato de Gabriela Seleme, em preto e branco, encostada numa parede de madeira."
+  },
+  "textos": {
+    "titulo": "Textos",
+    "vazio": "Nenhum texto publicado ainda.",
+    "ler": "Ler"
+  },
   "contato": {
     "titulo": "Contato",
     "email": "E-mail",
@@ -48,5 +62,10 @@
     "aviso": "Conteúdo ainda não fornecido pela artista.",
     "obraIncompleta": "Esta obra ainda está em rascunho: falta ficha técnica, fotografia ou texto."
   },
-  "rodape": { "direitos": "Todos os direitos reservados." }
+  "rodape": {
+    "direitos": "Todos os direitos reservados."
+  },
+  "marca": {
+    "rubricaAlt": "Rubrica de Gabriela Seleme"
+  }
 }

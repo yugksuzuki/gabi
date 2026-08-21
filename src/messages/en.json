@@ -32,11 +32,25 @@
     "disponivel": "Available",
     "reservada": "Reserved",
     "vendida": "Sold",
-    "acervo": "Collection"
+    "acervo": "Collection",
+    "principal": "Head-on",
+    "angulo": "Angle",
+    "detalhe": "Detail",
+    "escala": "Scale"
   },
-  "portfolio": { "titulo": "Works", "verObra": "View the work" },
-  "sobre": { "titulo": "About" },
-  "textos": { "titulo": "Writing", "vazio": "No writing published yet.", "ler": "Read" },
+  "portfolio": {
+    "titulo": "Works",
+    "verObra": "View the work"
+  },
+  "sobre": {
+    "titulo": "About",
+    "retratoAlt": "Portrait of Gabriela Seleme, in black and white, leaning against a wooden wall."
+  },
+  "textos": {
+    "titulo": "Writing",
+    "vazio": "No writing published yet.",
+    "ler": "Read"
+  },
   "contato": {
     "titulo": "Contact",
     "email": "Email",
@@ -48,5 +62,10 @@
     "aviso": "Content not yet provided by the artist.",
     "obraIncompleta": "This work is still a draft: details, photography or text are missing."
   },
-  "rodape": { "direitos": "All rights reserved." }
+  "rodape": {
+    "direitos": "All rights reserved."
+  },
+  "marca": {
+    "rubricaAlt": "Gabriela Seleme's signature"
+  }
 }

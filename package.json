@@ -12,7 +12,8 @@
     "verificar:cor": "node scripts/verificar-contraste.mjs",
     "verificar:rotas": "node scripts/verificar-rotas.mjs",
     "verificar:moeda": "node --experimental-strip-types --no-warnings scripts/verificar-moeda.mjs",
-    "verificar": "npm run typecheck && npm run lint && npm run verificar:cor && npm run verificar:rotas && npm run verificar:moeda"
+    "verificar": "npm run typecheck && npm run lint && npm run verificar:cor && npm run verificar:rotas && npm run verificar:moeda",
+    "imagens": "node scripts/processar-imagens.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -31,6 +32,7 @@
     "eslint-config-next": "^16.3.1",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.3.3",
     "typescript": "^5.9.3"
   }

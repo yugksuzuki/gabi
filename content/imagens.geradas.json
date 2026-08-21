@@ -1,0 +1,37 @@
+{
+  "/obras/encontro/frontal.jpg": {
+    "largura": 900,
+    "altura": 1600,
+    "lqip": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBQCdASoUACQAPzmWv1qvKqYkJWmZ4CcJaQDS6CMzFZQ1bJEDLxsYUHFTYBD/9lgAAP6MLv6rZieDT6ajM73KXMo7cILtK2I46RaPeNUwKHf9sDZ3Hx7FFUC4uA/4EIABJPucVR6fGyDwapf9CLwxKTdi/NOAAcbo7EynSB8GhYCx9R8VAAAA",
+    "origem": "encontro-frontal.jpg",
+    "nota": "IMG_7015 — obra frontal na parede do ateliê"
+  },
+  "/obras/encontro/detalhe.jpg": {
+    "largura": 1200,
+    "altura": 1600,
+    "lqip": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABwBACdASoUABsAPzmMvVYvKSajsBgIAeAnCWkAz2Q0ZXo10v1aQ4NdWSB1sAD+rnCRA4AomozfeDs2dvHkcJVwtg6HbKjugCcchAldOcGfjUdifG69nBco4xA5ryN0g972maAA",
+    "origem": "encontro-detalhe.jpg",
+    "nota": "IMG_6562 — canto superior, textura e escorrido de prata"
+  },
+  "/obras/encontro/escala.jpg": {
+    "largura": 822,
+    "altura": 1075,
+    "lqip": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQBACdASoUABoAPzmOu1WvKiYjMBgIAeAnCWkA0BgPmKTz9j7wDM0rVyTFZzGGgAD+3uew5WfxfoNV5xYfNQE2N8yW9PuvB3PBGEkU8hQdY8Pmt0C17FByvWI4rG3rlL3AAA==",
+    "origem": "ficha-encontro.jpg",
+    "nota": "recortada da prancha de ficha — obra em contexto, com piso"
+  },
+  "/sobre/retrato.jpg": {
+    "largura": 690,
+    "altura": 1160,
+    "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACQBACdASoUACIAPzmKt1OvKaUiqq354CcJaQAANeGtB6j15rb/m3ByskIbaIAA/rn+YXOK/yr1F0QSqyLcnB6hSPMEtIKlUTMoKAAJ1NQ0lXKcXHFGEXC6CnMH17AAAAA=",
+    "origem": "folha-bio-canva.png",
+    "nota": "retrato P&B da folha da bio, à direita do nome tipografado"
+  },
+  "/marca/rubrica.png": {
+    "largura": 490,
+    "altura": 444,
+    "lqip": "data:image/webp;base64,UklGRhYBAABXRUJQVlA4WAoAAAAQAAAAEwAAEQAAQUxQSLkAAAABgGXbtulondi2bdt28pVCB9j/NrwaN12IiAlAKzjSHkxBHYqCP+rxuDNWlD0pfTKTEJQtOQk3I5CPoxP5L2v19TPgXboQQTSOnOF5N5lS7VUuFoinEYRgorl1Otcfp6/Px/kvZzMA1kK1SH4ciCXdTn895NaIM11maUBVCLuKvlwLnYggIgK4M/TdGyPKhrLe1u2nEaVslPi2iaBqbcJ0Y0Y9HyHYdyBqTYNULAjqfbJehBczPhevAwBWUDggNgAAAJADAJ0BKhQAEgA/OY6/VzSppqOoCqqQJwlpAAA6hxdKMYYyhMAA/u6GS569JlmJqb5OEAAAAA==",
+    "origem": "folha-bio-canva.png",
+    "nota": "rubrica dela, isolada, fundo transparente. RASTER — o vetor ainda falta"
+  }
+}

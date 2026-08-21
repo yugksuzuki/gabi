@@ -7,7 +7,7 @@ import { acharObra, lerObras, ehPendente } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
 import { alternativas } from '@/lib/metadados'
 import { buscarCotacaoUSD, exibirPreco } from '@/lib/moeda'
-import { MolduraObra } from '@/components/ui/MolduraObra'
+import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
 import { FichaTecnica } from '@/components/obra/FichaTecnica'
 import { Consultar } from '@/components/obra/Consultar'
@@ -60,12 +60,22 @@ export default async function PaginaObra({ params }: Props) {
   const obras = lerObras()
   const proxima = obras[(obras.findIndex((o) => o.slug === obra.slug) + 1) % obras.length]
 
+  const principal = obra.imagens.find((im) => im.papel === 'principal')
+  // Ângulo, detalhe e escala — tudo que não é a principal alimenta a galeria.
+  const galeria = obra.imagens.filter((im) => im !== principal)
+
   return (
     <article className="pt-[var(--respiro-secao)]">
       {/* 1. Imagem principal, grande, quase sem cerimônia. */}
       <div className="px-[var(--margem-lateral)]">
-        <div className="mx-auto max-w-[68rem]">
-          <MolduraObra titulo={obra.titulo} proporcao="3 / 2" />
+        <div className="mx-auto max-w-[52rem]">
+          <ImagemObra
+            src={principal?.src ?? ''}
+            alt={localizar(principal?.alt, locale)}
+            titulo={obra.titulo}
+            prioridade
+            sizes="(max-width: 768px) 100vw, 52rem"
+          />
         </div>
       </div>
 
@@ -90,7 +100,16 @@ export default async function PaginaObra({ params }: Props) {
           {texto ? (
             <div className="max-w-[var(--medida-corpo)] text-corpo [&>p]:mb-5">
               {texto.split(/\n{2,}/).map((paragrafo, i) => (
-                <p key={i}>{paragrafo}</p>
+                <p key={i}>
+                  {/* Quebra simples é dela: a prancha de Encontro quebra as
+                      frases num ritmo próprio. Não juntar. */}
+                  {paragrafo.split('\n').map((linha, j, todas) => (
+                    <span key={j}>
+                      {linha}
+                      {j < todas.length - 1 && <br />}
+                    </span>
+                  ))}
+                </p>
               ))}
             </div>
           ) : (
@@ -111,6 +130,24 @@ export default async function PaginaObra({ params }: Props) {
           </section>
         </div>
       </div>
+
+      {/* 3. Galeria: ângulo, detalhe, escala. Duas colunas em tela larga, uma
+          no celular, e cada foto no seu próprio tamanho — sem recorte forçado. */}
+      {galeria.length > 0 && (
+        <div className="mt-[var(--respiro-secao)] grid grid-cols-1 gap-8 px-[var(--margem-lateral)] md:grid-cols-2">
+          {galeria.map((img) => (
+            <figure key={img.src} className="flex flex-col gap-3">
+              <ImagemObra
+                src={img.src}
+                alt={localizar(img.alt, locale)}
+                titulo={obra.titulo}
+                sizes="(max-width: 768px) 100vw, 45vw"
+              />
+              <figcaption className="legenda">{t(img.papel)}</figcaption>
+            </figure>
+          ))}
+        </div>
+      )}
 
       {/* 8. Mantém a pessoa dentro do acervo. */}
       {proxima.slug !== obra.slug && (

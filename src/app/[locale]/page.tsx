@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { lerObras } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
-import { MolduraObra } from '@/components/ui/MolduraObra'
+import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
 import type { Idioma } from '@/i18n/routing'
 
@@ -35,6 +35,8 @@ export default async function Portfolio({
       <div className="flex flex-col gap-[var(--respiro-secao)] pt-[var(--respiro-secao)]">
         {obras.map((obra, i) => {
           const legenda = localizar(obra.legenda, locale)
+          // A `principal` é a que representa a obra na sequência (docs/03 §1).
+          const principal = obra.imagens.find((im) => im.papel === 'principal')
           // Composição alternada: a imagem troca de lado a cada obra, e a
           // escala varia. Nunca a cadência uniforme de uma grade.
           const aEsquerda = i % 2 === 0
@@ -53,10 +55,17 @@ export default async function Portfolio({
                   i === 1 ? 'lg:col-span-6' : '',
                 ].join(' ')}
               >
-                <Link href={{ pathname: '/obras/[slug]', params: { slug: obra.slug } }}>
-                  <MolduraObra
+                <Link
+                  href={{ pathname: '/obras/[slug]', params: { slug: obra.slug } }}
+                  className="block"
+                >
+                  <ImagemObra
+                    src={principal?.src ?? ''}
+                    alt={localizar(principal?.alt, locale)}
                     titulo={obra.titulo}
-                    proporcao={aEsquerda ? '4 / 5' : '5 / 4'}
+                    // A primeira obra da sequência é o LCP da home.
+                    prioridade={i === 0}
+                    sizes="(max-width: 768px) 100vw, 58vw"
                   />
                 </Link>
               </div>

@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { dadosDaImagem } from '@/lib/obras'
 import { lerSobre } from '@/lib/sobre'
 import { alternativas } from '@/lib/metadados'
 import type { Idioma } from '@/i18n/routing'
@@ -22,7 +24,12 @@ export default async function Sobre({ params }: Props) {
 
   const t = await getTranslations('sobre')
   const tp = await getTranslations('pendente')
+  const tm = await getTranslations('marca')
   const { corpo, revisaoEn } = lerSobre()
+  // Retrato P&B, recortado da folha que ela mesma montou. A folha pareia bio e
+  // retrato: manter o par honra a composição dela.
+  const retrato = dadosDaImagem('/sobre/retrato.jpg')
+  const rubrica = dadosDaImagem('/marca/rubrica.png')
 
   // A tradução ainda não foi aprovada por ela. Em vez de traduzir por conta
   // própria, mostra o original marcado com lang="pt" — docs/03 §4.
@@ -30,6 +37,20 @@ export default async function Sobre({ params }: Props) {
 
   return (
     <div className="px-[var(--margem-lateral)] pt-[var(--respiro-secao)]">
+      {/* A folha que ela montou abre com a rubrica acima do nome. Manter a
+          ordem dela é o mais próximo de identidade que existe hoje — a cor
+          assinatura que ela pediu não sai das obras, que são monocromáticas. */}
+      {rubrica && (
+        <Image
+          src="/marca/rubrica.png"
+          alt={tm('rubricaAlt')}
+          width={rubrica.largura}
+          height={rubrica.altura}
+          priority
+          className="mb-6 h-auto w-[clamp(9rem,18vw,13rem)]"
+        />
+      )}
+
       <h1 className="font-display text-display leading-[0.95]">{t('titulo')}</h1>
 
       {emPortuguesNoIngles && (
@@ -42,19 +63,55 @@ export default async function Sobre({ params }: Props) {
         </p>
       )}
 
-      <div
-        {...(emPortuguesNoIngles ? { lang: 'pt' } : {})}
-        className="mt-14 max-w-[var(--medida-corpo)] text-corpo [&>p]:mb-6"
-      >
-        {corpo.split(/\n{2,}/).map((paragrafo, i) => (
-          <p key={i}>{renderizarEnfase(paragrafo)}</p>
-        ))}
+      {/* Composição assimétrica: o texto ocupa a coluna estreita da esquerda e
+          o retrato sobe na direita, do jeito que a folha dela faz. */}
+      <div className="mt-14 grid grid-cols-12 gap-y-12 md:gap-x-12">
+        <div
+          {...(emPortuguesNoIngles ? { lang: 'pt' } : {})}
+          className="col-span-12 max-w-[var(--medida-corpo)] text-corpo md:col-span-7 [&>p]:mb-6"
+        >
+          {corpo.split(/\n{2,}/).map((paragrafo, i) => (
+            <p key={i}>{renderizarParagrafo(paragrafo)}</p>
+          ))}
+        </div>
+
+        {retrato && (
+          <div className="col-span-12 md:col-span-4 md:col-start-9">
+            <Image
+              src="/sobre/retrato.jpg"
+              alt={t('retratoAlt')}
+              width={retrato.largura}
+              height={retrato.altura}
+              placeholder="blur"
+              blurDataURL={retrato.lqip}
+              sizes="(max-width: 768px) 100vw, 32vw"
+              className="h-auto w-full"
+            />
+          </div>
+        )}
       </div>
     </div>
   )
 }
 
-/** A folha dela tem uma única palavra em negrito: **expressão**. Preserva. */
+/**
+ * Preserva duas coisas do original dela, e só essas duas.
+ *
+ * A quebra de linha simples: "Esse caminho, / Essas peças, / São um reflexo de
+ * transformação, / De desenvolvimento." são QUATRO linhas na folha que ela
+ * escreveu, não uma frase corrida. Achatar isso reescreve o ritmo dela.
+ *
+ * E a única palavra em negrito na folha inteira: **expressão**.
+ */
+function renderizarParagrafo(texto: string) {
+  return texto.split('\n').map((linha, i, todas) => (
+    <span key={i}>
+      {renderizarEnfase(linha)}
+      {i < todas.length - 1 && <br />}
+    </span>
+  ))
+}
+
 function renderizarEnfase(texto: string) {
   return texto.split(/(\*\*[^*]+\*\*)/g).map((parte, i) =>
     parte.startsWith('**') && parte.endsWith('**') ? (

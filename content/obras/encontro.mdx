@@ -5,7 +5,11 @@ ano: 2026
 tecnica:
   pt: Gesso e massa acrílica sobre tela
   en: "[PENDENTE: revisar tradução com a artista]"
-dimensoes: { altura: 115, largura: 180, unidade: cm }
+# CORRIGIDO — a ficha dela escreve "115x180" sem dizer qual é qual, e o handoff
+# leu como altura x largura. As duas fotos dela mostram a tela EM PÉ, e a
+# proporção medida na foto (0,606) bate com 115/180 = 0,639, não com 180/115.
+# Logo: 115 é a LARGURA e 180 é a ALTURA. CONFIRMAR COM A ARTISTA.
+dimensoes: { altura: 180, largura: 115, unidade: cm }
 materiais:
   pt: "[PENDENTE: detalhar — a ficha diz gesso e massa acrílica]"
   en: "[PENDENTE]"
@@ -15,18 +19,52 @@ disponibilidade: disponivel
 legenda:
   pt: Um encontro, entre o movimento e a permanência.
   en: "[PENDENTE: tradução a aprovar]"
+# Só entram imagens que EXISTEM em ativos/. As três de ângulo (IMG_7017/18/19)
+# estão no Drive e ainda não chegaram — quando chegarem, é acrescentar linha.
+# Largura, altura e LQIP vêm de content/imagens.geradas.json (npm run imagens),
+# não daqui: são dado gerado, não conteúdo editorial.
+#
+# O `alt` descreve o que se vê na fotografia. Foi escrito de observação, não
+# transcrito dela — REVISAR COM A ARTISTA antes de publicar.
 imagens:
-  - { src: /obras/encontro/frontal.jpg,  papel: principal, origem: IMG_7015.JPG }
-  - { src: /obras/encontro/angulo-1.jpg, papel: angulo,    origem: IMG_7017.JPG }
-  - { src: /obras/encontro/angulo-2.jpg, papel: angulo,    origem: IMG_7018.JPG }
-  - { src: /obras/encontro/angulo-3.jpg, papel: angulo,    origem: IMG_7019.JPG }
-  - { src: /obras/encontro/detalhe.jpg,  papel: detalhe,   origem: IMG_6562.JPG }
+  - src: /obras/encontro/escala.jpg
+    papel: escala
+    origem: prancha de ficha (3.jpg)
+    alt:
+      pt: >-
+        Encontro instalada em parede branca, com o piso à mostra: tela vertical
+        de relevo claro, quase da altura de uma pessoa.
+      en: >-
+        Encontro installed on a white wall, floor visible: a vertical canvas of
+        pale relief, close to a person's height.
+  - src: /obras/encontro/frontal.jpg
+    papel: principal
+    origem: IMG_7015.JPG
+    alt:
+      pt: >-
+        Vista frontal de Encontro. Relevo em gesso e massa acrílica sobre tela
+        vertical, em branco osso, cinza e grafite, com escorridos de prata
+        descendo da borda de cima.
+      en: >-
+        Encontro seen head-on. Relief in plaster and acrylic paste on a vertical
+        canvas, in bone white, grey and graphite, with silver runs falling from
+        the top edge.
+  - src: /obras/encontro/detalhe.jpg
+    papel: detalhe
+    origem: IMG_6562.JPG
+    alt:
+      pt: >-
+        Detalhe do canto superior de Encontro: camadas de massa formando vincos
+        e sulcos, com escorridos de prata e de branco correndo sobre a textura.
+      en: >-
+        Detail of the upper corner of Encontro: layers of paste forming creases
+        and furrows, with silver and white runs falling across the texture.
 video: { origem: "IMG_6561.MOV / C9668.MP4 / IMG_6562.MP4 — escolher" }
 # Campo do modelo de dados, não conteúdo da artista.
 # Vira 'publicada' só quando a ficha estiver completa — o build cobra.
 estado: rascunho
 ordem: 1
-fonte: "Drive GAB/Encontro 11.230 — ficha e texto transcritos de 3.jpg; preço do nome da pasta"
+fonte: "Drive GAB/Encontro 11.230 — ficha e texto transcritos de 3.jpg; preço do nome da pasta. Faltam as 3 fotos de ângulo (IMG_7017/18/19) e a escolha do vídeo."
 ---
 
 <!-- TEXTO DA OBRA — transcrito literalmente da folha 3.jpg. Confirmar com a artista antes de publicar. -->

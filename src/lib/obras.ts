@@ -3,8 +3,21 @@ import { join } from 'node:path'
 import matter from 'gray-matter'
 import { z } from 'zod'
 import { idiomas, type Idioma } from '@/i18n/routing'
+import geradas from '../../content/imagens.geradas.json'
 
 const DIRETORIO = join(process.cwd(), 'content', 'obras')
+
+/**
+ * Largura, altura e LQIP saem do pipeline (scripts/processar-imagens.mjs), não
+ * do frontmatter: são dado gerado. Quem edita conteúdo não deveria ter que
+ * medir pixel nem colar base64.
+ */
+type ImagemGerada = { largura: number; altura: number; lqip: string }
+const MANIFESTO = geradas as Record<string, ImagemGerada | undefined>
+
+export function dadosDaImagem(src: string): ImagemGerada | undefined {
+  return MANIFESTO[src]
+}
 
 /**
  * Marca de pendência. É o contrato da regra 2 do CLAUDE.md: placeholder é
@@ -125,6 +138,11 @@ function pendenciasDePublicacao(o: DadosObra, texto: string): string[] {
   const principais = o.imagens.filter((i) => i.papel === 'principal')
   if (principais.length === 0) faltando.push('pelo menos uma imagem principal')
   for (const img of o.imagens) {
+    // Listada no frontmatter mas ausente do manifesto = arquivo não existe.
+    // Melhor derrubar aqui do que servir uma imagem quebrada.
+    if (!MANIFESTO[img.src]) faltando.push(`arquivo de ${img.src} (rode npm run imagens)`)
+  }
+  for (const img of o.imagens) {
     if (!img.alt || ehPendente(img.alt)) {
       faltando.push(`alt de ${img.src} (pt e en)`)
       continue
@@ -173,8 +191,16 @@ export function lerObras(): Obra[] {
       )
     }
 
+    // Costura o manifesto: a imagem só chega ao componente já sabendo o
+    // tamanho real. Sem isso não há como evitar salto de layout.
+    const imagens = resultado.data.imagens.map((img) => ({
+      ...img,
+      ...(MANIFESTO[img.src] ?? {}),
+    }))
+
     return {
       ...resultado.data,
+      imagens,
       texto,
       faltando,
       prontaParaPublicar: faltando.length === 0,
