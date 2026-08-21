@@ -1,5 +1,8 @@
 import { getPathname } from '@/i18n/navigation'
 import { routing, idiomas } from '@/i18n/routing'
+import { urlDoSite } from './url-do-site'
+
+export { urlDoSite }
 
 /**
  * Canônica por idioma + hreflang recíproco + x-default apontando para PT
@@ -10,15 +13,6 @@ import { routing, idiomas } from '@/i18n/routing'
  * contatos são @gseleme.design, e ninguém amarrou as pontas (CLAUDE.md).
  * Enquanto isso, a URL vem do ambiente — nunca fixa no código.
  */
-export function urlDoSite(): string {
-  const bruta =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : 'http://localhost:3000')
-  return bruta.replace(/\/$/, '')
-}
-
 /**
  * O próprio tipo do next-intl: rota sem parâmetro é string literal, rota com
  * parâmetro exige `params` com as chaves certas. Reaproveitar o tipo em vez de
