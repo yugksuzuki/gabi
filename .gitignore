@@ -1,5 +1,13 @@
+# Conversa privada, documentos comerciais e contatos de terceiros.
+# O repositório é público — isto nunca entra.
 materiais/
+
 node_modules/
 .next/
+out/
 .env*.local
 .vercel
+
+# Artefatos de build
+*.tsbuildinfo
+next-env.d.ts

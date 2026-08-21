@@ -1,0 +1,80 @@
+/**
+ * Tokens de design — docs/02-direcao-visual.md §2 e §3.
+ *
+ * Regra da paleta: a obra é a cor. A interface é neutra e se cala.
+ * As três obras são monocromáticas (gesso e massa acrílica: branco osso, cinza,
+ * grafite, escorrido de prata — amostragem #c7c6c2 · #cbcac6 · #c5c4bf).
+ * Não há cor a extrair delas, e por isso não há acento inventado aqui.
+ *
+ * Contraste verificado com scripts/verificar-contraste.mjs. Roda no `npm run lint:cor`
+ * e falha se alguém mexer num valor e quebrar o AA.
+ */
+
+:root {
+  /* ---- Cor ------------------------------------------------------------- */
+
+  /* Branco quente de papel. NUNCA #fff: branco puro lê como e-commerce
+     e brutaliza a fotografia. */
+  --bg: #f4f2ee;
+  /* Um passo mais escuro, para seções alternadas. */
+  --bg-alt: #eae7e1;
+
+  /* Quase-preto quente. NUNCA #000: preto puro é duro e datado em tela.
+     15,71:1 sobre --bg. */
+  --ink: #1a1917;
+  /* Legendas, ficha técnica, metadados. 5,68:1 sobre --bg, 5,14:1 sobre --bg-alt. */
+  --ink-muted: #635f58;
+
+  /* Filete de 1px, baixíssimo contraste. Decorativo por decisão de projeto —
+     WCAG 1.4.11 isenta elemento puramente decorativo. Não use para desenhar
+     controle: para isso existe --line-forte. */
+  --line: #dcd8d1;
+  /* Borda de elemento de interface (campo, botão, estado). 3,60:1 sobre --bg
+     e 3,27:1 sobre --bg-alt — passa o mínimo de 3:1 nos dois fundos. */
+  --line-forte: #837e76;
+
+  /* PENDENTE — a cor assinatura sai das obras fotografadas, e as obras são
+     monocromáticas. Ver CLAUDE.md ("As obras são monocromáticas") e
+     docs/02 §2: é conversa a ter com a Gabriela, não decisão do código.
+     Até lá o acento é o próprio --ink. Nada de cor fabricada em produção. */
+  --accent: var(--ink);
+
+  /* ---- Tipografia ------------------------------------------------------ */
+
+  --fonte-display: var(--fonte-fraunces), Georgia, 'Times New Roman', serif;
+  --fonte-interface: var(--fonte-inter), system-ui, -apple-system, sans-serif;
+
+  /* Escala fluida com clamp(), ancorada em 390px e 1440px (docs/02 §3).
+     Fora dessas âncoras, congela — não cresce sem fim em monitor largo. */
+
+  /* Nome da obra na página dela, título da home. É o gesto. 40 -> 104px */
+  --texto-display: clamp(2.5rem, 1.017rem + 6.095vw, 6.5rem);
+  /* Seções. 28 -> 44px */
+  --texto-titulo: clamp(1.75rem, 1.379rem + 1.524vw, 2.75rem);
+  /* Texto da obra e área editorial. 17 -> 19px */
+  --texto-corpo: clamp(1.0625rem, 1.017rem + 0.19vw, 1.1875rem);
+  /* Ficha técnica, ano, dimensões. O registro de museu. 13 -> 14px */
+  --texto-legenda: clamp(0.8125rem, 0.79rem + 0.095vw, 0.875rem);
+
+  /* Texto de artista se lê devagar: entrelinha generosa, medida curta. */
+  --altura-corpo: 1.7;
+  --medida-corpo: 64ch;
+
+  /* ---- Ritmo ----------------------------------------------------------- */
+
+  --margem-lateral: clamp(1.25rem, 0.202rem + 4.31vw, 6rem);
+  --respiro-secao: clamp(4rem, 2.095rem + 7.81vw, 10rem);
+
+  /* ---- Movimento ------------------------------------------------------- */
+
+  /* Revelação suave: 300-500ms (docs/02 §5). Acima disso atrasa a leitura. */
+  --duracao: 420ms;
+  --curva: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* AA, não opcional (docs/02 §5). Desliga tudo que se move. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duracao: 1ms;
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "tituloPadrao": "Gabriela Seleme",
+    "descricaoPadrao": "Obras de Gabriela Seleme. Gesso e massa acrílica sobre tela."
+  },
+  "nav": {
+    "rotulo": "Navegação principal",
+    "portfolio": "Portfólio",
+    "sobre": "Quem sou eu",
+    "textos": "Textos",
+    "contato": "Contato",
+    "pularParaConteudo": "Pular para o conteúdo"
+  },
+  "idioma": {
+    "rotulo": "Idioma",
+    "pt": "PT",
+    "en": "EN",
+    "trocarPara": "Ver esta página em inglês"
+  },
+  "obra": {
+    "fichaTecnica": "Ficha técnica",
+    "ano": "Ano",
+    "tecnica": "Técnica",
+    "dimensoes": "Dimensões",
+    "materiais": "Materiais",
+    "edicao": "Edição",
+    "disponibilidade": "Disponibilidade",
+    "preco": "Valor",
+    "sobConsulta": "Sob consulta",
+    "consultar": "Consultar",
+    "proximaObra": "Próxima obra",
+    "disponivel": "Disponível",
+    "reservada": "Reservada",
+    "vendida": "Vendida",
+    "acervo": "Acervo"
+  },
+  "portfolio": { "titulo": "Portfólio", "verObra": "Ver a obra" },
+  "sobre": { "titulo": "Quem sou eu" },
+  "textos": { "titulo": "Textos", "vazio": "Nenhum texto publicado ainda.", "ler": "Ler" },
+  "contato": {
+    "titulo": "Contato",
+    "email": "E-mail",
+    "instagram": "Instagram",
+    "whatsapp": "WhatsApp"
+  },
+  "pendente": {
+    "rotulo": "Pendente",
+    "aviso": "Conteúdo ainda não fornecido pela artista.",
+    "obraIncompleta": "Esta obra ainda está em rascunho: falta ficha técnica, fotografia ou texto."
+  },
+  "rodape": { "direitos": "Todos os direitos reservados." }
+}

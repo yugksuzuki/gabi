@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "tituloPadrao": "Gabriela Seleme",
+    "descricaoPadrao": "Works by Gabriela Seleme. Plaster and acrylic paste on canvas."
+  },
+  "nav": {
+    "rotulo": "Main navigation",
+    "portfolio": "Works",
+    "sobre": "About",
+    "textos": "Writing",
+    "contato": "Contact",
+    "pularParaConteudo": "Skip to content"
+  },
+  "idioma": {
+    "rotulo": "Language",
+    "pt": "PT",
+    "en": "EN",
+    "trocarPara": "View this page in Portuguese"
+  },
+  "obra": {
+    "fichaTecnica": "Details",
+    "ano": "Year",
+    "tecnica": "Medium",
+    "dimensoes": "Dimensions",
+    "materiais": "Materials",
+    "edicao": "Edition",
+    "disponibilidade": "Availability",
+    "preco": "Price",
+    "sobConsulta": "Price on request",
+    "consultar": "Enquire",
+    "proximaObra": "Next work",
+    "disponivel": "Available",
+    "reservada": "Reserved",
+    "vendida": "Sold",
+    "acervo": "Collection"
+  },
+  "portfolio": { "titulo": "Works", "verObra": "View the work" },
+  "sobre": { "titulo": "About" },
+  "textos": { "titulo": "Writing", "vazio": "No writing published yet.", "ler": "Read" },
+  "contato": {
+    "titulo": "Contact",
+    "email": "Email",
+    "instagram": "Instagram",
+    "whatsapp": "WhatsApp"
+  },
+  "pendente": {
+    "rotulo": "Pending",
+    "aviso": "Content not yet provided by the artist.",
+    "obraIncompleta": "This work is still a draft: details, photography or text are missing."
+  },
+  "rodape": { "direitos": "All rights reserved." }
+}
