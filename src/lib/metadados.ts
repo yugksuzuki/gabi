@@ -65,7 +65,10 @@ export function cartaoSocial({
     url,
     width: TAMANHO_OG.width,
     height: TAMANHO_OG.height,
-    alt: altDoCartao[locale](titulo),
+    // Fallback explícito: quem chama já deveria ter validado o idioma, mas um
+    // cartão sem `alt` é falha de acessibilidade e um cartão que DERRUBA a
+    // página é bem pior. Nenhum dos dois vale um metadado.
+    alt: (altDoCartao[locale] ?? altDoCartao.pt)(titulo),
   }
 
   return {

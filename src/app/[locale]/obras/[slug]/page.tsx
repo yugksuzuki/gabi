@@ -96,7 +96,9 @@ export default async function PaginaObra({ params }: Props) {
             alt={localizar(principal?.alt, locale)}
             titulo={obra.titulo}
             prioridade
-            sizes="(max-width: 768px) 100vw, 52rem"
+            // Desconta a margem lateral: declarar 100vw faz o navegador
+            // baixar um arquivo maior do que o que vai desenhar.
+            sizes="(max-width: 768px) calc(100vw - 3rem), 52rem"
           />
         </div>
       </div>
@@ -150,7 +152,7 @@ export default async function PaginaObra({ params }: Props) {
                 src={img.src}
                 alt={localizar(img.alt, locale)}
                 titulo={obra.titulo}
-                sizes="(max-width: 768px) 100vw, 45vw"
+                sizes="(max-width: 768px) calc(100vw - 3rem), 45vw"
               />
               <figcaption className="legenda">{t(img.papel)}</figcaption>
             </figure>

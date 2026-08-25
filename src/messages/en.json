@@ -72,5 +72,10 @@
   },
   "marca": {
     "rubricaAlt": "Gabriela Seleme's signature"
+  },
+  "naoEncontrado": {
+    "titulo": "Page not found",
+    "recado": "This address does not exist, or the page has moved.",
+    "voltar": "See the works"
   }
 }

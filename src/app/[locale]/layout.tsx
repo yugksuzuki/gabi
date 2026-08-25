@@ -20,6 +20,14 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+
+  // Idioma inválido chega aqui de verdade: qualquer endereço com extensão
+  // (/favicon.ico, /qualquer.txt) escapa do middleware de i18n e cai neste
+  // segmento com locale = "favicon.ico". Sem esta guarda, generateMetadata
+  // estourava e o servidor respondia 500 onde devia responder 404 — e um site
+  // que devolve 500 para /favicon.ico parece quebrado para qualquer robô.
+  if (!hasLocale(routing.locales, locale)) return {}
+
   const t = await getTranslations({ locale, namespace: 'meta' })
 
   return {

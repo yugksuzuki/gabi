@@ -38,17 +38,24 @@ const COR = {
 } as const
 
 /**
- * As fontes têm caminho literal porque o Turbopack analisa o argumento do
- * readFileSync para decidir o que empacotar junto. A foto da obra não tem como
- * ter: o caminho vem do conteúdo. Daí o aviso de "tracing of the whole project"
- * no build — ele é conhecido e não é grave aqui, porque estas rotas são todas
- * pré-geradas (dynamicParams = false) e nenhuma delas roda em produção.
+ * Duas portas de leitura, cada uma presa a uma pasta.
+ *
+ * O Turbopack analisa o argumento do readFileSync para decidir quais arquivos
+ * precisam viajar junto com a função. Com um caminho totalmente variável ele
+ * desiste e reboca o projeto inteiro — inclusive todo o public/ — para dentro do
+ * pacote do servidor. Prender a pasta no literal e deixar variável só o nome do
+ * arquivo é o que mantém o rastreamento preciso.
  */
-const FONTE_FRAUNCES = 'src/styles/fontes/og/fraunces-og.ttf'
-const FONTE_INTER = 'src/styles/fontes/og/inter-og.ttf'
+const PASTA_FONTES = 'src/styles/fontes/og'
+const FONTE_FRAUNCES = 'fraunces-og.ttf'
+const FONTE_INTER = 'inter-og.ttf'
 
-function arquivo(caminho: string): Buffer {
-  return readFileSync(join(process.cwd(), caminho))
+function arquivoDeFonte(nome: string): Buffer {
+  return readFileSync(join(process.cwd(), PASTA_FONTES, nome))
+}
+
+function arquivoPublico(src: string): Buffer {
+  return readFileSync(join(process.cwd(), 'public', src))
 }
 
 /**
@@ -61,13 +68,13 @@ export function fontesDoCartao() {
   return [
     {
       name: 'Fraunces',
-      data: arquivo(FONTE_FRAUNCES),
+      data: arquivoDeFonte(FONTE_FRAUNCES),
       weight: 400 as const,
       style: 'normal' as const,
     },
     {
       name: 'Inter',
-      data: arquivo(FONTE_INTER),
+      data: arquivoDeFonte(FONTE_INTER),
       weight: 400 as const,
       style: 'normal' as const,
     },
@@ -82,7 +89,7 @@ export function fontesDoCartao() {
 function fotoEmbutida(src: string): string | null {
   if (!dadosDaImagem(src)) return null
   try {
-    const bytes = arquivo(join('public', src))
+    const bytes = arquivoPublico(src)
     const tipo = src.endsWith('.png') ? 'image/png' : 'image/jpeg'
     return `data:${tipo};base64,${bytes.toString('base64')}`
   } catch {

@@ -78,7 +78,14 @@ export default async function Portfolio({
                     titulo={obra.titulo}
                     // A primeira obra da sequência é o LCP da home.
                     prioridade={i === 0}
-                    sizes="(max-width: 768px) 100vw, 58vw"
+                    // A imagem NÃO ocupa 100vw: a sequência tem margem
+                    // lateral dos dois lados (1,25rem a 2,5rem no celular).
+                    // Declarar 100vw faz o navegador escolher um arquivo maior
+                    // do que vai desenhar, e no celular isso é o LCP pagando
+                    // por pixel que ninguém vê. Valor fixo, não var(): o
+                    // atributo sizes é lido fora da cascata e não resolve
+                    // custom property.
+                    sizes="(max-width: 768px) calc(100vw - 3rem), 58vw"
                   />
                 </Link>
               </div>

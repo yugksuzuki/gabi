@@ -72,5 +72,10 @@
   },
   "marca": {
     "rubricaAlt": "Rubrica de Gabriela Seleme"
+  },
+  "naoEncontrado": {
+    "titulo": "Página não encontrada",
+    "recado": "O endereço não existe, ou a página mudou de lugar.",
+    "voltar": "Ver o portfólio"
   }
 }

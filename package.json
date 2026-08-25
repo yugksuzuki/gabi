@@ -15,7 +15,10 @@
     "verificar:url": "node --experimental-strip-types --no-warnings scripts/verificar-url.mjs",
     "verificar:whatsapp": "node --experimental-strip-types --no-warnings --import ./scripts/registrar-resolver.mjs scripts/verificar-whatsapp.mjs",
     "verificar": "npm run typecheck && npm run lint && npm run verificar:cor && npm run verificar:rotas && npm run verificar:moeda && npm run verificar:url && npm run verificar:whatsapp",
-    "imagens": "node scripts/processar-imagens.mjs"
+    "testar": "playwright test",
+    "testar:ui": "playwright test --ui",
+    "imagens": "node scripts/processar-imagens.mjs",
+    "icone": "node scripts/gerar-icone.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -26,10 +29,13 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
+    "axe-core": "^4.13.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.3.1",
     "prettier": "^3.9.6",

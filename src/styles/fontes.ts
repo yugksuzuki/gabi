@@ -12,8 +12,15 @@ import localFont from 'next/font/local'
  * reproduzível offline. O bundle final é idêntico: o next/font/google também
  * termina servindo o arquivo do nosso domínio.
  *
- * Origem dos arquivos: @fontsource-variable/fraunces e
- * @fontsource-variable/inter v5.3.0, subset latin, eixos variáveis completos.
+ * Os arquivos são RECORTADOS por scripts/gerar-fontes.py, a partir dos
+ * originais em src/styles/fontes/originais/ (@fontsource-variable v5.3.0,
+ * subset latin). Fraunces: 121 KB -> 58 KB. Inter: 48 KB -> 30 KB. São 85 KB a
+ * menos competindo com a foto da obra na primeira visita, e num 4G isso é
+ * tempo de LCP. O que saiu foram glifos fora do latim e os eixos SOFT e WONK,
+ * que só existem se alguém escrever font-variation-settings à mão — este site
+ * não escreve. O eixo `opsz` FICOU: o navegador o aplica sozinho por tamanho de
+ * texto, e é ele que dá calor ao nome da obra em corpo grande.
+ *
  * Ambas SIL OFL 1.1 — licenças em src/styles/fontes/LICENSE-*.txt.
  *
  * Duas famílias, e só duas (docs/02 §3): serifada editorial para display e
@@ -27,9 +34,8 @@ export const fraunces = localFont({
   src: './fontes/fraunces-latin-variavel.woff2',
   display: 'swap',
   variable: '--fonte-fraunces',
-  // Arquivo variável completo: eixos opsz, SOFT, WONK e wght.
-  // O opsz é o que dá calor à Fraunces em tamanho grande.
-  weight: '100 900',
+  // Eixos opsz e wght. O opsz entra sozinho, por font-optical-sizing: auto.
+  weight: '300 700',
   style: 'normal',
   fallback: ['Georgia', 'Times New Roman', 'serif'],
 })
@@ -38,7 +44,7 @@ export const inter = localFont({
   src: './fontes/inter-latin-variavel.woff2',
   display: 'swap',
   variable: '--fonte-inter',
-  weight: '100 900',
+  weight: '300 700',
   style: 'normal',
   fallback: [
     'system-ui',
