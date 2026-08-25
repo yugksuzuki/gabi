@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { alternativas } from '@/lib/metadados'
+import { alternativas, cartaoSocial } from '@/lib/metadados'
 import type { Idioma } from '@/i18n/routing'
 
 type Props = { params: Promise<{ locale: Idioma }> }
@@ -11,6 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t('titulo'),
     alternates: alternativas('/textos', locale),
+    ...cartaoSocial({ cartao: 'pagina/textos', titulo: t('titulo'), locale }),
     robots: { index: false, follow: false },
   }
 }

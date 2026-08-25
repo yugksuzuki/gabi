@@ -3,9 +3,9 @@ import type { ReactNode } from 'react'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { routing } from '@/i18n/routing'
+import { routing, type Idioma } from '@/i18n/routing'
 import { fraunces, inter } from '@/styles/fontes'
-import { alternativas, urlDoSite } from '@/lib/metadados'
+import { alternativas, cartaoSocial, urlDoSite } from '@/lib/metadados'
 import { Nav } from '@/components/layout/Nav'
 import { Rodape } from '@/components/layout/Rodape'
 import '../globals.css'
@@ -24,6 +24,12 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(urlDoSite()),
+    ...cartaoSocial({
+      cartao: 'pagina/portfolio',
+      titulo: t('tituloPadrao'),
+      descricao: t('descricaoPadrao'),
+      locale: locale as Idioma,
+    }),
     title: { default: t('tituloPadrao'), template: `%s — ${t('tituloPadrao')}` },
     description: t('descricaoPadrao'),
     alternates: alternativas('/', locale),

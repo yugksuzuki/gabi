@@ -5,7 +5,7 @@ import { Link } from '@/i18n/navigation'
 import { routing, type Idioma } from '@/i18n/routing'
 import { acharObra, lerObras, ehPendente } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
-import { alternativas } from '@/lib/metadados'
+import { alternativas, cartaoSocial } from '@/lib/metadados'
 import { buscarCotacaoUSD, exibirPreco } from '@/lib/moeda'
 import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
@@ -33,6 +33,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Description escrita, nunca gerada por template genérico (docs/01 §6).
     // Sem legenda aprovada, não inventa: fica sem description.
     ...(legenda ? { description: legenda } : {}),
+    // O cartão que aparece quando o link circula no Instagram e no WhatsApp.
+    // Para uma obra é o primeiro contato — docs/01 §6.
+    ...cartaoSocial({
+      cartao: `obra/${slug}`,
+      titulo: obra.titulo,
+      descricao: legenda,
+      locale,
+    }),
     robots: { index: false, follow: false },
   }
 }
