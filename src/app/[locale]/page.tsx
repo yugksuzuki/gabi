@@ -4,6 +4,7 @@ import { lerObras } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
 import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
+import { Entrada } from '@/components/layout/Entrada'
 import type { Idioma } from '@/i18n/routing'
 
 /**
@@ -14,8 +15,8 @@ import type { Idioma } from '@/i18n/routing'
  * acervo de três obras parecer deliberado em vez de inacabado — e escala para
  * oito obras sem refazer a estrutura.
  *
- * O vídeo de entrada (ela já separou o arquivo) entra em E2, com pôster e
- * fallback estático. Enquanto não chega, a sequência começa direto na obra.
+ * A página abre no vídeo de entrada (docs/01 §1: "a primeira coisa que a pessoa
+ * vê é o vídeo e, na rolagem, a obra") e só depois entra a sequência.
  *
  * HIERARQUIA POR MATERIAL: obra fotografada ocupa a escala grande; obra ainda
  * sem foto entra estreita, como entrada de catálogo por vir. Duas das três não
@@ -38,6 +39,8 @@ export default async function Portfolio({
   return (
     <>
       <h1 className="sr-only">{t('titulo')}</h1>
+
+      <Entrada />
 
       <div className="flex flex-col gap-[var(--respiro-secao)] pt-[var(--respiro-secao)]">
         {obras.map((obra, i) => {

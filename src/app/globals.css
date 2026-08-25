@@ -96,3 +96,81 @@
     color: var(--ink-muted);
   }
 }
+
+/* ---- Entrada da home ---------------------------------------------------- *
+ * Ver src/components/layout/Entrada.tsx.
+ *
+ * O material é 9:16 — foi filmado no celular, na vertical. Isso decide o
+ * layout, e decide diferente em cada ponta:
+ *
+ * CELULAR: sangra de borda a borda. A proporção do arquivo é a proporção da
+ * tela; não sobra nada e não corta nada.
+ *
+ * DESKTOP: NÃO sangra. Esticar 9:16 numa faixa de 1440 de largura obriga o
+ * `cover` a ampliar 2x e a jogar fora 70% do quadro — o resultado é um borrão
+ * sem enquadramento, e movimento que custa qualidade não entra (docs/02 §5).
+ * Então o vídeo vira um painel na proporção nativa, com muito ar em volta,
+ * alinhado à esquerda. É o modelo do William Guillon que docs/02 §1 aponta
+ * para objeto isolado, e o vazio à direita é composição, não sobra.
+ *
+ * A altura é declarada aqui, e não no componente, porque o pôster e o vídeo
+ * precisam concordar em pixel: é o que mantém o CLS em zero na troca.
+ */
+.entrada {
+  position: relative;
+  width: 100%;
+  height: 64svh;
+  min-height: 20rem;
+  overflow: hidden;
+  background-color: var(--bg-alt);
+}
+
+.entrada__video,
+.entrada__estatica {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 768px) {
+  .entrada {
+    display: flex;
+    justify-content: center;
+    height: 88vh;
+    padding-block: clamp(1.5rem, 4vh, 3.5rem);
+    padding-inline: var(--margem-lateral);
+    background-color: transparent;
+  }
+
+  .entrada__video,
+  .entrada__estatica {
+    /* Proporção nativa: a caixa acompanha o arquivo, o arquivo não se deforma
+       para caber na caixa. Em ~415px de largura o quadro de 720 ainda está
+       sendo REDUZIDO — nitidez de sobra.
+
+       Centralizado, com o vazio igual dos dois lados: 9:16 obriga o painel a
+       ser estreito, e nessa largura o vazio todo de um lado só lê como erro de
+       layout em vez de composição. Aqui a assimetria não faz sentido, e
+       docs/02 §4 pede assimetria "quando fizer sentido, não como maneirismo". */
+    width: auto;
+    aspect-ratio: 9 / 16;
+    max-width: 100%;
+    object-fit: contain;
+  }
+}
+
+/* Enquanto há movimento, a estática não existe. */
+.entrada__estatica {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrada__video {
+    display: none;
+  }
+  .entrada__estatica {
+    display: block;
+  }
+}
