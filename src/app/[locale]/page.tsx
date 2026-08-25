@@ -4,6 +4,8 @@ import { lerObras } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
 import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
+import { DadosEstruturados } from '@/components/DadosEstruturados'
+import { grafo, pessoa } from '@/lib/schema'
 import type { Idioma } from '@/i18n/routing'
 
 /**
@@ -30,6 +32,10 @@ export default async function Portfolio({
 
   return (
     <>
+      {/* A home é o portfólio: é aqui que a Person da Gabriela é declarada
+          (item 22). É o que habilita painel de conhecimento. */}
+      <DadosEstruturados json={grafo(pessoa(locale))} />
+
       <h1 className="sr-only">{t('titulo')}</h1>
 
       <div className="flex flex-col gap-[var(--respiro-secao)] pt-[var(--respiro-secao)]">

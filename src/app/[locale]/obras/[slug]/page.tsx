@@ -11,6 +11,8 @@ import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
 import { FichaTecnica } from '@/components/obra/FichaTecnica'
 import { Consultar } from '@/components/obra/Consultar'
+import { DadosEstruturados } from '@/components/DadosEstruturados'
+import { grafo, migalhas, obraEmSchema, pessoa } from '@/lib/schema'
 
 type Props = { params: Promise<{ locale: Idioma; slug: string }> }
 
@@ -72,8 +74,19 @@ export default async function PaginaObra({ params }: Props) {
   // Ângulo, detalhe e escala — tudo que não é a principal alimenta a galeria.
   const galeria = obra.imagens.filter((im) => im !== principal)
 
+  const tPortfolio = await getTranslations('portfolio')
+
   return (
     <article className="pt-[var(--respiro-secao)]">
+      {/* VisualArtwork + Person + BreadcrumbList (docs/03 §7). Campo pendente
+          é omitido, nunca inventado: dado estruturado sai do nosso controle. */}
+      <DadosEstruturados
+        json={grafo(
+          pessoa(locale),
+          obraEmSchema(obra, locale),
+          migalhas(obra, locale, tPortfolio('titulo'))
+        )}
+      />
       {/* 1. Imagem principal, grande, quase sem cerimônia. */}
       <div className="px-[var(--margem-lateral)]">
         <div className="mx-auto max-w-[52rem]">
