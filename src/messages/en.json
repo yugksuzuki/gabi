@@ -59,8 +59,7 @@
   },
   "pendente": {
     "rotulo": "Pending",
-    "aviso": "Content not yet provided by the artist.",
-    "obraIncompleta": "This work is still a draft: details, photography or text are missing."
+    "aviso": "Content not yet provided by the artist."
   },
   "rodape": {
     "direitos": "All rights reserved."

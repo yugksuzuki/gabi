@@ -59,8 +59,7 @@
   },
   "pendente": {
     "rotulo": "Pendente",
-    "aviso": "Conteúdo ainda não fornecido pela artista.",
-    "obraIncompleta": "Esta obra ainda está em rascunho: falta ficha técnica, fotografia ou texto."
+    "aviso": "Conteúdo ainda não fornecido pela artista."
   },
   "rodape": {
     "direitos": "Todos os direitos reservados."

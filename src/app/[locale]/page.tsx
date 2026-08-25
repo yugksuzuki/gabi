@@ -16,6 +16,13 @@ import type { Idioma } from '@/i18n/routing'
  *
  * O vídeo de entrada (ela já separou o arquivo) entra em E2, com pôster e
  * fallback estático. Enquanto não chega, a sequência começa direto na obra.
+ *
+ * HIERARQUIA POR MATERIAL: obra fotografada ocupa a escala grande; obra ainda
+ * sem foto entra estreita, como entrada de catálogo por vir. Duas das três não
+ * têm uma única fotografia (docs/06), e dar a elas o mesmo tamanho da que tem
+ * transforma a home em "grade de vinte com dezessete buracos" — exatamente o
+ * que CLAUDE.md manda evitar. A obra existe na sequência de qualquer jeito;
+ * só não finge ter imagem. Quando a foto chegar, ela cresce sozinha.
  */
 export default async function Portfolio({
   params,
@@ -37,6 +44,7 @@ export default async function Portfolio({
           const legenda = localizar(obra.legenda, locale)
           // A `principal` é a que representa a obra na sequência (docs/03 §1).
           const principal = obra.imagens.find((im) => im.papel === 'principal')
+          const temFoto = Boolean(principal)
           // Composição alternada: a imagem troca de lado a cada obra, e a
           // escala varia. Nunca a cadência uniforme de uma grade.
           const aEsquerda = i % 2 === 0
@@ -49,10 +57,18 @@ export default async function Portfolio({
               <div
                 className={[
                   'col-span-12',
-                  aEsquerda
-                    ? 'md:col-span-7 md:col-start-1'
-                    : 'md:col-span-7 md:col-start-6 md:row-start-1',
-                  i === 1 ? 'lg:col-span-6' : '',
+                  // No celular a moldura empilha em largura cheia como tudo,
+                  // mas encolhida: uma caixa de 390px de largura para uma obra
+                  // que ainda não foi fotografada engole a tela inteira.
+                  temFoto ? '' : 'max-w-[58%] md:max-w-none',
+                  temFoto
+                    ? aEsquerda
+                      ? 'md:col-span-7 md:col-start-1'
+                      : 'md:col-span-7 md:col-start-6 md:row-start-1'
+                    : aEsquerda
+                      ? 'md:col-span-4 md:col-start-1'
+                      : 'md:col-span-4 md:col-start-9 md:row-start-1',
+                  temFoto && i === 1 ? 'lg:col-span-6' : '',
                 ].join(' ')}
               >
                 <Link
@@ -72,10 +88,16 @@ export default async function Portfolio({
 
               <div
                 className={[
-                  'col-span-12 flex flex-col gap-4',
-                  aEsquerda
-                    ? 'md:col-span-4 md:col-start-9'
-                    : 'md:col-span-4 md:col-start-1 md:row-start-1',
+                  'flex flex-col gap-4',
+                  'col-span-12',
+                  temFoto ? '' : 'md:self-end md:pb-2',
+                  temFoto
+                    ? aEsquerda
+                      ? 'md:col-span-4 md:col-start-9'
+                      : 'md:col-span-4 md:col-start-1 md:row-start-1'
+                    : aEsquerda
+                      ? 'md:col-span-4 md:col-start-6'
+                      : 'md:col-span-4 md:col-start-4 md:row-start-1',
                 ].join(' ')}
               >
                 <h2 className="font-display text-titulo leading-[1.05]">

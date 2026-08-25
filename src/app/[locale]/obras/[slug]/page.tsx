@@ -52,7 +52,6 @@ export default async function PaginaObra({ params }: Props) {
   if (!obra) notFound()
 
   const t = await getTranslations('obra')
-  const tp = await getTranslations('pendente')
   const cotacao = await buscarCotacaoUSD()
 
   const texto = obra.texto && !ehPendente(obra.texto) ? obra.texto : null
@@ -84,15 +83,6 @@ export default async function PaginaObra({ params }: Props) {
         <h1 className="font-display text-display leading-[0.95]">{obra.titulo}</h1>
         <p className="legenda mt-4">{ehPendente(obra.ano) ? <Pendente campo="ano" /> : obra.ano}</p>
       </header>
-
-      {obra.estado === 'rascunho' && (
-        <p
-          role="status"
-          className="border-line-forte text-ink-muted mx-[var(--margem-lateral)] mt-10 border border-dashed px-5 py-3 text-legenda"
-        >
-          {tp('obraIncompleta')}
-        </p>
-      )}
 
       <div className="mt-[var(--respiro-secao)] grid grid-cols-12 gap-y-16 px-[var(--margem-lateral)]">
         {/* 5. Texto autoral. Medida curta, entrelinha generosa. */}
