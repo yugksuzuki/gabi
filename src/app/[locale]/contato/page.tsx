@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import contato from '@/lib/contato'
-import { linkDeConsulta } from '@/lib/whatsapp'
+import { exibirTelefone, linkDeConsulta } from '@/lib/whatsapp'
 import { alternativas } from '@/lib/metadados'
 import type { Idioma } from '@/i18n/routing'
 
@@ -23,7 +23,7 @@ export default async function Contato({ params }: Props) {
   const t = await getTranslations('contato')
 
   // Sem obra específica: a consulta é geral. Mesmo mecanismo, mesmo fallback.
-  const { href, canal } = linkDeConsulta('Gabriela Seleme', locale)
+  const { href, canal, numero } = linkDeConsulta('Gabriela Seleme', locale)
 
   const linhas = [
     { rotulo: t('email'), texto: contato.email, href: `mailto:${contato.email}`, externo: false },
@@ -33,8 +33,11 @@ export default async function Contato({ params }: Props) {
       href: contato.instagramUrl,
       externo: true,
     },
-    ...(canal === 'whatsapp'
-      ? [{ rotulo: t('whatsapp'), texto: t('whatsapp'), href, externo: true }]
+    // O número aparece escrito. Um link que só diz "WhatsApp" obriga a pessoa a
+    // clicar para descobrir para onde vai — e quem prefere salvar o contato no
+    // celular, ou ligar, fica sem o número.
+    ...(canal === 'whatsapp' && numero
+      ? [{ rotulo: t('whatsapp'), texto: exibirTelefone(numero), href, externo: true }]
       : []),
   ]
 
