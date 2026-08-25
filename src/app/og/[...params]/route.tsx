@@ -7,6 +7,7 @@ import {
 } from '@/lib/og'
 import { ehPendente, lerObras } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
+import { campo, textosVisiveis } from '@/lib/textos'
 import { idiomas, type Idioma } from '@/i18n/routing'
 import pt from '@/messages/pt.json'
 import en from '@/messages/en.json'
@@ -39,6 +40,7 @@ export function generateStaticParams() {
   return idiomas.flatMap((idioma) => [
     ...PAGINAS.map((pagina) => ({ params: [idioma, 'pagina', `${pagina}.png`] })),
     ...obras.map((obra) => ({ params: [idioma, 'obra', `${obra.slug}.png`] })),
+    ...textosVisiveis().map((texto) => ({ params: [idioma, 'texto', `${texto.slug}.png`] })),
   ])
 }
 
@@ -77,6 +79,14 @@ export async function GET(
         tecnica: localizar(obra.tecnica, lang),
         imagem: principal?.src ?? null,
       })
+    )
+  }
+
+  if (tipo === 'texto') {
+    const texto = textosVisiveis().find((t) => t.slug === chave)
+    if (!texto) return new Response('Não encontrado', { status: 404 })
+    return responder(
+      cartaoDePagina(campo(texto.titulo, lang), campo(texto.resumo, lang))
     )
   }
 

@@ -1,7 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import type { ReactElement } from 'react'
+import contato from './contato'
 import { dadosDaImagem } from './obras'
+import { urlDoSite } from './url-do-site'
 import type { Idioma } from '@/i18n/routing'
 
 /**
@@ -23,6 +25,9 @@ import type { Idioma } from '@/i18n/routing'
 
 export const TAMANHO_OG = { width: 1200, height: 630 }
 
+/** Story do Instagram. 9:16, e é o formato que ela pediu por escrito. */
+export const TAMANHO_STORY = { width: 1080, height: 1920 }
+
 /** Os mesmos tokens de src/styles/tokens.css. Satori não lê CSS custom properties. */
 const COR = {
   bg: '#f4f2ee',
@@ -32,8 +37,18 @@ const COR = {
   line: '#dcd8d1',
 } as const
 
-function arquivo(...partes: string[]): Buffer {
-  return readFileSync(join(process.cwd(), ...partes))
+/**
+ * As fontes têm caminho literal porque o Turbopack analisa o argumento do
+ * readFileSync para decidir o que empacotar junto. A foto da obra não tem como
+ * ter: o caminho vem do conteúdo. Daí o aviso de "tracing of the whole project"
+ * no build — ele é conhecido e não é grave aqui, porque estas rotas são todas
+ * pré-geradas (dynamicParams = false) e nenhuma delas roda em produção.
+ */
+const FONTE_FRAUNCES = 'src/styles/fontes/og/fraunces-og.ttf'
+const FONTE_INTER = 'src/styles/fontes/og/inter-og.ttf'
+
+function arquivo(caminho: string): Buffer {
+  return readFileSync(join(process.cwd(), caminho))
 }
 
 /**
@@ -46,13 +61,13 @@ export function fontesDoCartao() {
   return [
     {
       name: 'Fraunces',
-      data: arquivo('src', 'styles', 'fontes', 'og', 'fraunces-og.ttf'),
+      data: arquivo(FONTE_FRAUNCES),
       weight: 400 as const,
       style: 'normal' as const,
     },
     {
       name: 'Inter',
-      data: arquivo('src', 'styles', 'fontes', 'og', 'inter-og.ttf'),
+      data: arquivo(FONTE_INTER),
       weight: 400 as const,
       style: 'normal' as const,
     },
@@ -67,7 +82,7 @@ export function fontesDoCartao() {
 function fotoEmbutida(src: string): string | null {
   if (!dadosDaImagem(src)) return null
   try {
-    const bytes = arquivo('public', ...src.split('/').filter(Boolean))
+    const bytes = arquivo(join('public', src))
     const tipo = src.endsWith('.png') ? 'image/png' : 'image/jpeg'
     return `data:${tipo};base64,${bytes.toString('base64')}`
   } catch {
@@ -259,4 +274,121 @@ export function cartaoDePagina(titulo: string, subtitulo?: string | null): React
 export const altDoCartao: Record<Idioma, (titulo: string) => string> = {
   pt: (titulo) => `Cartão de compartilhamento: ${titulo} — Gabriela Seleme`,
   en: (titulo) => `Share card: ${titulo} — Gabriela Seleme`,
+}
+
+/**
+ * O endereço impresso no rodapé do story — o "link de volta" que ela pediu.
+ *
+ * Só imprime o domínio quando ele é de verdade. Endereço de preview da Vercel
+ * ou localhost numa imagem que vai para o Instagram é ruído que não leva a
+ * lugar nenhum, e o domínio definitivo ainda está em aberto (CLAUDE.md). Até
+ * lá, o @ do Instagram, que é onde o story vive de qualquer forma.
+ */
+export function enderecoDeVolta(): string {
+  try {
+    const { hostname } = new URL(urlDoSite())
+    const provisorio =
+      hostname === 'localhost' || hostname.endsWith('.vercel.app') || hostname.endsWith('.local')
+    if (!provisorio) return hostname.replace(/^www\./, '')
+  } catch {
+    // URL torta não derruba a geração do cartão.
+  }
+  return `@${contato.instagram}`
+}
+
+type CartaoStory = {
+  /** O trecho. Vem do conteúdo dela — resumo do texto ou legenda da obra. */
+  trecho: string
+  /** De onde o trecho saiu: nome do texto ou da obra. */
+  origem: string
+  rotuloOrigem: string
+}
+
+/**
+ * O card de story — docs/03 §2, o pedido dela de 30/07/26: "compartilhar um
+ * trecho de texto do site para o story, de forma bonita, com link de volta".
+ *
+ * Tipografia do site, paleta do site, e o trecho ocupando a tela como ocupa a
+ * página. Sem moldura decorativa, sem gradiente, sem selo: o que faz um story
+ * de galeria parecer galeria é o silêncio em volta do texto.
+ *
+ * A escala do trecho cai conforme ele cresce. Um resumo de 40 caracteres e um
+ * de 300 no mesmo corpo dariam duas imagens que não parecem da mesma casa —
+ * uma com um sussurro no meio do vazio, outra com texto batendo na borda.
+ */
+export function cartaoDeStory({ trecho, origem, rotuloOrigem }: CartaoStory): ReactElement {
+  const tamanho = trecho.length > 220 ? 52 : trecho.length > 120 ? 64 : 78
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        width: '100%',
+        height: '100%',
+        // Folga maior em cima e embaixo: a interface do Instagram cobre cerca
+        // de 200 px em cada ponta do story. Texto que entra ali fica escondido
+        // atrás do avatar e da barra de responder.
+        padding: '215px 110px 195px',
+        backgroundColor: COR.bg,
+        fontFamily: 'Inter',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          fontFamily: 'Inter',
+          fontSize: 30,
+          letterSpacing: 9,
+          color: COR.inkMuted,
+        }}
+      >
+        {ASSINATURA}
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div
+          style={{
+            display: 'flex',
+            fontFamily: 'Fraunces',
+            fontSize: tamanho,
+            lineHeight: 1.32,
+            color: COR.ink,
+          }}
+        >
+          {trecho}
+        </div>
+
+        <div style={{ display: 'flex', marginTop: 64, height: 1, width: 180, backgroundColor: COR.line }} />
+
+        <div
+          style={{
+            display: 'flex',
+            marginTop: 40,
+            fontSize: 26,
+            letterSpacing: 3,
+            color: COR.inkMuted,
+          }}
+        >
+          {rotuloOrigem.toUpperCase()}
+        </div>
+        <div style={{ display: 'flex', marginTop: 14, fontSize: 34, color: COR.ink }}>
+          {origem}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          fontSize: 30,
+          letterSpacing: 2,
+          color: COR.inkMuted,
+        }}
+      >
+        {enderecoDeVolta()}
+      </div>
+    </div>
+  )
 }

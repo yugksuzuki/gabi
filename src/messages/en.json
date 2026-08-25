@@ -49,7 +49,12 @@
   "textos": {
     "titulo": "Writing",
     "vazio": "No writing published yet.",
-    "ler": "Read"
+    "ler": "Read",
+    "rascunho": "Draft — visible in development only",
+    "traducaoPendente": "Translation not yet approved by the author. Shown in Portuguese, in her own words.",
+    "story": "Story image",
+    "obrasCitadas": "Works mentioned",
+    "publicadoEm": "Published on"
   },
   "contato": {
     "titulo": "Contact",

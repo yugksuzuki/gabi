@@ -1,0 +1,61 @@
+---
+# MODELO. O `_` no começo do nome faz o site ignorar este arquivo — ele não vira
+# página, não entra na listagem e não gera cartão. Copie, renomeie sem o `_`, e
+# escreva. O nome do arquivo não importa; o que vira URL é o `slug`.
+#
+# Nada aqui é texto da Gabriela. É a estrutura, comentada.
+
+# Vira a URL: /pt/textos/<slug> e /en/writing/<slug>. Só minúsculas, números e
+# hífen. Depois de publicado, NÃO muda: link compartilhado não volta atrás.
+slug: modelo
+
+# O título aparece na listagem, na página e nos cartões.
+# `en` é opcional — sem ele, a versão em inglês mostra o português.
+titulo:
+  pt: Título do texto
+  en: Title of the piece
+
+# AAAA-MM-DD. Ordena a listagem (mais recente primeiro) e assina a página.
+publicadoEm: 2026-01-01
+
+# 'rascunho' aparece só rodando `npm run dev`, nunca em produção.
+# 'publicado' é uma afirmação de que está pronto — e o build cobra: sem corpo em
+# português, ele para. Nada entra no ar sozinho (docs/03 §2).
+estado: rascunho
+
+# Uma ou duas frases. É o que aparece na listagem, na descrição da página, no
+# cartão do WhatsApp e — principalmente — É O TRECHO DO CARD DE STORY.
+# Escreva pensando nisso: é esta frase que vai para o Instagram.
+resumo:
+  pt: A frase que resume o texto e que vai virar imagem de story.
+  en: The sentence that sums the piece up and becomes the story image.
+
+# Opcional. Slugs de obra, exatamente como em content/obras/. Cria o link do
+# texto para a obra no fim da página.
+obrasRelacionadas: []
+---
+
+O corpo em português começa aqui, depois do fecho do frontmatter.
+
+Parágrafo novo é linha em branco.
+Quebra de linha simples
+é preservada, porque o ritmo de quem escreve é do texto.
+
+Dá para usar **negrito** e *itálico*.
+
+> Citação com `>` no começo da linha. É por aqui que entra uma frase de
+> curadoria ou de imprensa — a única forma pela qual este site admite a palavra
+> "artista": dita por terceiro, nunca na primeira pessoa (regra 1).
+
+Não há lista, tabela nem imagem no meio do texto de propósito: o material dela
+não usa, e estrutura inventada é o caminho mais curto para uma página que não
+parece galeria.
+
+---en---
+
+The English body starts after the `---en---` line above, alone on its own line.
+
+Leave this half out entirely while there is no translation approved BY HER. The
+page then shows the Portuguese, marked with `lang="pt"`, and says so. Machine
+translating an artist's voice is not a decision this code gets to make
+(docs/03 §4).

@@ -11,6 +11,7 @@ import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
 import { FichaTecnica } from '@/components/obra/FichaTecnica'
 import { Consultar } from '@/components/obra/Consultar'
+import { Prosa } from '@/components/ui/Prosa'
 import { DadosEstruturados } from '@/components/DadosEstruturados'
 import { grafo, migalhas, obraEmSchema, pessoa } from '@/lib/schema'
 
@@ -119,20 +120,7 @@ export default async function PaginaObra({ params }: Props) {
         {/* 5. Texto autoral. Medida curta, entrelinha generosa. */}
         <div className="col-span-12 lg:col-span-6">
           {texto ? (
-            <div className="max-w-[var(--medida-corpo)] text-corpo [&>p]:mb-5">
-              {texto.split(/\n{2,}/).map((paragrafo, i) => (
-                <p key={i}>
-                  {/* Quebra simples é dela: a prancha de Encontro quebra as
-                      frases num ritmo próprio. Não juntar. */}
-                  {paragrafo.split('\n').map((linha, j, todas) => (
-                    <span key={j}>
-                      {linha}
-                      {j < todas.length - 1 && <br />}
-                    </span>
-                  ))}
-                </p>
-              ))}
-            </div>
+            <Prosa texto={texto} />
           ) : (
             <Pendente campo="texto da obra" />
           )}
