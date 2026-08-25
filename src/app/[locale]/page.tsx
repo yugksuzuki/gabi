@@ -6,6 +6,8 @@ import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
 import { DadosEstruturados } from '@/components/DadosEstruturados'
 import { grafo, pessoa } from '@/lib/schema'
+import { videoDeEntrada } from '@/lib/video-entrada'
+import { VideoDeEntrada } from '@/components/home/VideoDeEntrada'
 import type { Idioma } from '@/i18n/routing'
 
 /**
@@ -29,6 +31,9 @@ export default async function Portfolio({
 
   const t = await getTranslations('portfolio')
   const obras = lerObras()
+  // Enquanto o arquivo dela não chega, a home abre direto na primeira obra.
+  // Ver src/lib/video-entrada.ts — a decisão é por existência de arquivo.
+  const video = videoDeEntrada()
 
   return (
     <>
@@ -37,6 +42,8 @@ export default async function Portfolio({
       <DadosEstruturados json={grafo(pessoa(locale))} />
 
       <h1 className="sr-only">{t('titulo')}</h1>
+
+      {video && <VideoDeEntrada video={video} />}
 
       <div className="flex flex-col gap-[var(--respiro-secao)] pt-[var(--respiro-secao)]">
         {obras.map((obra, i) => {
