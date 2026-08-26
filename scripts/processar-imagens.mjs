@@ -9,6 +9,9 @@
  * Rode depois de trocar qualquer original:
  *   npm run imagens
  *
+ * Pode largar o arquivo de câmera CRU em `ativos/` — o script reduz para
+ * LARGURA_MAX e respeita a orientação EXIF. Não é preciso preparar nada antes.
+ *
  * NOTA sobre os recortes: a rubrica e o retrato estão dentro da folha que a
  * Gabriela montou no Canva, com o nome dela tipografado POR CIMA da foto. Os
  * recortes abaixo foram medidos em cima do arquivo (perfil de tinta por
@@ -20,6 +23,20 @@ import { dirname, join } from 'node:path'
 import sharp from 'sharp'
 
 const RAIZ = join(import.meta.dirname, '..')
+
+/**
+ * Teto de largura do derivado.
+ *
+ * O original de câmera vem em 3213×5712; a maior caixa que o site desenha tem
+ * ~1400px, e `next/image` gera as variantes menores a partir daqui. 1800 cobre
+ * tela retina com folga e evita commitar dezenas de MB no repositório — que é
+ * PÚBLICO.
+ *
+ * Existe para que ninguém precise redimensionar à mão antes de largar o arquivo
+ * em `ativos/`. Imagem menor que o teto passa intacta: `withoutEnlargement`
+ * garante que nada é esticado.
+ */
+const LARGURA_MAX = 1800
 const ativo = (f) => join(RAIZ, 'ativos', f)
 const publico = (f) => join(RAIZ, 'public', f)
 
@@ -80,8 +97,11 @@ async function gerarLQIP(entrada) {
 const manifesto = {}
 
 for (const t of TRABALHOS) {
-  let img = sharp(ativo(t.origem))
+  let img = sharp(ativo(t.origem)).rotate()
   if (t.recorte) img = img.extract(t.recorte)
+  // Depois do recorte, nunca antes: as coordenadas de recorte foram medidas
+  // sobre o original, e reduzir primeiro invalidaria todas elas.
+  img = img.resize({ width: LARGURA_MAX, withoutEnlargement: true })
   if (t.apagar) {
     const tapa = await tapaBranca(t.apagar.width, t.apagar.height)
     img = sharp(await img.toBuffer()).composite([
