@@ -107,9 +107,14 @@ proíbe efeito que dependa de JS para o conteúdo aparecer.
   *Desabrochar*, nem *Instante*, nem *Encontro* — é outra peça dela, em
   silhueta. Abrir o portfólio com uma peça que não está no portfólio é decisão
   dela, não nossa. **Perguntar antes de publicar.**
-- **Confirmar que este é o vídeo.** `CLAUDE.md` registra que ela já separou um
-  vídeo de fundo para a home. Este arquivo chegou por outro caminho e pode não
-  ser aquele. Se o dela existir e for horizontal, substitui este e o desktop
-  volta a poder sangrar.
+- **Este NÃO é, provavelmente, o vídeo de entrada.** Identificado em 26/08/2026:
+  o arquivo é `copy_0C668C92-3D99-459B-B627-B745B12A5AA9.mov`, da pasta
+  `Gabi Seleme :) / 2- Editados` da Catherine (29.054.242 bytes — bate byte a
+  byte). É material de Instagram.
+  O candidato a vídeo de entrada é **`GABI SELEME V1.mp4`** (545 MB, em
+  `GAB/Site gseleme`) — nome, tamanho e pasta apontam para ele, e `docs/06` já
+  o levantava como "provavelmente o vídeo de entrada da home". Confirmar e,
+  se for horizontal, substituir: aí o hero do desktop pode sangrar de borda a
+  borda como na referência.
 - **Origem do arquivo bruto.** Não está em `ativos/` nem versionado — só o
   corte entrou em `public/entrada/`. O `.mov` original segue fora do git.
