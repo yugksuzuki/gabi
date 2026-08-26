@@ -40,7 +40,8 @@
   },
   "portfolio": {
     "titulo": "Works",
-    "verObra": "View the work"
+    "verObra": "View the work",
+    "acervo": "Collection"
   },
   "sobre": {
     "titulo": "About",
@@ -59,7 +60,17 @@
   },
   "pendente": {
     "rotulo": "Pending",
-    "aviso": "Content not yet provided by the artist."
+    "aviso": "Content not yet provided by the artist.",
+    "campo": {
+      "legenda": "caption",
+      "texto": "work text",
+      "ano": "year",
+      "tecnica": "medium",
+      "dimensoes": "dimensions",
+      "materiais": "materials",
+      "edicao": "edition",
+      "disponibilidade": "availability"
+    }
   },
   "rodape": {
     "direitos": "All rights reserved."

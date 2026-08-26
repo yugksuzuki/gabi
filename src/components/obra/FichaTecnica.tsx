@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { ehPendente, type Obra } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
-import { Pendente } from '@/components/ui/Pendente'
+import { Pendente, type CampoPendente } from '@/components/ui/Pendente'
 import type { Idioma } from '@/i18n/routing'
 
 /**
@@ -13,12 +13,12 @@ export function FichaTecnica({ obra, idioma }: { obra: Obra; idioma: Idioma }) {
   const t = useTranslations('obra')
 
   const dimensoes = formatarDimensoes(obra.dimensoes)
-  const linhas: { rotulo: string; valor: string | null; campo: string }[] = [
+  const linhas: { rotulo: string; valor: string | null; campo: CampoPendente }[] = [
     { rotulo: t('ano'), valor: ehPendente(obra.ano) ? null : String(obra.ano), campo: 'ano' },
-    { rotulo: t('tecnica'), valor: localizar(obra.tecnica, idioma), campo: 'técnica' },
-    { rotulo: t('dimensoes'), valor: dimensoes, campo: 'dimensões' },
+    { rotulo: t('tecnica'), valor: localizar(obra.tecnica, idioma), campo: 'tecnica' },
+    { rotulo: t('dimensoes'), valor: dimensoes, campo: 'dimensoes' },
     { rotulo: t('materiais'), valor: localizar(obra.materiais, idioma), campo: 'materiais' },
-    { rotulo: t('edicao'), valor: localizar(obra.edicao, idioma), campo: 'edição' },
+    { rotulo: t('edicao'), valor: localizar(obra.edicao, idioma), campo: 'edicao' },
     {
       rotulo: t('disponibilidade'),
       valor: ehPendente(obra.disponibilidade)

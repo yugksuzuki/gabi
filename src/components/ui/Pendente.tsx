@@ -1,13 +1,27 @@
 import { useTranslations } from 'next-intl'
 
+/** As chaves de `pendente.campo` nas mensagens. */
+export type CampoPendente =
+  | 'legenda'
+  | 'texto'
+  | 'ano'
+  | 'tecnica'
+  | 'dimensoes'
+  | 'materiais'
+  | 'edicao'
+  | 'disponibilidade'
+
 /**
  * Placeholder que se anuncia — regra 2 do CLAUDE.md.
  *
  * "Não existe texto placeholder plausível neste projeto." Este componente
  * existe para que a ausência seja impossível de confundir com conteúdo: se
  * vazar para produção, quem olhar vê que vazou. É o oposto de lorem ipsum.
+ *
+ * `campo` é CHAVE, não texto: escrito literal, o nome do campo vazava em
+ * português na página inglesa ("Pending: legenda").
  */
-export function Pendente({ campo }: { campo: string }) {
+export function Pendente({ campo }: { campo: CampoPendente }) {
   const t = useTranslations('pendente')
 
   return (
@@ -16,7 +30,7 @@ export function Pendente({ campo }: { campo: string }) {
       title={t('aviso')}
     >
       <span aria-hidden="true">◇</span>
-      {t('rotulo')}: {campo}
+      {t('rotulo')}: {t(`campo.${campo}`)}
     </span>
   )
 }

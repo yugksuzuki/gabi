@@ -40,7 +40,8 @@
   },
   "portfolio": {
     "titulo": "Portfólio",
-    "verObra": "Ver a obra"
+    "verObra": "Ver a obra",
+    "acervo": "Acervo"
   },
   "sobre": {
     "titulo": "Quem sou eu",
@@ -59,7 +60,17 @@
   },
   "pendente": {
     "rotulo": "Pendente",
-    "aviso": "Conteúdo ainda não fornecido pela artista."
+    "aviso": "Conteúdo ainda não fornecido pela artista.",
+    "campo": {
+      "legenda": "legenda",
+      "texto": "texto da obra",
+      "ano": "ano",
+      "tecnica": "técnica",
+      "dimensoes": "dimensões",
+      "materiais": "materiais",
+      "edicao": "edição",
+      "disponibilidade": "disponibilidade"
+    }
   },
   "rodape": {
     "direitos": "Todos os direitos reservados."

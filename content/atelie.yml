@@ -1,0 +1,21 @@
+# Fotografia de PROCESSO — o segundo registro do site.
+#
+# docs/06 §2 levantou 12 arquivos DSC*.JPG em `GAB/Site gseleme`: preto e branco,
+# vista de cima, a artista trabalhando sobre a peça. São editoriais, de revista —
+# e docs/06 §3 registra que convivem sem briga com a fotografia de obra em
+# cinza-neutro. É esse par que dá ritmo de publicação à home.
+#
+# NENHUMA FOI BAIXADA AINDA. A política de rede do ambiente remoto bloqueia
+# drive.google.com, e o conector só devolve imagem em base64 (grande demais).
+# Enquanto a lista em src/lib/atelie.ts estiver vazia, as faixas simplesmente
+# não renderizam — a home continua correta, só sem o segundo registro.
+#
+# COMO LIGAR, quando os arquivos chegarem:
+#   1. coloque os JPG em `ativos/`
+#   2. recorte/processe para `public/atelie/` e rode `npm run imagens`
+#   3. acrescente as entradas em `src/lib/atelie.ts` com alt nos dois idiomas
+#
+# Ordem sugerida (docs/06): as duas de composição espelhada fazem par natural.
+# `DSC04198` destoa — colorida, escura, rastro de neon. Fora do par P&B.
+
+faixas: []

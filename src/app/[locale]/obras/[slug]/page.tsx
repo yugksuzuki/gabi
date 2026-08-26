@@ -78,10 +78,13 @@ export default async function PaginaObra({ params }: Props) {
         </div>
       </div>
 
-      {/* 2. Título e ano. */}
-      <header className="px-[var(--margem-lateral)] pt-12">
+      {/* 2. Título e ano, na mesma linha de base. O ano é ficha de museu: fica
+          na borda oposta, pequeno, sem competir com o nome da obra. */}
+      <header className="flex flex-wrap items-end justify-between gap-x-10 gap-y-3 px-[var(--margem-lateral)] pt-14">
         <h1 className="font-display text-display leading-[0.95]">{obra.titulo}</h1>
-        <p className="legenda mt-4">{ehPendente(obra.ano) ? <Pendente campo="ano" /> : obra.ano}</p>
+        <p className="legenda pb-3">
+          {ehPendente(obra.ano) ? <Pendente campo="ano" /> : obra.ano}
+        </p>
       </header>
 
       <div className="mt-[var(--respiro-secao)] grid grid-cols-12 gap-y-16 px-[var(--margem-lateral)]">
@@ -103,7 +106,7 @@ export default async function PaginaObra({ params }: Props) {
               ))}
             </div>
           ) : (
-            <Pendente campo="texto da obra" />
+            <Pendente campo="texto" />
           )}
         </div>
 
