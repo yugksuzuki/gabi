@@ -58,6 +58,24 @@ const TRABALHOS = [
     destino: '/obras/encontro/detalhe.jpg',
     nota: 'IMG_6562 — canto superior, textura e escorrido de prata',
   },
+  // Os três ângulos que faltavam. Chegaram em 26/08/2026, direto do Drive
+  // (GAB/Encontro 11.230), originais 3213x5712. Guardados em ativos/ a 2400px:
+  // folga para recorte futuro sem inchar um repositório que é público.
+  {
+    origem: 'encontro-angulo-1.jpg',
+    destino: '/obras/encontro/angulo-1.jpg',
+    nota: 'IMG_7017 — enquadramento aberto, quase de frente, com rodapé',
+  },
+  {
+    origem: 'encontro-angulo-2.jpg',
+    destino: '/obras/encontro/angulo-2.jpg',
+    nota: 'IMG_7018 — três quartos, piso à mostra; o relevo lê em profundidade',
+  },
+  {
+    origem: 'encontro-angulo-3.jpg',
+    destino: '/obras/encontro/angulo-3.jpg',
+    nota: 'IMG_7019 — três quartos pelo outro lado, mais perto da borda',
+  },
   {
     origem: 'ficha-encontro.jpg',
     destino: '/obras/encontro/escala.jpg',

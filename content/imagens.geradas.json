@@ -13,6 +13,27 @@
     "origem": "encontro-detalhe.jpg",
     "nota": "IMG_6562 — canto superior, textura e escorrido de prata"
   },
+  "/obras/encontro/angulo-1.jpg": {
+    "largura": 1800,
+    "altura": 3200,
+    "lqip": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAwBQCdASoUACQAPzmYw1uvKickJWgB4CcJaQDR+FDd5XUBixiyfiHdxhES7yM5SMziAADyc9REoXeKL/YuRnLBgEURgjFua0pxzuLjLsMqFYDDauRkk0QYkFGYtYDoHXPjAoPm210e0K3ItLcqKjPvqzBQrZJbWJKm+berr9ck6AAA",
+    "origem": "encontro-angulo-1.jpg",
+    "nota": "IMG_7017 — enquadramento aberto, quase de frente, com rodapé"
+  },
+  "/obras/encontro/angulo-2.jpg": {
+    "largura": 1800,
+    "altura": 3200,
+    "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAwBQCdASoUACQAPzmWw1ovKqekJWmZ4CcJZwDMHCIfzLYNNWlerl0tCRt+Bo6P2ufsgADhwh1MzL33D3lnTP7Szsk1A97PVkd56ewpacrjFq61LXjSRgxnBik0t2XQolFhFL7ZpA4MRSofcgMgft+MFDpUIBPnKbqOraMnlVoaGxKKAAA=",
+    "origem": "encontro-angulo-2.jpg",
+    "nota": "IMG_7018 — três quartos, piso à mostra; o relevo lê em profundidade"
+  },
+  "/obras/encontro/angulo-3.jpg": {
+    "largura": 1800,
+    "altura": 3200,
+    "lqip": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAADQBQCdASoUACQAPzmKuFcvKKSjqrgN+eAnCWcAyrQitsuZMmNGgN6oyWAtPtYtb+MBPtfhi0kAAP5SJhOoe2JasYuL2Dy8gwMOi6rwC0GPmVbgG/AAZ2dtgniYew4yTPh/Yv7QOLDQ4hYsshTAGflR29B+QYGDdLzj17+dYaYAAA==",
+    "origem": "encontro-angulo-3.jpg",
+    "nota": "IMG_7019 — três quartos pelo outro lado, mais perto da borda"
+  },
   "/obras/encontro/escala.jpg": {
     "largura": 822,
     "altura": 1075,

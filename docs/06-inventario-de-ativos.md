@@ -54,6 +54,10 @@ Confirme com ela antes de publicar: nome de pasta não é tabela de preço.
 
 ### `GAB/Encontro 11.230` — a única obra completa
 
+> **26/08/2026 — as três fotos de ângulo chegaram.** `IMG_7017/18/19` estão em
+> `ativos/` e no ar. Encontro passou a ter, no site, quatro vistas da obra mais
+> o detalhe de textura e a escala. Falta só escolher o vídeo.
+
 5 JPG + 3 vídeos. As 4 `IMG_701x.JPG` são **a mesma obra em 4 ângulos**, na parede branca,
 verticais, 3213×5712 (iPhone 16 Pro), nítidas e com luz difusa uniforme. `IMG_7015` é o
 enquadramento mais frontal — melhor candidata a principal. `IMG_6562.JPG` é o detalhe de

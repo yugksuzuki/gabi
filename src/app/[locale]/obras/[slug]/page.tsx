@@ -60,8 +60,12 @@ export default async function PaginaObra({ params }: Props) {
   const proxima = obras[(obras.findIndex((o) => o.slug === obra.slug) + 1) % obras.length]
 
   const principal = obra.imagens.find((im) => im.papel === 'principal')
-  // Ângulo, detalhe e escala — tudo que não é a principal alimenta a galeria.
-  const galeria = obra.imagens.filter((im) => im !== principal)
+  // A escala sai da grade e fecha a página em largura cheia: ela não mostra a
+  // obra, mostra a obra NUM LUGAR — piso, rodapé, altura de pessoa. É a única
+  // do conjunto que pede o quadro inteiro, e em grade de duas colunas ela ficava
+  // órfã na última linha.
+  const escala = obra.imagens.find((im) => im.papel === 'escala')
+  const galeria = obra.imagens.filter((im) => im !== principal && im !== escala)
 
   return (
     <article className="pt-[var(--respiro-secao)]">
@@ -127,7 +131,7 @@ export default async function PaginaObra({ params }: Props) {
       {/* 3. Galeria: ângulo, detalhe, escala. Duas colunas em tela larga, uma
           no celular, e cada foto no seu próprio tamanho — sem recorte forçado. */}
       {galeria.length > 0 && (
-        <div className="mt-[var(--respiro-secao)] grid grid-cols-1 gap-8 px-[var(--margem-lateral)] md:grid-cols-2">
+        <div className="mt-[var(--respiro-secao)] grid grid-cols-1 items-start gap-8 px-[var(--margem-lateral)] md:grid-cols-2">
           {galeria.map((img) => (
             <figure key={img.src} className="flex flex-col gap-3">
               <ImagemObra
@@ -140,6 +144,25 @@ export default async function PaginaObra({ params }: Props) {
             </figure>
           ))}
         </div>
+      )}
+
+      {/* A obra num lugar. Fecha a sequência, centrada e com ar em volta.
+          NÃO sangra: esta foto é um recorte da prancha de ficha e tem 822px de
+          largura — esticada para 1440 ela seria ampliada quase o dobro, e a
+          única imagem de contexto da página apareceria borrada. Fica no tamanho
+          que a fonte aguenta, e o vazio em volta é composição. */}
+      {escala && (
+        <figure className="mt-[var(--respiro-secao)] flex flex-col gap-3 px-[var(--margem-lateral)]">
+          <div className="mx-auto w-full max-w-[52rem]">
+            <ImagemObra
+              src={escala.src}
+              alt={localizar(escala.alt, locale)}
+              titulo={obra.titulo}
+              sizes="(max-width: 768px) 100vw, 52rem"
+            />
+            <figcaption className="legenda mt-3">{t('escala')}</figcaption>
+          </div>
+        </figure>
       )}
 
       {/* 8. Mantém a pessoa dentro do acervo. */}
