@@ -48,33 +48,35 @@ async function tapaBranca(width, height) {
 }
 
 const TRABALHOS = [
+  // ---- Obra: Encontro ----------------------------------------------------
+  // Agora direto do ORIGINAL de câmera. Antes o site servia a frontal a 900px
+  // porque o ativo commitado já vinha encolhido à mão; o original tem 3213 de
+  // largura e o pipeline entrega 1800. Dobrou a resolução da imagem mais
+  // importante do site sem ninguém tocar em layout.
   {
-    origem: 'encontro-frontal.jpg',
+    origem: 'IMG_7015.JPG',
     destino: '/obras/encontro/frontal.jpg',
-    nota: 'IMG_7015 — obra frontal na parede do ateliê',
+    nota: 'obra frontal na parede do ateliê — a principal',
   },
   {
-    origem: 'encontro-detalhe.jpg',
-    destino: '/obras/encontro/detalhe.jpg',
-    nota: 'IMG_6562 — canto superior, textura e escorrido de prata',
-  },
-  // Os três ângulos que faltavam. Chegaram em 26/08/2026, direto do Drive
-  // (GAB/Encontro 11.230), originais 3213x5712. Guardados em ativos/ a 2400px:
-  // folga para recorte futuro sem inchar um repositório que é público.
-  {
-    origem: 'encontro-angulo-1.jpg',
+    origem: 'IMG_7017.JPG',
     destino: '/obras/encontro/angulo-1.jpg',
-    nota: 'IMG_7017 — enquadramento aberto, quase de frente, com rodapé',
+    nota: 'enquadramento aberto, quase de frente, com rodapé',
   },
   {
-    origem: 'encontro-angulo-2.jpg',
+    origem: 'IMG_7018.JPG',
     destino: '/obras/encontro/angulo-2.jpg',
-    nota: 'IMG_7018 — três quartos, piso à mostra; o relevo lê em profundidade',
+    nota: 'três quartos, piso à mostra; o relevo lê em profundidade',
   },
   {
-    origem: 'encontro-angulo-3.jpg',
+    origem: 'IMG_7019.JPG',
     destino: '/obras/encontro/angulo-3.jpg',
-    nota: 'IMG_7019 — três quartos pelo outro lado, mais perto da borda',
+    nota: 'três quartos pelo outro lado, mais perto da borda',
+  },
+  {
+    origem: 'IMG_6562.JPG',
+    destino: '/obras/encontro/detalhe.jpg',
+    nota: 'canto superior, textura e escorrido de prata',
   },
   {
     origem: 'ficha-encontro.jpg',
@@ -84,12 +86,44 @@ const TRABALHOS = [
     recorte: { left: 592, top: 0, width: 822, height: 1075 },
     nota: 'recortada da prancha de ficha — obra em contexto, com piso',
   },
+
+  // ---- Ateliê: o segundo registro ----------------------------------------
+  // As TRÊS únicas realmente em preto e branco do conjunto de 12 (medido:
+  // saturação 0,0; as outras nove ficam entre 9 e 52). docs/06 §3 argumenta
+  // que P&B de processo e cinza-neutro de obra convivem sem briga — e é essa
+  // convivência que dá o ritmo de publicação à home.
   {
-    origem: 'folha-bio-canva.png',
-    destino: '/sobre/retrato.jpg',
-    recorte: { left: 815, top: 120, width: 690, height: 1160 },
-    nota: 'retrato P&B da folha da bio, à direita do nome tipografado',
+    origem: 'DSC03609 Copy.JPG',
+    destino: '/atelie/maos.jpg',
+    nota: 'mãos abertas sobre a peça em fibra, coque preso com pincel',
   },
+  {
+    origem: 'DSC03561 Copy.JPG',
+    destino: '/atelie/espelhada.jpg',
+    nota: 'composição espelhada — recurso recorrente dela, não acaso',
+  },
+  {
+    origem: 'DSC03574 Copy.JPG',
+    destino: '/atelie/materia.jpg',
+    nota: 'a matéria sozinha, espelhada. Panorâmica',
+  },
+
+  // ---- Retratos ----------------------------------------------------------
+  {
+    origem: 'GSeleme-74.jpg',
+    destino: '/sobre/retrato.jpg',
+    // ESTE É O ORIGINAL. Até aqui o retrato era um recorte de 690px tirado da
+    // folha de Canva da bio — a mesma foto, de terceira mão. É também a foto
+    // que ELA escolheu para a própria folha, então a escolha é dela.
+    nota: 'retrato encostada na parede de madeira — o original da sessão',
+  },
+  {
+    origem: 'GSeleme-114.jpg',
+    destino: '/sobre/rosto.jpg',
+    nota: 'rosto em primeiríssimo plano, metade do quadro',
+  },
+
+  // ---- Marca -------------------------------------------------------------
   {
     origem: 'folha-bio-canva.png',
     destino: '/marca/rubrica.png',

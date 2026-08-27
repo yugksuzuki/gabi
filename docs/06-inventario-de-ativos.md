@@ -67,6 +67,15 @@ textura. Nenhuma é reprodução plana perfeitamente corrigida (todas têm leve 
 
 2 arquivos MP4. **Zero imagens.** Só o preço, que vem do nome da pasta.
 
+> **26/08/2026 — chegou tudo.** As 12 DSC, as 5 GSeleme e os 3 ângulos de
+> Encontro estão em `ativos/`. As 5 GSeleme, que o conector não conseguia baixar
+> por passarem de 10 MB, vieram por push direto. Três das DSC estão no ar nas
+> faixas de ateliê; a `GSeleme-74` virou o retrato de "Quem sou eu", no lugar do
+> recorte de 690px que saía da folha de Canva.
+>
+> **O `GABI SELEME V1.mp4` é VERTICAL** — conferido. Não serve de hero
+> horizontal. Ver `docs/validacao/entrada-video/`.
+
 ### `GAB/Site gseleme` — fotografia de processo, e é excelente
 
 A folha da bio + 14 JPG + 5 vídeos, incluindo `GABI SELEME V1.mp4` (545 MB — provavelmente o

@@ -111,10 +111,16 @@ proíbe efeito que dependa de JS para o conteúdo aparecer.
   o arquivo é `copy_0C668C92-3D99-459B-B627-B745B12A5AA9.mov`, da pasta
   `Gabi Seleme :) / 2- Editados` da Catherine (29.054.242 bytes — bate byte a
   byte). É material de Instagram.
-  O candidato a vídeo de entrada é **`GABI SELEME V1.mp4`** (545 MB, em
-  `GAB/Site gseleme`) — nome, tamanho e pasta apontam para ele, e `docs/06` já
-  o levantava como "provavelmente o vídeo de entrada da home". Confirmar e,
-  se for horizontal, substituir: aí o hero do desktop pode sangrar de borda a
-  borda como na referência.
+  O candidato era **`GABI SELEME V1.mp4`** (519 MB, em `GAB/Site gseleme`).
+
+> **RESOLVIDO em 26/08/2026: o V1 é VERTICAL.** Guilherme conferiu. Isso fecha
+> a questão do hero — o tratamento de retrato que está no ar é o certo, e não
+> há o que trocar. O desktop segue com o painel na proporção nativa, porque
+> `src/lib/entrada.ts` escolhe pelo formato do arquivo e nenhum material
+> horizontal existe. Sangrar de borda a borda no desktop deixa de ser um
+> "quando chegar o vídeo certo" e passa a depender de uma filmagem nova.
+
+  Continua valendo trocar o corte por um do V1 se ele for melhor que este — mas
+  é troca de conteúdo, não de layout.
 - **Origem do arquivo bruto.** Não está em `ativos/` nem versionado — só o
   corte entrou em `public/entrada/`. O `.mov` original segue fora do git.

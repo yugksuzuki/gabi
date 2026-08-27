@@ -26,9 +26,12 @@ export default async function Sobre({ params }: Props) {
   const tp = await getTranslations('pendente')
   const tm = await getTranslations('marca')
   const { corpo, revisaoEn } = lerSobre()
-  // Retrato P&B, recortado da folha que ela mesma montou. A folha pareia bio e
-  // retrato: manter o par honra a composição dela.
+  // Retrato P&B da sessão profissional. Até 26/08/2026 esta página servia um
+  // recorte de 690px tirado da folha de Canva da bio — a mesma foto, de
+  // terceira mão. Agora é o original, e continua sendo a foto que ELA escolheu
+  // para a própria folha: a escolha permanece dela, só a fonte melhorou.
   const retrato = dadosDaImagem('/sobre/retrato.jpg')
+  const rosto = dadosDaImagem('/sobre/rosto.jpg')
   const rubrica = dadosDaImagem('/marca/rubrica.png')
 
   // A tradução ainda não foi aprovada por ela. Em vez de traduzir por conta
@@ -75,8 +78,12 @@ export default async function Sobre({ params }: Props) {
           ))}
         </div>
 
+        {/* Duas imagens na coluna da direita, espaçadas. A bio tem dez
+            parágrafos: com um retrato só, a metade de baixo da página ficava
+            com texto de um lado e nada do outro. A segunda entra mais abaixo e
+            fecha a coluna — não é enfeite, é o que dá ritmo à leitura longa. */}
         {retrato && (
-          <div className="col-span-12 md:col-span-4 md:col-start-9">
+          <div className="col-span-12 flex flex-col gap-[var(--respiro-secao)] md:col-span-4 md:col-start-9">
             <Image
               src="/sobre/retrato.jpg"
               alt={t('retratoAlt')}
@@ -87,6 +94,19 @@ export default async function Sobre({ params }: Props) {
               sizes="(max-width: 768px) 100vw, 32vw"
               className="h-auto w-full"
             />
+
+            {rosto && (
+              <Image
+                src="/sobre/rosto.jpg"
+                alt={t('rostoAlt')}
+                width={rosto.largura}
+                height={rosto.altura}
+                placeholder="blur"
+                blurDataURL={rosto.lqip}
+                sizes="(max-width: 768px) 100vw, 32vw"
+                className="h-auto w-full"
+              />
+            )}
           </div>
         )}
       </div>
