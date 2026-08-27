@@ -1,7 +1,27 @@
 # Gabriela Seleme — site
 
-Memória de projeto. Leia antes de escrever qualquer linha de código.
-Contexto completo em `docs/00-leitura-de-contexto.md`.
+Memória de projeto. O Claude Code carrega este arquivo automaticamente em toda sessão aberta
+na raiz do repositório. **Leia antes de escrever qualquer linha de código.**
+
+## Protocolo de leitura
+
+Este arquivo é o resumo executivo e a lei do projeto. Os arquivos em `docs/` são a fonte
+completa e **não** são carregados sozinhos — abra sob demanda, o que a tarefa pedir:
+
+| Vou fazer | Leia antes |
+|---|---|
+| Entender o projeto pela primeira vez | `docs/00-leitura-de-contexto.md` |
+| Criar rota, escolher biblioteca, decidir ordem de trabalho | `docs/01-plano-de-execucao.md` |
+| Mexer em CSS, tipografia, cor, escala, animação, layout | `docs/02-direcao-visual.md` |
+| Mexer em schema, i18n, preço, WhatsApp, JSON-LD, SEO | `docs/03-modelo-de-dados.md` |
+| Decidir o que é placeholder e o que é real | `docs/04-pendencias-e-coleta.md` + `docs/06-inventario-de-ativos.md` |
+| Escrever mensagem para a cliente | `docs/05-formulario-gabriela.md` |
+
+Em conflito: as **cinco regras invioláveis** abaixo vencem sempre. No resto, `docs/` é mais
+detalhado e ganha do resumo.
+
+Quando terminar uma etapa que muda uma decisão registrada, **atualize o `docs/` correspondente
+no mesmo commit.** Documento desatualizado é pior do que documento inexistente.
 
 ---
 
@@ -106,7 +126,7 @@ Conversa a ter com ela; não decida sozinho.
 | **Domínio** | Ela comprou `gclm.com.br` (dez/2024). Os contatos são `@gseleme.design`. Ninguém amarrou. Define URL canônica, hreflang, OG, e-mail |
 | **GCLM aparece na v1?** | GCLM é a marca de design (ex-"Umbra"); Gabriela Seleme é a autora. Duas camadas nunca reconciliadas |
 | **Logo** | A rubrica **existe** (`ativos/rubrica-gseleme.png`), mas em raster. Falta o vetor — peça o original à Catherine |
-| **Número do WhatsApp** | Informado `+55 44 9992-9186` — 8 dígitos onde celular tem 9. Provável: `+55 44 99992-9186` → `5544999929186`. Teste abrindo `wa.me/5544999929186` no celular. Ver `content/contato.yml` |
+| **Número do WhatsApp** | Informado `+55 44 9992-9186` — 8 dígitos onde celular tem 9, e o **DDD 44 é Maringá/PR**, não Balneário Camboriú/SC. Provável: `+55 44 99992-9186` → `5544999929186`. Teste abrindo `wa.me/5544999929186` no celular. Ver `content/contato.yml` |
 | **Cor assinatura** | As obras são monocromáticas — não há cor a extrair. Precisa de outra resposta ao pedido dela |
 | **Data de estreia** | Nunca travada. O cronograma é desenhado de trás para frente a partir dela |
 | **Caminho A ou B** | A conversa não registra escolha entre contratação avulsa e assessoria. **Não construa widgets, automação ou tráfego** antes disso estar claro |

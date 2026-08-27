@@ -54,6 +54,10 @@ Confirme com ela antes de publicar: nome de pasta não é tabela de preço.
 
 ### `GAB/Encontro 11.230` — a única obra completa
 
+> **26/08/2026 — as três fotos de ângulo chegaram.** `IMG_7017/18/19` estão em
+> `ativos/` e no ar. Encontro passou a ter, no site, quatro vistas da obra mais
+> o detalhe de textura e a escala. Falta só escolher o vídeo.
+
 5 JPG + 3 vídeos. As 4 `IMG_701x.JPG` são **a mesma obra em 4 ângulos**, na parede branca,
 verticais, 3213×5712 (iPhone 16 Pro), nítidas e com luz difusa uniforme. `IMG_7015` é o
 enquadramento mais frontal — melhor candidata a principal. `IMG_6562.JPG` é o detalhe de
@@ -62,6 +66,15 @@ textura. Nenhuma é reprodução plana perfeitamente corrigida (todas têm leve 
 ### `GAB/Desabrochar 8.350` — sem uma única foto
 
 2 arquivos MP4. **Zero imagens.** Só o preço, que vem do nome da pasta.
+
+> **26/08/2026 — chegou tudo.** As 12 DSC, as 5 GSeleme e os 3 ângulos de
+> Encontro estão em `ativos/`. As 5 GSeleme, que o conector não conseguia baixar
+> por passarem de 10 MB, vieram por push direto. Três das DSC estão no ar nas
+> faixas de ateliê; a `GSeleme-74` virou o retrato de "Quem sou eu", no lugar do
+> recorte de 690px que saía da folha de Canva.
+>
+> **O `GABI SELEME V1.mp4` é VERTICAL** — conferido. Não serve de hero
+> horizontal. Ver `docs/validacao/entrada-video/`.
 
 ### `GAB/Site gseleme` — fotografia de processo, e é excelente
 

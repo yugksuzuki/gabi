@@ -96,3 +96,100 @@
     color: var(--ink-muted);
   }
 }
+
+/* ---- Entrada da home ---------------------------------------------------- *
+ * Ver src/components/layout/Entrada.tsx e src/lib/entrada.ts.
+ *
+ * A PROPORÇÃO DO ARQUIVO decide o tratamento, e o `src/lib/entrada.ts` diz qual
+ * é. Duas situações, e só duas:
+ *
+ * PAISAGEM (`.entrada--paisagem`) — o caso da referência: sangra de borda a
+ * borda, nos dois tamanhos de tela. É o tratamento que o vídeo de entrada
+ * definitivo vai receber assim que chegar.
+ *
+ * RETRATO (`.entrada--retrato`) — o caso de hoje: material 9:16, gravado no
+ * celular. Sangra no celular, onde a proporção do arquivo É a proporção da
+ * tela. No desktop NÃO sangra: esticar 9:16 numa faixa de 1440 obriga o `cover`
+ * a ampliar 2x e a descartar 70% do quadro, e movimento que custa qualidade não
+ * entra (docs/02 §5). Vira painel na proporção nativa, com ar em volta — o
+ * modelo do William Guillon que docs/02 §1 aponta para objeto isolado.
+ *
+ * A altura vive aqui, e não no componente, porque o pôster e o vídeo precisam
+ * concordar em pixel: é o que mantém o CLS em zero na troca entre os dois.
+ */
+.entrada {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-alt);
+}
+
+.entrada__video,
+.entrada__estatica {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ---- Paisagem: sangra sempre --------------------------------------------- */
+
+.entrada--paisagem {
+  height: 62svh;
+  min-height: 18rem;
+}
+
+@media (min-width: 768px) {
+  .entrada--paisagem {
+    height: 78vh;
+  }
+}
+
+/* ---- Retrato: sangra no celular, vira painel no desktop ------------------ */
+
+.entrada--retrato {
+  height: 64svh;
+  min-height: 20rem;
+}
+
+@media (min-width: 768px) {
+  .entrada--retrato {
+    display: flex;
+    justify-content: center;
+    height: 88vh;
+    padding-block: clamp(1.5rem, 4vh, 3.5rem);
+    padding-inline: var(--margem-lateral);
+    background-color: transparent;
+  }
+
+  .entrada--retrato .entrada__video,
+  .entrada--retrato .entrada__estatica {
+    /* Proporção nativa: a caixa acompanha o arquivo, o arquivo não se deforma
+       para caber na caixa. Em ~415px de largura o quadro de 720 ainda está
+       sendo REDUZIDO — nitidez de sobra.
+
+       Centralizado, com o vazio igual dos dois lados: 9:16 obriga o painel a
+       ser estreito, e nessa largura o vazio todo de um lado só lê como erro de
+       layout em vez de composição. Aqui a assimetria não faz sentido, e
+       docs/02 §4 pede assimetria "quando fizer sentido, não como maneirismo". */
+    width: auto;
+    aspect-ratio: 9 / 16;
+    max-width: 100%;
+    object-fit: contain;
+  }
+}
+
+/* Enquanto há movimento, a estática não existe. */
+.entrada__estatica {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrada__video {
+    display: none;
+  }
+  .entrada__estatica {
+    display: block;
+  }
+}

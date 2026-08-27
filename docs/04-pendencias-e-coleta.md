@@ -5,6 +5,9 @@ conteúdo.** O que já temos é o entendimento; o que falta é o acervo.
 
 Separado por origem, porque a forma de resolver é diferente.
 
+> **Este documento foi escrito antes do acesso ao Drive.** O quadro atualizado, obra por obra,
+> está em `06-inventario-de-ativos.md` — em caso de divergência, o 06 é o vigente.
+
 ---
 
 ## A. Falta do pacote Manus (com você)

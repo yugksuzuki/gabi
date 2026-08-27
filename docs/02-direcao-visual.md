@@ -53,6 +53,13 @@ Ela citou em 11/09/24, prometeu mandar e nunca mandou. **Vale pedir** — ver
 
 ## 2. Cor
 
+> **Atualização de 20/08/2026 — leia antes de aplicar esta seção.**
+> O levantamento do Drive (`06-inventario-de-ativos.md` §3) mostrou que as obras são
+> **monocromáticas**: gesso e massa acrílica sobre tela, em branco osso, cinza, grafite e
+> escorrido de prata. **Não há cor a extrair das obras.** A paleta do site é a paleta do
+> trabalho. O pedido de "cor assinatura" precisa de outra resposta — a rubrica, a textura e o
+> P&B do ateliê. O fluxo descrito abaixo continua válido como método; só o resultado mudou.
+
 **A cor assinatura sai das obras fotografadas. Não invente antes.**
 
 Isso não é cautela — é método. As peças (*Desabrochar*, *Instante*, *Encontro*) têm materiais e
@@ -204,6 +211,10 @@ Precisa ser combinado com ela e com o fotógrafo, **antes**:
 - **Nomenclatura:** `desabrochar-01-frontal.jpg`, `desabrochar-02-angulo.jpg` — o pipeline
   depende disso
 - **Espaço de cor:** sRGB na entrega para web; manter o original em ProPhoto/AdobeRGB se houver
+
+> Referência pronta: **Encontro já foi fotografada assim** — parede branca, luz difusa,
+> 4 ângulos + 1 detalhe, 3213×5712. Para Desabrochar e Instante, é repetir o que já foi feito.
+> Ver `06-inventario-de-ativos.md`.
 
 Pipeline no site: Sharp (item 16) → `next/image` em AVIF e WebP (item 15) → LQIP (item 18).
 

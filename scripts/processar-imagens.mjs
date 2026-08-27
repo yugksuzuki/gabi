@@ -9,6 +9,9 @@
  * Rode depois de trocar qualquer original:
  *   npm run imagens
  *
+ * Pode largar o arquivo de câmera CRU em `ativos/` — o script reduz para
+ * LARGURA_MAX e respeita a orientação EXIF. Não é preciso preparar nada antes.
+ *
  * NOTA sobre os recortes: a rubrica e o retrato estão dentro da folha que a
  * Gabriela montou no Canva, com o nome dela tipografado POR CIMA da foto. Os
  * recortes abaixo foram medidos em cima do arquivo (perfil de tinta por
@@ -20,6 +23,20 @@ import { dirname, join } from 'node:path'
 import sharp from 'sharp'
 
 const RAIZ = join(import.meta.dirname, '..')
+
+/**
+ * Teto de largura do derivado.
+ *
+ * O original de câmera vem em 3213×5712; a maior caixa que o site desenha tem
+ * ~1400px, e `next/image` gera as variantes menores a partir daqui. 1800 cobre
+ * tela retina com folga e evita commitar dezenas de MB no repositório — que é
+ * PÚBLICO.
+ *
+ * Existe para que ninguém precise redimensionar à mão antes de largar o arquivo
+ * em `ativos/`. Imagem menor que o teto passa intacta: `withoutEnlargement`
+ * garante que nada é esticado.
+ */
+const LARGURA_MAX = 1800
 const ativo = (f) => join(RAIZ, 'ativos', f)
 const publico = (f) => join(RAIZ, 'public', f)
 
@@ -31,15 +48,35 @@ async function tapaBranca(width, height) {
 }
 
 const TRABALHOS = [
+  // ---- Obra: Encontro ----------------------------------------------------
+  // Agora direto do ORIGINAL de câmera. Antes o site servia a frontal a 900px
+  // porque o ativo commitado já vinha encolhido à mão; o original tem 3213 de
+  // largura e o pipeline entrega 1800. Dobrou a resolução da imagem mais
+  // importante do site sem ninguém tocar em layout.
   {
-    origem: 'encontro-frontal.jpg',
+    origem: 'IMG_7015.JPG',
     destino: '/obras/encontro/frontal.jpg',
-    nota: 'IMG_7015 — obra frontal na parede do ateliê',
+    nota: 'obra frontal na parede do ateliê — a principal',
   },
   {
-    origem: 'encontro-detalhe.jpg',
+    origem: 'IMG_7017.JPG',
+    destino: '/obras/encontro/angulo-1.jpg',
+    nota: 'enquadramento aberto, quase de frente, com rodapé',
+  },
+  {
+    origem: 'IMG_7018.JPG',
+    destino: '/obras/encontro/angulo-2.jpg',
+    nota: 'três quartos, piso à mostra; o relevo lê em profundidade',
+  },
+  {
+    origem: 'IMG_7019.JPG',
+    destino: '/obras/encontro/angulo-3.jpg',
+    nota: 'três quartos pelo outro lado, mais perto da borda',
+  },
+  {
+    origem: 'IMG_6562.JPG',
     destino: '/obras/encontro/detalhe.jpg',
-    nota: 'IMG_6562 — canto superior, textura e escorrido de prata',
+    nota: 'canto superior, textura e escorrido de prata',
   },
   {
     origem: 'ficha-encontro.jpg',
@@ -49,12 +86,44 @@ const TRABALHOS = [
     recorte: { left: 592, top: 0, width: 822, height: 1075 },
     nota: 'recortada da prancha de ficha — obra em contexto, com piso',
   },
+
+  // ---- Ateliê: o segundo registro ----------------------------------------
+  // As TRÊS únicas realmente em preto e branco do conjunto de 12 (medido:
+  // saturação 0,0; as outras nove ficam entre 9 e 52). docs/06 §3 argumenta
+  // que P&B de processo e cinza-neutro de obra convivem sem briga — e é essa
+  // convivência que dá o ritmo de publicação à home.
   {
-    origem: 'folha-bio-canva.png',
-    destino: '/sobre/retrato.jpg',
-    recorte: { left: 815, top: 120, width: 690, height: 1160 },
-    nota: 'retrato P&B da folha da bio, à direita do nome tipografado',
+    origem: 'DSC03609 Copy.JPG',
+    destino: '/atelie/maos.jpg',
+    nota: 'mãos abertas sobre a peça em fibra, coque preso com pincel',
   },
+  {
+    origem: 'DSC03561 Copy.JPG',
+    destino: '/atelie/espelhada.jpg',
+    nota: 'composição espelhada — recurso recorrente dela, não acaso',
+  },
+  {
+    origem: 'DSC03574 Copy.JPG',
+    destino: '/atelie/materia.jpg',
+    nota: 'a matéria sozinha, espelhada. Panorâmica',
+  },
+
+  // ---- Retratos ----------------------------------------------------------
+  {
+    origem: 'GSeleme-74.jpg',
+    destino: '/sobre/retrato.jpg',
+    // ESTE É O ORIGINAL. Até aqui o retrato era um recorte de 690px tirado da
+    // folha de Canva da bio — a mesma foto, de terceira mão. É também a foto
+    // que ELA escolheu para a própria folha, então a escolha é dela.
+    nota: 'retrato encostada na parede de madeira — o original da sessão',
+  },
+  {
+    origem: 'GSeleme-114.jpg',
+    destino: '/sobre/rosto.jpg',
+    nota: 'rosto em primeiríssimo plano, metade do quadro',
+  },
+
+  // ---- Marca -------------------------------------------------------------
   {
     origem: 'folha-bio-canva.png',
     destino: '/marca/rubrica.png',
@@ -80,8 +149,11 @@ async function gerarLQIP(entrada) {
 const manifesto = {}
 
 for (const t of TRABALHOS) {
-  let img = sharp(ativo(t.origem))
+  let img = sharp(ativo(t.origem)).rotate()
   if (t.recorte) img = img.extract(t.recorte)
+  // Depois do recorte, nunca antes: as coordenadas de recorte foram medidas
+  // sobre o original, e reduzir primeiro invalidaria todas elas.
+  img = img.resize({ width: LARGURA_MAX, withoutEnlargement: true })
   if (t.apagar) {
     const tapa = await tapaBranca(t.apagar.width, t.apagar.height)
     img = sharp(await img.toBuffer()).composite([
