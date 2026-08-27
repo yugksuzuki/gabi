@@ -1,5 +1,7 @@
+import type { Metadata } from 'next'
 import { getPathname } from '@/i18n/navigation'
-import { routing, idiomas } from '@/i18n/routing'
+import { routing, idiomas, type Idioma } from '@/i18n/routing'
+import { altDoCartao, TAMANHO_OG } from './og'
 import { urlDoSite } from './url-do-site'
 
 export { urlDoSite }
@@ -31,6 +33,58 @@ export function alternativas(href: Href, locale: string) {
       ...Object.fromEntries(idiomas.map((idioma) => [idioma, caminho(idioma)])),
       // x-default aponta para PT, o padrão do site.
       'x-default': caminho(routing.defaultLocale),
+    },
+  }
+}
+
+/**
+ * Open Graph e Twitter Card — item 24 do Stack Técnico.
+ *
+ * Um só lugar decide o formato do cartão, porque a alternativa é cada página
+ * montar o dela e uma delas esquecer o `alt`, ou o `type`, ou a URL absoluta.
+ * O cartão em si é desenhado em src/lib/og.tsx e gerado em /og/... no build.
+ *
+ * `url` absoluta: o Facebook, o WhatsApp e o Instagram não resolvem caminho
+ * relativo. metadataBase resolve o resto, mas a imagem é o que mais custa
+ * quando falha — é ela que aparece.
+ */
+export function cartaoSocial({
+  cartao,
+  titulo,
+  descricao,
+  locale,
+}: {
+  /** Caminho do cartão gerado, sem o /og inicial. Ex.: 'obra/encontro'. */
+  cartao: string
+  titulo: string
+  descricao?: string | null
+  locale: Idioma
+}): Metadata {
+  const url = `${urlDoSite()}/og/${locale}/${cartao}.png`
+  const imagem = {
+    url,
+    width: TAMANHO_OG.width,
+    height: TAMANHO_OG.height,
+    // Fallback explícito: quem chama já deveria ter validado o idioma, mas um
+    // cartão sem `alt` é falha de acessibilidade e um cartão que DERRUBA a
+    // página é bem pior. Nenhum dos dois vale um metadado.
+    alt: (altDoCartao[locale] ?? altDoCartao.pt)(titulo),
+  }
+
+  return {
+    openGraph: {
+      type: 'website',
+      siteName: 'Gabriela Seleme',
+      locale: locale === 'pt' ? 'pt_BR' : 'en_US',
+      title: titulo,
+      ...(descricao ? { description: descricao } : {}),
+      images: [imagem],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titulo,
+      ...(descricao ? { description: descricao } : {}),
+      images: [imagem],
     },
   }
 }

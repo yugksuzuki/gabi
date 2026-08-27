@@ -8,6 +8,8 @@ import { Pendente } from '@/components/ui/Pendente'
 import { Entrada } from '@/components/layout/Entrada'
 import { IndiceAcervo } from '@/components/portfolio/IndiceAcervo'
 import { FaixaAtelie } from '@/components/portfolio/FaixaAtelie'
+import { DadosEstruturados } from '@/components/DadosEstruturados'
+import { grafo, pessoa } from '@/lib/schema'
 import type { Idioma } from '@/i18n/routing'
 
 /**
@@ -28,9 +30,8 @@ import type { Idioma } from '@/i18n/routing'
  * faltava: o processo. E docs/06 §3 garante que os dois convivem sem briga,
  * porque a fotografia de obra é cinza-neutra e a de ateliê é P&B.
  *
- * As faixas de ateliê ainda não têm arquivo (src/lib/atelie.ts está vazio de
- * propósito). Sem imagem, não renderizam, e a página continua correta — quando
- * as fotos chegarem é preenchimento, não redesenho.
+ * Faixa sem imagem não renderiza: `lerFaixasAtelie()` filtra o que não existe
+ * no manifesto, então a página continua correta mesmo com a lista vazia.
  *
  * HIERARQUIA POR MATERIAL: obra fotografada ocupa a escala grande; obra ainda
  * sem foto entra estreita, como entrada de catálogo por vir. Duas das três não
@@ -53,6 +54,10 @@ export default async function Portfolio({
 
   return (
     <>
+      {/* A home é o portfólio: é aqui que a Person da Gabriela é declarada
+          (item 22). É o que habilita painel de conhecimento. */}
+      <DadosEstruturados json={grafo(pessoa(locale))} />
+
       <h1 className="sr-only">{t('titulo')}</h1>
 
       <Entrada />
@@ -100,7 +105,13 @@ export default async function Portfolio({
                       titulo={obra.titulo}
                       // A primeira obra da sequência é o LCP da home.
                       prioridade={i === 0}
-                      sizes="(max-width: 768px) 100vw, 58vw"
+                      // A imagem NÃO ocupa 100vw: a sequência tem margem
+                      // lateral dos dois lados. Declarar 100vw faz o navegador
+                      // escolher um arquivo maior do que vai desenhar, e no
+                      // celular isso é o LCP pagando por pixel que ninguém vê.
+                      // Valor fixo, não var(): `sizes` é lido fora da cascata
+                      // e não resolve custom property.
+                      sizes="(max-width: 768px) calc(100vw - 3rem), 58vw"
                     />
                   </Link>
                 </div>

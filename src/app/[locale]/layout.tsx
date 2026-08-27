@@ -3,9 +3,9 @@ import type { ReactNode } from 'react'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { routing } from '@/i18n/routing'
+import { routing, type Idioma } from '@/i18n/routing'
 import { fraunces, inter } from '@/styles/fontes'
-import { alternativas, urlDoSite } from '@/lib/metadados'
+import { alternativas, cartaoSocial, urlDoSite } from '@/lib/metadados'
 import { Nav } from '@/components/layout/Nav'
 import { Rodape } from '@/components/layout/Rodape'
 import '../globals.css'
@@ -20,10 +20,24 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }): Promise<Metadata> {
   const { locale } = await params
+
+  // Idioma inválido chega aqui de verdade: qualquer endereço com extensão
+  // (/favicon.ico, /qualquer.txt) escapa do middleware de i18n e cai neste
+  // segmento com locale = "favicon.ico". Sem esta guarda, generateMetadata
+  // estourava e o servidor respondia 500 onde devia responder 404 — e um site
+  // que devolve 500 para /favicon.ico parece quebrado para qualquer robô.
+  if (!hasLocale(routing.locales, locale)) return {}
+
   const t = await getTranslations({ locale, namespace: 'meta' })
 
   return {
     metadataBase: new URL(urlDoSite()),
+    ...cartaoSocial({
+      cartao: 'pagina/portfolio',
+      titulo: t('tituloPadrao'),
+      descricao: t('descricaoPadrao'),
+      locale: locale as Idioma,
+    }),
     title: { default: t('tituloPadrao'), template: `%s — ${t('tituloPadrao')}` },
     description: t('descricaoPadrao'),
     alternates: alternativas('/', locale),

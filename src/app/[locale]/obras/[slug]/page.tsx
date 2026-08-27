@@ -5,12 +5,15 @@ import { Link } from '@/i18n/navigation'
 import { routing, type Idioma } from '@/i18n/routing'
 import { acharObra, lerObras, ehPendente } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
-import { alternativas } from '@/lib/metadados'
+import { alternativas, cartaoSocial } from '@/lib/metadados'
 import { buscarCotacaoUSD, exibirPreco } from '@/lib/moeda'
 import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
 import { FichaTecnica } from '@/components/obra/FichaTecnica'
 import { Consultar } from '@/components/obra/Consultar'
+import { Prosa } from '@/components/ui/Prosa'
+import { DadosEstruturados } from '@/components/DadosEstruturados'
+import { grafo, migalhas, obraEmSchema, pessoa } from '@/lib/schema'
 
 type Props = { params: Promise<{ locale: Idioma; slug: string }> }
 
@@ -33,6 +36,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Description escrita, nunca gerada por template genérico (docs/01 §6).
     // Sem legenda aprovada, não inventa: fica sem description.
     ...(legenda ? { description: legenda } : {}),
+    // O cartão que aparece quando o link circula no Instagram e no WhatsApp.
+    // Para uma obra é o primeiro contato — docs/01 §6.
+    ...cartaoSocial({
+      cartao: `obra/${slug}`,
+      titulo: obra.titulo,
+      descricao: legenda,
+      locale,
+    }),
     robots: { index: false, follow: false },
   }
 }
@@ -67,8 +78,19 @@ export default async function PaginaObra({ params }: Props) {
   const escala = obra.imagens.find((im) => im.papel === 'escala')
   const galeria = obra.imagens.filter((im) => im !== principal && im !== escala)
 
+  const tPortfolio = await getTranslations('portfolio')
+
   return (
     <article className="pt-[var(--respiro-secao)]">
+      {/* VisualArtwork + Person + BreadcrumbList (docs/03 §7). Campo pendente
+          é omitido, nunca inventado: dado estruturado sai do nosso controle. */}
+      <DadosEstruturados
+        json={grafo(
+          pessoa(locale),
+          obraEmSchema(obra, locale),
+          migalhas(obra, locale, tPortfolio('titulo'))
+        )}
+      />
       {/* 1. Imagem principal, grande, quase sem cerimônia. */}
       <div className="px-[var(--margem-lateral)]">
         <div className="mx-auto max-w-[52rem]">
@@ -77,7 +99,9 @@ export default async function PaginaObra({ params }: Props) {
             alt={localizar(principal?.alt, locale)}
             titulo={obra.titulo}
             prioridade
-            sizes="(max-width: 768px) 100vw, 52rem"
+            // Desconta a margem lateral: declarar 100vw faz o navegador
+            // baixar um arquivo maior do que o que vai desenhar.
+            sizes="(max-width: 768px) calc(100vw - 3rem), 52rem"
           />
         </div>
       </div>
@@ -95,20 +119,7 @@ export default async function PaginaObra({ params }: Props) {
         {/* 5. Texto autoral. Medida curta, entrelinha generosa. */}
         <div className="col-span-12 lg:col-span-6">
           {texto ? (
-            <div className="max-w-[var(--medida-corpo)] text-corpo [&>p]:mb-5">
-              {texto.split(/\n{2,}/).map((paragrafo, i) => (
-                <p key={i}>
-                  {/* Quebra simples é dela: a prancha de Encontro quebra as
-                      frases num ritmo próprio. Não juntar. */}
-                  {paragrafo.split('\n').map((linha, j, todas) => (
-                    <span key={j}>
-                      {linha}
-                      {j < todas.length - 1 && <br />}
-                    </span>
-                  ))}
-                </p>
-              ))}
-            </div>
+            <Prosa texto={texto} />
           ) : (
             <Pendente campo="texto" />
           )}
@@ -138,7 +149,7 @@ export default async function PaginaObra({ params }: Props) {
                 src={img.src}
                 alt={localizar(img.alt, locale)}
                 titulo={obra.titulo}
-                sizes="(max-width: 768px) 100vw, 45vw"
+                sizes="(max-width: 768px) calc(100vw - 3rem), 45vw"
               />
               <figcaption className="legenda">{t(img.papel)}</figcaption>
             </figure>

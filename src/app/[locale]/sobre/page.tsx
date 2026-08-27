@@ -3,7 +3,8 @@ import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { dadosDaImagem } from '@/lib/obras'
 import { lerSobre } from '@/lib/sobre'
-import { alternativas } from '@/lib/metadados'
+import { alternativas, cartaoSocial } from '@/lib/metadados'
+import { Prosa } from '@/components/ui/Prosa'
 import type { Idioma } from '@/i18n/routing'
 
 type Props = { params: Promise<{ locale: Idioma }> }
@@ -14,6 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t('titulo'),
     alternates: alternativas('/sobre', locale),
+    ...cartaoSocial({ cartao: 'pagina/sobre', titulo: t('titulo'), locale }),
     robots: { index: false, follow: false },
   }
 }
@@ -69,14 +71,11 @@ export default async function Sobre({ params }: Props) {
       {/* Composição assimétrica: o texto ocupa a coluna estreita da esquerda e
           o retrato sobe na direita, do jeito que a folha dela faz. */}
       <div className="mt-14 grid grid-cols-12 gap-y-12 md:gap-x-12">
-        <div
-          {...(emPortuguesNoIngles ? { lang: 'pt' } : {})}
-          className="col-span-12 max-w-[var(--medida-corpo)] text-corpo md:col-span-7 [&>p]:mb-6"
-        >
-          {corpo.split(/\n{2,}/).map((paragrafo, i) => (
-            <p key={i}>{renderizarParagrafo(paragrafo)}</p>
-          ))}
-        </div>
+        <Prosa
+          texto={corpo}
+          lang={emPortuguesNoIngles ? 'pt' : undefined}
+          className="col-span-12 max-w-[var(--medida-corpo)] text-corpo md:col-span-7"
+        />
 
         {/* Duas imagens na coluna da direita, espaçadas. A bio tem dez
             parágrafos: com um retrato só, a metade de baixo da página ficava
@@ -114,32 +113,3 @@ export default async function Sobre({ params }: Props) {
   )
 }
 
-/**
- * Preserva duas coisas do original dela, e só essas duas.
- *
- * A quebra de linha simples: "Esse caminho, / Essas peças, / São um reflexo de
- * transformação, / De desenvolvimento." são QUATRO linhas na folha que ela
- * escreveu, não uma frase corrida. Achatar isso reescreve o ritmo dela.
- *
- * E a única palavra em negrito na folha inteira: **expressão**.
- */
-function renderizarParagrafo(texto: string) {
-  return texto.split('\n').map((linha, i, todas) => (
-    <span key={i}>
-      {renderizarEnfase(linha)}
-      {i < todas.length - 1 && <br />}
-    </span>
-  ))
-}
-
-function renderizarEnfase(texto: string) {
-  return texto.split(/(\*\*[^*]+\*\*)/g).map((parte, i) =>
-    parte.startsWith('**') && parte.endsWith('**') ? (
-      <strong key={i} className="font-medium">
-        {parte.slice(2, -2)}
-      </strong>
-    ) : (
-      <span key={i}>{parte}</span>
-    )
-  )
-}

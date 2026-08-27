@@ -51,7 +51,12 @@
   "textos": {
     "titulo": "Textos",
     "vazio": "Nenhum texto publicado ainda.",
-    "ler": "Ler"
+    "ler": "Ler",
+    "rascunho": "Rascunho — visível só em desenvolvimento",
+    "traducaoPendente": "Tradução ainda não aprovada pela autora. Mostrado em português, nas palavras dela.",
+    "story": "Imagem para story",
+    "obrasCitadas": "Obras citadas",
+    "publicadoEm": "Publicado em"
   },
   "contato": {
     "titulo": "Contato",
@@ -78,5 +83,10 @@
   },
   "marca": {
     "rubricaAlt": "Rubrica de Gabriela Seleme"
+  },
+  "naoEncontrado": {
+    "titulo": "Página não encontrada",
+    "recado": "O endereço não existe, ou a página mudou de lugar.",
+    "voltar": "Ver o portfólio"
   }
 }
