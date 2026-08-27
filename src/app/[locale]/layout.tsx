@@ -5,7 +5,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing, type Idioma } from '@/i18n/routing'
 import { fraunces, inter } from '@/styles/fontes'
-import { alternativas, cartaoSocial, urlDoSite } from '@/lib/metadados'
+import { alternativas, cartaoSocial, urlDoSite, robotsDaPagina } from '@/lib/metadados'
 import { Nav } from '@/components/layout/Nav'
 import { Rodape } from '@/components/layout/Rodape'
 import '../globals.css'
@@ -43,7 +43,7 @@ export async function generateMetadata({
     alternates: alternativas('/', locale),
     // Enquanto houver [PENDENTE] em rota publicada, nada é indexado.
     // docs/01 §7.7: "site indexado com [PENDENTE] é dano difícil de reverter".
-    robots: { index: false, follow: false },
+    robots: robotsDaPagina(),
   }
 }
 

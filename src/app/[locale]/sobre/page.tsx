@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { dadosDaImagem } from '@/lib/obras'
 import { lerSobre } from '@/lib/sobre'
-import { alternativas, cartaoSocial } from '@/lib/metadados'
+import { alternativas, cartaoSocial, robotsDaPagina } from '@/lib/metadados'
 import { Prosa } from '@/components/ui/Prosa'
 import type { Idioma } from '@/i18n/routing'
 
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: t('titulo'),
     alternates: alternativas('/sobre', locale),
     ...cartaoSocial({ cartao: 'pagina/sobre', titulo: t('titulo'), locale }),
-    robots: { index: false, follow: false },
+    robots: robotsDaPagina(),
   }
 }
 

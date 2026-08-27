@@ -5,7 +5,7 @@ import { Link } from '@/i18n/navigation'
 import { routing, type Idioma } from '@/i18n/routing'
 import { acharObra, lerObras, ehPendente } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
-import { alternativas, cartaoSocial } from '@/lib/metadados'
+import { alternativas, cartaoSocial, robotsDaPagina } from '@/lib/metadados'
 import { buscarCotacaoUSD, exibirPreco } from '@/lib/moeda'
 import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
@@ -44,7 +44,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       descricao: legenda,
       locale,
     }),
-    robots: { index: false, follow: false },
+    // A obra decide sozinha: enquanto não for `publicada`, ela não entra no
+    // índice nem que a trava global esteja aberta. É a MESMA condição que o
+    // sitemap usa — duas regras diferentes para a mesma pergunta acabariam
+    // divergindo, e o build já garante que `publicada` implica ficha completa.
+    robots: robotsDaPagina({ temPendencia: obra.estado !== 'publicada' }),
   }
 }
 

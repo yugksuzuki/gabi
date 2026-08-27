@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
-import { alternativas, cartaoSocial } from '@/lib/metadados'
+import { alternativas, cartaoSocial, robotsDaPagina } from '@/lib/metadados'
 import { campo, textosVisiveis } from '@/lib/textos'
 import { formatarData } from '@/lib/data'
 import type { Idioma } from '@/i18n/routing'
@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: t('titulo'),
     alternates: alternativas('/textos', locale),
     ...cartaoSocial({ cartao: 'pagina/textos', titulo: t('titulo'), locale }),
-    robots: { index: false, follow: false },
+    robots: robotsDaPagina(),
   }
 }
 

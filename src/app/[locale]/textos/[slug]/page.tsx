@@ -6,7 +6,7 @@ import { routing, type Idioma } from '@/i18n/routing'
 import { acharTexto, campo, corpoNoIdioma, textosVisiveis } from '@/lib/textos'
 import { lerObras } from '@/lib/obras'
 import { formatarData } from '@/lib/data'
-import { alternativas, cartaoSocial } from '@/lib/metadados'
+import { alternativas, cartaoSocial, robotsDaPagina } from '@/lib/metadados'
 import { Prosa } from '@/components/ui/Prosa'
 
 type Props = { params: Promise<{ locale: Idioma; slug: string }> }
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       descricao: campo(texto.resumo, locale),
       locale,
     }),
-    robots: { index: false, follow: false },
+    robots: robotsDaPagina(),
   }
 }
 
