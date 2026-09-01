@@ -1,56 +1,97 @@
 <!doctype html>
-<html lang="pt">
-<head>
-<meta charset="utf-8">
+<html lang="pt"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Gabriela Seleme — Wireframe</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&family=Inter:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..600;1,300..500&family=Inter:wght@400;500&display=swap">
 <style>
-  :root{--bg:#f4f2ee;--ink:#1a1917;--muted:#635f58;--line:#dcd8d1;--forte:#837e76}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);
-       font:400 17px/1.7 'Inter',system-ui,sans-serif;padding:clamp(24px,6vw,96px)}
-  h1{font:400 clamp(40px,7vw,72px)/0.95 'Fraunces',Georgia,serif;margin:0 0 8px;letter-spacing:-.01em}
+:root{
+  --bg:#f4f2ee; --bg-alt:#eae7e1; --ink:#1a1917; --muted:#635f58;
+  --line:#dcd8d1; --forte:#837e76;
+  --serif:'Cormorant Garamond',Garamond,Georgia,'Times New Roman',serif;
+  --ui:'Inter',system-ui,-apple-system,sans-serif;
+  --margem:120px; --respiro:200px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+     font:400 21px/1.8 var(--serif);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;font-family:var(--serif);font-weight:400}
+p{margin:0}
+.display{font-family:var(--serif);font-size:56px;line-height:1.05;letter-spacing:-.005em}
+.titulo{font-family:var(--serif);font-size:34px;line-height:1.15}
+.corpo{font-family:var(--serif);font-size:21px;line-height:1.8;text-align:left}
+.legenda{font-family:var(--ui);font-size:13px;line-height:1.5;letter-spacing:.07em;
+         text-transform:uppercase;color:var(--muted)}
+.navlink{font-family:var(--ui);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.preco{font-family:var(--ui);font-size:15px;letter-spacing:.02em;color:var(--muted)}
+.consultar{font-family:var(--ui);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+           border-bottom:1px solid var(--forte);padding-bottom:3px}
+.nota{font-family:var(--ui);font-size:11px;line-height:1.5;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--forte);border:1px dashed var(--forte);
+      padding:5px 9px;display:inline-block}
+.faixa{position:relative;width:100%;overflow:hidden}
+.faixa img{display:block;width:100%;object-fit:cover}
+.faixa .legenda{position:absolute;left:var(--margem);bottom:16px;color:#f4f2ee}
+</style>
+<style>body{max-width:1100px;margin:0 auto}</style>
+</head><body>
+
+<style>
+  body{padding:clamp(24px,6vw,96px)}
+  h1{font:400 clamp(40px,6vw,64px)/1.05 var(--serif);margin:0 0 10px}
   .sub{color:var(--muted);max-width:62ch;margin:0 0 8px}
-  .aviso{font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--forte);
-         border:1px dashed var(--forte);padding:10px 14px;display:inline-block;margin:20px 0 48px}
   ul{list-style:none;padding:0;margin:0;border-top:1px solid var(--line);max-width:70ch}
   li{border-bottom:1px solid var(--line)}
-  a{display:grid;grid-template-columns:52px 1fr auto;gap:20px;align-items:baseline;
-    padding:20px 0;color:inherit;text-decoration:none}
-  a:hover .nome{opacity:.55}
-  .num{font-size:13px;letter-spacing:.18em;color:var(--muted)}
-  .nome{font:400 28px/1.1 'Fraunces',Georgia,serif;transition:opacity .2s}
-  .larg{font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-  footer{margin-top:64px;color:var(--muted);font-size:14px;max-width:66ch}
-  code{background:#eae7e1;padding:2px 6px;font-size:14px}
+  li a{display:grid;grid-template-columns:52px 1fr auto;gap:20px;align-items:baseline;padding:20px 0}
+  li a:hover .nome{opacity:.55}
+  .num{font-family:var(--ui);font-size:13px;letter-spacing:.18em;color:var(--muted)}
+  .nome{font-family:var(--serif);font-size:28px;line-height:1.1;transition:opacity .2s}
+  .larg{font-family:var(--ui);font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+  footer{margin-top:64px;color:var(--muted);font-family:var(--ui);font-size:14px;line-height:1.65;max-width:70ch}
+  code{background:var(--bg-alt);padding:2px 6px;font-size:13px}
 </style>
-</head>
-<body>
-  <h1>Gabriela Seleme</h1>
-  <p class="sub">Wireframe do site — sete telas, para importar no Figma pelo plugin
-     <strong>html.to.design</strong>, na aba de <strong>URL</strong>.</p>
-  <p class="aviso">Material de trabalho · não é o site publicado</p>
-
-  <ul>
-    <li><a href="Main.html"><span class="num">01</span><span class="nome">Portfólio</span><span class="larg">1440</span></a></li>
-    <li><a href="Obra.html"><span class="num">02</span><span class="nome">Obra — Encontro</span><span class="larg">1440</span></a></li>
-    <li><a href="ObraEN.html"><span class="num">03</span><span class="nome">Obra — Encontro (EN)</span><span class="larg">1440</span></a></li>
-    <li><a href="QuemSouEu.html"><span class="num">04</span><span class="nome">Quem sou eu</span><span class="larg">1440</span></a></li>
-    <li><a href="Textos.html"><span class="num">05</span><span class="nome">Textos</span><span class="larg">1440</span></a></li>
-    <li><a href="Contato.html"><span class="num">06</span><span class="nome">Contato</span><span class="larg">1440</span></a></li>
-    <li><a href="Celular.html"><span class="num">07</span><span class="nome">Home no celular</span><span class="larg">390</span></a></li>
-  </ul>
-
-  <footer>
-    <p>Importe uma tela por vez, colando a URL dela. Vem em camadas editáveis —
-       texto continua texto, cor continua cor.</p>
-    <p><strong>O site publicado está em <code>gabi-rho.vercel.app</code></strong> e já é mais
-       completo que este wireframe: quatro ângulos na página de obra, dois retratos em
-       Quem sou eu, e as faixas de ateliê com fotografia real.</p>
-    <p>Cor <code>#f4f2ee</code> fundo · <code>#1a1917</code> tinta · <code>#635f58</code> tinta suave ·
-       <code>#dcd8d1</code> filete. Tipografia Fraunces (display) e Inter (interface).</p>
-  </footer>
-</body>
-</html>
+<img src="img/rubrica.png" alt="Gabriela Seleme" style="display:block;height:84px;width:auto;margin-bottom:26px;">
+<h1>Wireframe &mdash; revisão de 27/08</h1>
+<p class="sub">Sete telas com as correções que você marcou sobre o Wireframe 3,
+   mais a lista escrita. Para importar no Figma pelo plugin
+   <strong>html.to.design</strong>, na aba de <strong>URL</strong>: cole o endereço
+   de uma tela por vez.</p>
+<p style="margin:20px 0 44px;"><span class="nota">Material de trabalho &mdash; não é o site publicado</span></p>
+<ul>
+    <li><a href="Main.html"><span class="num">01</span>
+      <span class="nome">Portfólio</span><span class="larg">1440</span></a></li>
+    <li><a href="Obra.html"><span class="num">02</span>
+      <span class="nome">Obra — Encontro</span><span class="larg">1440</span></a></li>
+    <li><a href="ObraEN.html"><span class="num">03</span>
+      <span class="nome">Obra — Encontro (EN)</span><span class="larg">1440</span></a></li>
+    <li><a href="QuemSouEu.html"><span class="num">04</span>
+      <span class="nome">A artista</span><span class="larg">1440</span></a></li>
+    <li><a href="Textos.html"><span class="num">05</span>
+      <span class="nome">Ensaios</span><span class="larg">1440</span></a></li>
+    <li><a href="Contato.html"><span class="num">06</span>
+      <span class="nome">Contato</span><span class="larg">1440</span></a></li>
+    <li><a href="Celular.html"><span class="num">07</span>
+      <span class="nome">Home no celular</span><span class="larg">390</span></a></li></ul>
+<footer>
+  <p><strong>O que mudou nesta revisão.</strong> A logo substituiu o nome tipografado e
+     aparece em todas as páginas. &ldquo;Quem sou eu&rdquo; virou <strong>A artista</strong> e
+     &ldquo;Textos&rdquo; virou <strong>Ensaios</strong>. A tipografia é
+     <strong>Cormorant Garamond</strong> e a escala foi comprimida &mdash; o display caiu de
+     104px para 56px, e a razão entre ele e o corpo do texto foi de 5,5&times; para 2,7&times;.
+     O respiro cresceu: margem de 96 para 120px, intervalo entre seções de 160 para 200px.
+     As páginas internas ganharam faixa de vídeo no cabeçalho e no rodapé.</p>
+  <p>Na home saíram a lista índice, todas as imagens de estudo e os blocos de legenda:
+     cada obra é uma foto só, e o vídeo dela toca no hover. A página da obra virou
+     texto e ficha à esquerda, imagem à direita, com zoom e com a passagem foto&rarr;vídeo
+     por scroll lateral; a ficha segue o modelo da sua prancha, sem coluna de rótulos,
+     sem a linha Materiais, sem o rótulo Valor, com o preço em cinza menor e o Consultar
+     como link. Ensaios abre com um ensaio expandido e menu por data à esquerda.</p>
+  <p><strong>As caixas tracejadas são perguntas para você</strong>, não são parte do
+     desenho: a altura de 115&times;180, se &ldquo;Peça única&rdquo; e &ldquo;Disponível&rdquo;
+     voltam, se os dois títulos de ensaio são reais ou exemplos, e o parágrafo do Contato
+     que foi escrito por nós.</p>
+  <p>Cor <code>#f4f2ee</code> fundo &middot; <code>#1a1917</code> tinta &middot;
+     <code>#635f58</code> tinta suave &middot; <code>#dcd8d1</code> filete.</p>
+</footer>
+</body></html>

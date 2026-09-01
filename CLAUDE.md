@@ -16,6 +16,7 @@ completa e **não** são carregados sozinhos — abra sob demanda, o que a taref
 | Mexer em schema, i18n, preço, WhatsApp, JSON-LD, SEO | `docs/03-modelo-de-dados.md` |
 | Decidir o que é placeholder e o que é real | `docs/04-pendencias-e-coleta.md` + `docs/06-inventario-de-ativos.md` |
 | Escrever mensagem para a cliente | `docs/05-formulario-gabriela.md` |
+| Mexer em layout, rota, tipografia ou na página de obra | `docs/08-alteracoes-gabriela-27-08-2026.md` **primeiro** — é a revisão mais recente e vence os outros |
 
 Em conflito: as **cinco regras invioláveis** abaixo vencem sempre. No resto, `docs/` é mais
 detalhado e ganha do resumo.
@@ -125,7 +126,7 @@ Conversa a ter com ela; não decida sozinho.
 |---|---|
 | **Domínio** | Ela comprou `gclm.com.br` (dez/2024). Os contatos são `@gseleme.design`. Ninguém amarrou. Define URL canônica, hreflang, OG, e-mail |
 | **GCLM aparece na v1?** | GCLM é a marca de design (ex-"Umbra"); Gabriela Seleme é a autora. Duas camadas nunca reconciliadas |
-| **Logo** | A rubrica **existe** (`ativos/rubrica-gseleme.png`), mas em raster. Falta o vetor — peça o original à Catherine |
+| **Logo — BLOQUEIO** | Em 27/08 a Gabriela pediu a rubrica no lugar do nome tipografado, "**sempre a logo**", em **todas** as páginas. Isso tirou o vetor de "melhoria" e o transformou em bloqueio: raster escalado no cabeçalho vai aparecer. Pior, o `ativos/rubrica-gseleme.png` que existe é um recorte torto — traz junto a barra escura da foto e as palavras "Gabriela S". Peça o **original vetorial** à Catherine |
 | **Número do WhatsApp** | Informado `+55 44 9992-9186` — 8 dígitos onde celular tem 9, e o **DDD 44 é Maringá/PR**, não Balneário Camboriú/SC. Provável: `+55 44 99992-9186` → `5544999929186`. Teste abrindo `wa.me/5544999929186` no celular. Ver `content/contato.yml` |
 | **Cor assinatura** | As obras são monocromáticas — não há cor a extrair. Precisa de outra resposta ao pedido dela |
 | **Data de estreia** | Nunca travada. O cronograma é desenhado de trás para frente a partir dela |
@@ -193,6 +194,7 @@ Não versione nada de lá — nem citando, nem resumindo.
 | `docs/04-pendencias-e-coleta.md` | O que falta e como pedir |
 | `docs/05-formulario-gabriela.md` | Documento para enviar à cliente |
 | `docs/06-inventario-de-ativos.md` | O que existe de verdade no Drive, obra por obra |
+| `docs/08-alteracoes-gabriela-27-08-2026.md` | As correções que ela marcou sobre o Wireframe 3, em 27/08 |
 | `content/` | Bio, ficha e texto de Encontro, contato — conteúdo real, já transcrito |
 | `ativos/` | Rubrica, folha da bio, ficha de Encontro, 2 fotos da obra |
 | `materiais/` | Conversa transcrita, PDFs originais, inventários |
