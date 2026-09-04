@@ -192,9 +192,10 @@ TXT_PT = ["Essa obra é um convite a uma reflexão &mdash;",
 
 def obra(en=False):
     t = dict(
-        ficha=['Gabriela Seleme', 'Encontro, 2026',
-               'Oil-based plaster and acrylic paste on canvas' if en
-               else 'Gesso e massa acrílica sobre tela', '115 &times; 180'],
+        ficha=['Gabriela Seleme',
+               '<em style="font-style:italic;">Encontro</em>, 2026',
+               ('Oil-based plaster and acrylic paste on canvas 115x180' if en
+                else 'Gesso e massa acrílica sobre tela 115x180')],
         preco='USD 2,050 &middot; approx.' if en else 'R$ 11.230',
         consultar='Enquire' if en else 'Consultar',
         zoom='Click to zoom' if en else 'Clique para ampliar',
@@ -224,8 +225,8 @@ def obra(en=False):
       <p style="margin-top:26px;"><a href="#" class="consultar">{t['consultar']}</a></p>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start;">
-      <span class="nota">O6 ficha no modelo da prancha dela &mdash; uma linha por informação, sem coluna de rótulos</span>
-      <span class="nota">115 &times; 180: falta dizer qual é a altura. A prancha escreve 115x180, o site mostrava 180 &times; 115</span>
+      <span class="nota">O6/O7 exatamente como na folha dela: três linhas, obra em itálico, técnica e medida juntas, sem rótulo</span>
+      <span class="nota">A folha escreve 115x180 sem dizer qual é a altura, e o site mostrava 180 &times; 115. Qual é?</span>
       <span class="nota">&ldquo;Peça única&rdquo; e &ldquo;Disponível&rdquo; estavam na tabela riscada. Voltam ou saem?</span>
     </div>
   </div>

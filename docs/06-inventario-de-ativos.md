@@ -143,10 +143,18 @@ Três conclusões, e nenhuma é "ela não fez":
 1. A pasta que temos é a **cópia do Guilherme**, criada em 20/08 e sem uma alteração desde
    então. A limpeza dela foi feita no Drive **dela** — ou numa pasta que não foi compartilhada.
    **Peça o link da pasta em que ela mexeu**, não peça o trabalho de novo.
-2. **Os PDFs de ficha não estão em lugar nenhum** deste Drive. Ela mesma disse não ter certeza
-   de ter subido (*"eu acho que upei na pasta de cada obra, mas eu não tenho certeza"*). É o
-   pedido de trinta segundos que o `docs/08` §3 previu — e ele **bloqueia** a ficha da obra,
-   que é a maior reformulação da revisão.
+2. **Os "PDFs" existem, não são PDFs, e já estão no repositório desde 25/08.** Ela disse
+   *"acho que é PDF, eu acho que upei na pasta de cada obra"* — e a busca por PDF no Drive não
+   acha nada porque são **imagens**, com nomes que não dizem o que são:
+
+   | O que ela chamou de | Está no Drive como | No repositório | Bytes |
+   |---|---|---|---|
+   | "a ficha técnica da obra" | `Encontro 11.230/3.jpg` | `ativos/ficha-encontro.jpg` | 276.927 |
+   | "aquele documento do tipo quem sou eu" | `Site gseleme/A3 Eu cresci imersa em arte…png` | `ativos/folha-bio-canva.png` | 1.381.987 |
+
+   Os tamanhos batem byte a byte. **Não há nada a pedir**, e as duas pranchas do wireframe já
+   foram desenhadas a partir deles. O que falta é o **equivalente para Desabrochar e Instante**:
+   a pasta de Desabrochar não tem o `3.jpg`, e Instante não tem pasta.
 3. **Instante não tem pasta.** Não é "pasta vazia": não existe. Antes de pedir foto, vale
    confirmar se Instante entra na v1 — é a conversa de escopo do dia 8.
 
@@ -167,7 +175,7 @@ toca no lugar da foto — o pôster natural do bloco é o primeiro quadro do pr�
 | **WhatsApp** | Número informado está incompleto — ver `content/contato.yml` |
 | **Domínio** | Continua indefinido |
 | **Rubrica em vetor** | O raster existe, mas é um recorte torto: traz a barra escura da foto e as palavras "Gabriela S". Com a logo em toda página (G1), virou bloqueio |
-| **PDFs de ficha por obra** | Ela acha que subiu; **não estão no Drive**. Bloqueiam a ficha nova da página de obra |
+| **Ficha de Desabrochar e Instante** | A de Encontro existe e já está no repositório. As outras duas, não |
 
 ### Deixou de bloquear
 
