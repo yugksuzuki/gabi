@@ -44,7 +44,7 @@ Isto é o caminho crítico do projeto inteiro.
 | 9 | **Número do WhatsApp Business** | Só o prefixo `+5547` | Consultar (tem fallback) |
 | 10 | **Domínio definitivo** | `gclm.com.br` × nome dela — indefinido | Deploy, hreflang, OG, Search Console |
 | 11 | **Logo / rubrica** | Pendente. O registro da marca está parado por causa dela | Identidade, favicon |
-| 12 | **Data de estreia** | Nunca travada | Cronograma inteiro |
+| 12 | ~~**Data de estreia**~~ | **RESOLVIDO 29/08: terça, 08/09/2026.** *"Preciso que esse site esteja funcionando até dia oito. Dia oito tem que tá tudo perfeito."* | — |
 
 **Nada disso pode ser inventado.** Ficha técnica errada em site de artista circula para galeria
 e curador — o custo do erro é a credibilidade dela, não um bug.

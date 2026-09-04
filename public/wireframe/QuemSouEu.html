@@ -52,14 +52,21 @@ p{margin:0}
 </section>
 
 <section style="padding:var(--respiro) var(--margem) 0;">
-  <!-- a foto flutua à direita; o texto envolve e depois abre, como na folha dela -->
-  <img src="img/retrato-folha.jpg" alt="" style="float:right;width:460px;height:auto;
-       margin:0 0 56px 64px;">
-  <img src="img/rubrica.png" alt="" style="display:block;width:300px;height:auto;margin-bottom:18px;">
-  <h1 class="display" style="margin-bottom:72px;">A artista</h1>
-  <div><p class="corpo" style="margin-bottom:26px;">Eu cresci imersa em arte, por pessoas que tinham arte como hobby &mdash; pintores, ceramistas, artesãos e uma mãe arquiteta que sempre passou mais tempo criando com as próprias mãos do que de qualquer outra forma.</p><p class="corpo" style="margin-bottom:26px;">Aos 14 anos, saí de casa para fazer intercâmbio no Canadá e na Holanda.</p><p class="corpo" style="margin-bottom:26px;">Ali, eu vi o mundo e sua vastidão pela primeira vez.</p><p class="corpo" style="margin-bottom:26px;">No segundo, eu tive minha primeira experiência mais aprofundada com cerâmica e descobri o transe e a profundidade a que a arte pode nos guiar.</p><p class="corpo" style="margin-bottom:26px;">Eu sempre flertei com arte, usei a arte, mas levei muito tempo para enxergá-la como um caminho meu.</p><p class="corpo" style="margin-bottom:26px;">No início da vida adulta, durante a graduação de arquitetura, eu recorri a ela como forma de terapia, conexão e, principalmente, <strong style="font-weight:500;">expressão</strong>.</p><p class="corpo" style="margin-bottom:26px;">Esse caminho,<br>Essas peças,<br>São um reflexo de transformação,<br>De desenvolvimento.</p><p class="corpo" style="margin-bottom:26px;">Aqui, eu testo, eu estrago, eu conserto e desenvolvo.</p><p class="corpo" style="margin-bottom:26px;">Tudo é um reflexo do tempo e de emoções.</p><p class="corpo" style="margin-bottom:26px;">Um reflexo da vida.</p></div>
-  <div style="clear:both;"></div>
-  <p style="margin-top:40px;"><span class="nota">A1 diagramação da folha A3 dela &mdash; rubrica, retrato à direita, texto envolvendo. A4 o texto não muda</span></p>
+  <div style="position:relative;">
+    <img src="img/retrato-folha.jpg" alt="" style="float:right;width:500px;height:auto;
+         margin:0 0 56px 56px;">
+    <img src="img/rubrica.png" alt="" style="display:block;width:310px;height:auto;">
+    <!-- absoluto de propósito: em fluxo, o float encurta a linha e o nome PARA
+         na borda da foto em vez de entrar nela, que é o oposto do pedido. -->
+    <h1 style="font-family:var(--serif);font-weight:400;font-size:60px;line-height:1;
+               margin:0;position:absolute;left:496px;top:236px;z-index:2;
+               white-space:nowrap;
+               background:linear-gradient(90deg,var(--ink) 0 204px,#f4f2ee 204px);
+               -webkit-background-clip:text;background-clip:text;color:transparent;">Gabriela Seleme</h1>
+    <div style="padding-top:150px;"><p class="corpo" style="margin-bottom:26px;">Eu cresci imersa em arte, por pessoas que tinham arte como hobby &mdash; pintores, ceramistas, artesãos e uma mãe arquiteta que sempre passou mais tempo criando com as próprias mãos do que de qualquer outra forma.</p><p class="corpo" style="margin-bottom:26px;">Aos 14 anos, saí de casa para fazer intercâmbio no Canadá e na Holanda.</p><p class="corpo" style="margin-bottom:26px;">Ali, eu vi o mundo e sua vastidão pela primeira vez.</p><p class="corpo" style="margin-bottom:26px;">No segundo, eu tive minha primeira experiência mais aprofundada com cerâmica e descobri o transe e a profundidade a que a arte pode nos guiar.</p><p class="corpo" style="margin-bottom:26px;">Eu sempre flertei com arte, usei a arte, mas levei muito tempo para enxergá-la como um caminho meu.</p><p class="corpo" style="margin-bottom:26px;">No início da vida adulta, durante a graduação de arquitetura, eu recorri a ela como forma de terapia, conexão e, principalmente, <strong style="font-weight:500;">expressão</strong>.</p><p class="corpo" style="margin-bottom:26px;">Esse caminho,<br>Essas peças,<br>São um reflexo de transformação,<br>De desenvolvimento.</p><p class="corpo" style="margin-bottom:26px;">Aqui, eu testo, eu estrago, eu conserto e desenvolvo.</p><p class="corpo" style="margin-bottom:26px;">Tudo é um reflexo do tempo e de emoções.</p><p class="corpo" style="margin-bottom:26px;">Um reflexo da vida.</p></div>
+    <div style="clear:both;"></div>
+  </div>
+  <p style="margin-top:40px;"><span class="nota">A1 a logo em cima e o nome entrando na foto, como na folha dela &mdash; áudio de 27/08. A4 o texto não muda</span></p>
 </section>
 
 <section class="faixa">

@@ -284,23 +284,49 @@ BIO = [
 ]
 
 def artista():
+    """A1 corrigido pelo áudio de 27/08. Ela foi literal sobre o que preservar:
+
+        "É interessante manter aquela mesma diagramação, sabe? Tipo, do jeitinho
+         que tá: o 'Gabriela Seleme' entrando para dentro da foto, a logo em
+         cima — exatamente como tá tipo naquele PDF lá."
+
+    São duas instruções, não uma. A logo EM CIMA, e o nome ENTRANDO NA FOTO —
+    o nome atravessa a borda esquerda do retrato, não para antes dela. Era isso
+    que a versão anterior desta prancha errava: punha a rubrica no canto e o
+    retrato ao lado, sem encontro entre os dois.
+
+    A2: o título "Quem sou eu" some e não é substituído por um "A artista" em
+    display. Na folha dela não existe título de página — quem faz esse papel é o
+    nome. "A artista" é o nome da aba, e fica no menu.
+
+    O nome cruza dois fundos: o papel claro à esquerda e a madeira escura da foto
+    à direita. Tinta fixa sumiria em um dos dois lados, e `difference` cinzenta o
+    trecho sobre a madeira. A troca é um corte duro no pixel exato da borda da
+    foto (204px do início do nome), por gradiente recortado no texto.
+    """
     prosa = ''.join(f'<p class="corpo" style="margin-bottom:26px;">{p}</p>' for p in BIO)
-    corpo = f"""<div>{cabecalho('A artista')}
+    return pagina('Gabriela Seleme — A artista', f"""<div>{cabecalho('A artista')}
 {faixa_video(200)}
 
 <section style="padding:var(--respiro) var(--margem) 0;">
-  <!-- a foto flutua à direita; o texto envolve e depois abre, como na folha dela -->
-  <img src="img/retrato-folha.jpg" alt="" style="float:right;width:460px;height:auto;
-       margin:0 0 56px 64px;">
-  <img src="img/rubrica.png" alt="" style="display:block;width:300px;height:auto;margin-bottom:18px;">
-  <h1 class="display" style="margin-bottom:72px;">A artista</h1>
-  <div>{prosa}</div>
-  <div style="clear:both;"></div>
-  <p style="margin-top:40px;"><span class="nota">A1 diagramação da folha A3 dela &mdash; rubrica, retrato à direita, texto envolvendo. A4 o texto não muda</span></p>
+  <div style="position:relative;">
+    <img src="img/retrato-folha.jpg" alt="" style="float:right;width:500px;height:auto;
+         margin:0 0 56px 56px;">
+    <img src="img/rubrica.png" alt="" style="display:block;width:310px;height:auto;">
+    <!-- absoluto de propósito: em fluxo, o float encurta a linha e o nome PARA
+         na borda da foto em vez de entrar nela, que é o oposto do pedido. -->
+    <h1 style="font-family:var(--serif);font-weight:400;font-size:60px;line-height:1;
+               margin:0;position:absolute;left:496px;top:236px;z-index:2;
+               white-space:nowrap;
+               background:linear-gradient(90deg,var(--ink) 0 204px,#f4f2ee 204px);
+               -webkit-background-clip:text;background-clip:text;color:transparent;">Gabriela Seleme</h1>
+    <div style="padding-top:150px;">{prosa}</div>
+    <div style="clear:both;"></div>
+  </div>
+  <p style="margin-top:40px;"><span class="nota">A1 a logo em cima e o nome entrando na foto, como na folha dela &mdash; áudio de 27/08. A4 o texto não muda</span></p>
 </section>
 {rodape()}
-</div>"""
-    return pagina('Gabriela Seleme — A artista', corpo)
+</div>""")
 
 # --- 05 Ensaios -------------------------------------------------------------
 # E1 a página abre com um ensaio JÁ EXPANDIDO, não com listagem.
