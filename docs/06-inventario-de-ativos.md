@@ -54,6 +54,10 @@ Confirme com ela antes de publicar: nome de pasta não é tabela de preço.
 
 ### `GAB/Encontro 11.230` — a única obra completa
 
+> **26/08/2026 — as três fotos de ângulo chegaram.** `IMG_7017/18/19` estão em
+> `ativos/` e no ar. Encontro passou a ter, no site, quatro vistas da obra mais
+> o detalhe de textura e a escala. Falta só escolher o vídeo.
+
 5 JPG + 3 vídeos. As 4 `IMG_701x.JPG` são **a mesma obra em 4 ângulos**, na parede branca,
 verticais, 3213×5712 (iPhone 16 Pro), nítidas e com luz difusa uniforme. `IMG_7015` é o
 enquadramento mais frontal — melhor candidata a principal. `IMG_6562.JPG` é o detalhe de
@@ -62,6 +66,15 @@ textura. Nenhuma é reprodução plana perfeitamente corrigida (todas têm leve 
 ### `GAB/Desabrochar 8.350` — sem uma única foto
 
 2 arquivos MP4. **Zero imagens.** Só o preço, que vem do nome da pasta.
+
+> **26/08/2026 — chegou tudo.** As 12 DSC, as 5 GSeleme e os 3 ângulos de
+> Encontro estão em `ativos/`. As 5 GSeleme, que o conector não conseguia baixar
+> por passarem de 10 MB, vieram por push direto. Três das DSC estão no ar nas
+> faixas de ateliê; a `GSeleme-74` virou o retrato de "Quem sou eu", no lugar do
+> recorte de 690px que saía da folha de Canva.
+>
+> **O `GABI SELEME V1.mp4` é VERTICAL** — conferido. Não serve de hero
+> horizontal. Ver `docs/validacao/entrada-video/`.
 
 ### `GAB/Site gseleme` — fotografia de processo, e é excelente
 
@@ -114,18 +127,55 @@ cinza-neutro **convivem sem briga**. O site pode alternar as duas sem parecer re
 
 ## 4. Pendências, revisadas
 
+### Verificação de 04/09/2026 — a pasta limpa não chegou aqui
+
+No áudio de 29/08 ela diz: *"na pasta das obras eu já coloquei só a foto principal e o
+vídeo."* Conferido pelo conector do Drive **hoje, 04/09**, pasta por pasta:
+
+| Pasta | Modificada | Conteúdo |
+|---|---|---|
+| `GAB/Encontro 11.230` | **20/08**, intocada | IMG_7015/17/18/19, IMG_6562 (JPG+MP4), IMG_6561.MOV, C9668.MP4, 3.jpg |
+| `GAB/Desabrochar 8.350` | **20/08**, intocada | C9590.MP4 e C9644.MP4 — **nenhuma foto** |
+| `GAB/Instante` | — | **a pasta não existe** |
+
+Três conclusões, e nenhuma é "ela não fez":
+
+1. A pasta que temos é a **cópia do Guilherme**, criada em 20/08 e sem uma alteração desde
+   então. A limpeza dela foi feita no Drive **dela** — ou numa pasta que não foi compartilhada.
+   **Peça o link da pasta em que ela mexeu**, não peça o trabalho de novo.
+2. **Os "PDFs" existem, não são PDFs, e já estão no repositório desde 25/08.** Ela disse
+   *"acho que é PDF, eu acho que upei na pasta de cada obra"* — e a busca por PDF no Drive não
+   acha nada porque são **imagens**, com nomes que não dizem o que são:
+
+   | O que ela chamou de | Está no Drive como | No repositório | Bytes |
+   |---|---|---|---|
+   | "a ficha técnica da obra" | `Encontro 11.230/3.jpg` | `ativos/ficha-encontro.jpg` | 276.927 |
+   | "aquele documento do tipo quem sou eu" | `Site gseleme/A3 Eu cresci imersa em arte…png` | `ativos/folha-bio-canva.png` | 1.381.987 |
+
+   Os tamanhos batem byte a byte. **Não há nada a pedir**, e as duas pranchas do wireframe já
+   foram desenhadas a partir deles. O que falta é o **equivalente para Desabrochar e Instante**:
+   a pasta de Desabrochar não tem o `3.jpg`, e Instante não tem pasta.
+3. **Instante não tem pasta.** Não é "pasta vazia": não existe. Antes de pedir foto, vale
+   confirmar se Instante entra na v1 — é a conversa de escopo do dia 8.
+
+Enquanto isso, o que existe de imagem para Desabrochar é **um quadro do vídeo dela**. Isso não
+é fotografia de obra e não deve ser tratado como se fosse, mas para a home nova — onde o vídeo
+toca no lugar da foto — o pôster natural do bloco é o primeiro quadro do próprio vídeo.
+**Decisão da cliente**, não do desenvolvedor.
+
 ### Bloqueia
 
 | Item | Situação agora |
 |---|---|
-| **Instante** | Nada. Nem foto, nem ficha, nem preço, nem texto |
+| **Instante** | Nada. Nem foto, nem ficha, nem preço, nem texto — e **nem pasta** (verificado 04/09) |
 | **Desabrochar** | Preço só. Zero fotos — só 2 vídeos |
 | **`GSeleme-*.jpg`** | 5 arquivos acima de 10 MB, inacessíveis pelo conector |
 | **Ficha de Desabrochar e Instante** | Ano, técnica, dimensões, materiais, edição |
 | **Textos de Desabrochar e Instante** | Encontro já tem |
 | **WhatsApp** | Número informado está incompleto — ver `content/contato.yml` |
 | **Domínio** | Continua indefinido |
-| **Rubrica em vetor** | O raster existe; o SVG não |
+| **Rubrica em vetor** | O raster existe, mas é um recorte torto: traz a barra escura da foto e as palavras "Gabriela S". Com a logo em toda página (G1), virou bloqueio |
+| **Ficha de Desabrochar e Instante** | A de Encontro existe e já está no repositório. As outras duas, não |
 
 ### Deixou de bloquear
 

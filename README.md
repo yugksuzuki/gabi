@@ -20,7 +20,10 @@ npm run dev
 |---|---|
 | `npm run dev` | Servidor de desenvolvimento |
 | `npm run build` | Build de produção. **Falha** se uma obra `publicada` tiver ficha incompleta |
-| `npm run verificar` | Tipos, lint, contraste AA, matcher de rotas e formatação de moeda |
+| `npm run verificar` | Tipos, lint, contraste AA, rotas, moeda, URL e o botão Consultar |
+| `npm run testar` | axe-core (WCAG AA), teclado, sem-JS e troca de idioma, em desktop e celular |
+| `npm run imagens` | Processa as fotos (Sharp + LQIP) |
+| `npm run icone` | Regenera o ícone a partir da rubrica |
 
 ## Rotas
 
@@ -46,11 +49,22 @@ preserva a página: `/pt/obras/instante` → `/en/works/instante`, nunca a home.
 | corrigir a bio | `content/sobre.mdx` — **texto dela**, não reescreva |
 | mudar rótulo de interface | `src/messages/{pt,en}.json` — só interface, nunca conteúdo autoral |
 | adicionar rota | `src/i18n/routing.ts` **e** `scripts/verificar-rotas.mjs` |
+| escrever um texto | `content/textos/` — copie `_modelo.mdx`, que explica cada campo |
+| trocar o vídeo da home | `public/entrada/` (webm + mp4 + poster). Ver `src/lib/entrada.ts` — a proporção do arquivo escolhe o layout |
+| trocar a tipografia | `src/styles/fontes/originais/` e depois `python3 scripts/gerar-fontes.py` |
 
 ## Estado
 
-Etapa **E0 (Fundação)** concluída — ver [`docs/validacao/e0/`](docs/validacao/e0/) e
-[`docs/01-plano-de-execucao.md`](docs/01-plano-de-execucao.md) para as etapas seguintes.
+**E0 a E4 e E6 concluídas.** Falta **E5 — conteúdo real**, que depende da
+Gabriela: Desabrochar e Instante não têm foto, ficha nem texto, e Encontro tem a
+ficha pela metade. Ver [`docs/04-pendencias-e-coleta.md`](docs/04-pendencias-e-coleta.md).
+
+Auditoria de qualidade em [`docs/validacao/e6/`](docs/validacao/e6/) — zero
+violação AA, Lighthouse celular 87–100. Capturas de cada etapa em
+`docs/validacao/`.
+
+Antes da primeira execução de `npm run testar`, uma vez:
+`npx playwright install chromium`.
 
 O site **não é indexável** (`robots` fechado + `noindex`) enquanto houver `[PENDENTE]` em
 rota publicada. Abrir só na estreia, com `ABRIR_INDEXACAO=1`.

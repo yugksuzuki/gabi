@@ -1,17 +1,38 @@
 {
   "/obras/encontro/frontal.jpg": {
-    "largura": 900,
-    "altura": 1600,
-    "lqip": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBQCdASoUACQAPzmWv1qvKqYkJWmZ4CcJaQDS6CMzFZQ1bJEDLxsYUHFTYBD/9lgAAP6MLv6rZieDT6ajM73KXMo7cILtK2I46RaPeNUwKHf9sDZ3Hx7FFUC4uA/4EIABJPucVR6fGyDwapf9CLwxKTdi/NOAAcbo7EynSB8GhYCx9R8VAAAA",
-    "origem": "encontro-frontal.jpg",
-    "nota": "IMG_7015 — obra frontal na parede do ateliê"
+    "largura": 1800,
+    "altura": 3200,
+    "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAQBQCdASoUACQAPzmWv1qvKqYkJWmZ4CcJaQDSrCM1n098kO8T1W1nEKCKpo3qkWAAAP6LoNsKsdocorak0/1miXcpcUCiynwJ/8scMWJluz06+R+9LE1ooGXgUV5lDILIwgC9L/u1/ALpVVqm6wMaeUaxu2kkowu8XLN+xMKzkuBoQQAAAA==",
+    "origem": "IMG_7015.JPG",
+    "nota": "obra frontal na parede do ateliê — a principal"
+  },
+  "/obras/encontro/angulo-1.jpg": {
+    "largura": 1800,
+    "altura": 3200,
+    "lqip": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAADwBACdASoUACQAPzmYw1uvKickJWgB4CcJaQDRRFDK8OQrtcCHmALyvSJaLReJn0AAyybjP6mrr9CwJ1kNn+X2bpdrZcbDlwyBDK7GMjru1yj/fqg+zUNd5+JLxIUqsPj35zLQ8FDjrGX14Vwpe4oRNX4MawhQJjmha3gA",
+    "origem": "IMG_7017.JPG",
+    "nota": "enquadramento aberto, quase de frente, com rodapé"
+  },
+  "/obras/encontro/angulo-2.jpg": {
+    "largura": 1800,
+    "altura": 3200,
+    "lqip": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAABwBQCdASoUACQAPzmWwlqvKqckJWmZ4CcJZwDSNCK/03M6uJUxnGXcpQkMChpKhrCbxZMQAOHCH55FhDY3PV5b8Nkk8N8fdxWNpYUWoKDSCgtW1TqWMWXQvcN+YRZXErGHUbR8HBzAKpFln9VqHKuDGyBnFgkaJJn+AqPTz4QAAAAA",
+    "origem": "IMG_7018.JPG",
+    "nota": "três quartos, piso à mostra; o relevo lê em profundidade"
+  },
+  "/obras/encontro/angulo-3.jpg": {
+    "largura": 1800,
+    "altura": 3200,
+    "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAACQBQCdASoUACQAPzmIuFcvKCSjqrgN+eAnCWcAzJQitnPl/1r6oSQKW/11xKEvNzPT8HNMEAD+Ute0wmbjQWab8Kh8KaAnqJpSoEYk5QkhNxOdQgGgHA3ZDcbgAl2nRAN4XhSyO7X4y5uHnRVFZ8Gf1FfH65yuG0WrvMO1sgA=",
+    "origem": "IMG_7019.JPG",
+    "nota": "três quartos pelo outro lado, mais perto da borda"
   },
   "/obras/encontro/detalhe.jpg": {
-    "largura": 1200,
-    "altura": 1600,
-    "lqip": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABwBACdASoUABsAPzmMvVYvKSajsBgIAeAnCWkAz2Q0ZXo10v1aQ4NdWSB1sAD+rnCRA4AomozfeDs2dvHkcJVwtg6HbKjugCcchAldOcGfjUdifG69nBco4xA5ryN0g972maAA",
-    "origem": "encontro-detalhe.jpg",
-    "nota": "IMG_6562 — canto superior, textura e escorrido de prata"
+    "largura": 1800,
+    "altura": 2400,
+    "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAADwAwCdASoUABsAPzmKvVYvKSYjsBgIAeAnCWkAz2Q0ZWJXKblDFvUoAP6ucJEDgCifs2271YMd14Xe5OzuqqwpvKrWfmPv5kFAli5BvJgmb+cvZqfD4ZILdBk5bPUZDH4YlO33y40AAA==",
+    "origem": "IMG_6562.JPG",
+    "nota": "canto superior, textura e escorrido de prata"
   },
   "/obras/encontro/escala.jpg": {
     "largura": 822,
@@ -20,12 +41,40 @@
     "origem": "ficha-encontro.jpg",
     "nota": "recortada da prancha de ficha — obra em contexto, com piso"
   },
+  "/atelie/maos.jpg": {
+    "largura": 1800,
+    "altura": 1013,
+    "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACQAwCdASoUAAsAPzmGuVOvKSWisAgB4CcJaQAASiY87DVOfzsAAM47N3+gEpx+APE6E7kxjOMTi19g4WEmsuN7Z9Mz8aWjSAjZewvY6ISzZzxXoGuJo9G8xb300ZyHcaDVx9jDFNlAAA==",
+    "origem": "DSC03609 Copy.JPG",
+    "nota": "mãos abertas sobre a peça em fibra, coque preso com pincel"
+  },
+  "/atelie/espelhada.jpg": {
+    "largura": 1800,
+    "altura": 1013,
+    "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAACQAwCdASoUAAsAPzmEuVOvKKWisAgB4CcJaQAAGglMEzaRrjgAAMq42ZCoDbK13My9V2Wkt46Ldf66UFdNq6GNFi3xJFQvQLumfWiI7JtvsjG6FuigQCZG8TiyWPMM0Ifb+7YqAAA=",
+    "origem": "DSC03561 Copy.JPG",
+    "nota": "composição espelhada — recurso recorrente dela, não acaso"
+  },
+  "/atelie/materia.jpg": {
+    "largura": 1800,
+    "altura": 1013,
+    "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACQAwCdASoUAAsAPzmGulOvKKWisAgB4CcJaQAAWMb6FElHluAAAPqE6V6K45YFX/eVoq+OujJPkD+vzAZdy8UjIIiBxLo8SdC0AWEkAg3nf/ccwqIvQSIaYAAAAA==",
+    "origem": "DSC03574 Copy.JPG",
+    "nota": "a matéria sozinha, espelhada. Panorâmica"
+  },
   "/sobre/retrato.jpg": {
-    "largura": 690,
-    "altura": 1160,
-    "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACQBACdASoUACIAPzmKt1OvKaUiqq354CcJaQAANeGtB6j15rb/m3ByskIbaIAA/rn+YXOK/yr1F0QSqyLcnB6hSPMEtIKlUTMoKAAJ1NQ0lXKcXHFGEXC6CnMH17AAAAA=",
-    "origem": "folha-bio-canva.png",
-    "nota": "retrato P&B da folha da bio, à direita do nome tipografado"
+    "largura": 1800,
+    "altura": 2398,
+    "lqip": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAABQBACdASoUABsAPy2AuFOuqCWoMAwB0CWJaQAAUpVvtdkzbm7IDpatA+xiAP6e+eBwn+OsRiTFsjUKoAHpMi1lkIp8lMz2+5+lQ7mINa2AAA==",
+    "origem": "GSeleme-74.jpg",
+    "nota": "retrato encostada na parede de madeira — o original da sessão"
+  },
+  "/sobre/rosto.jpg": {
+    "largura": 1800,
+    "altura": 2398,
+    "lqip": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADQBACdASoUABsAPzmOwFevKacjqAqp4CcJaQAAInLGshaItNBkwowJl2wbj5kMAAD+40/IIJI9udTbJo0PcWcCoxhKLIIg+5GRM8IiXdEe4MHOrlVbKBNFoVBdtIVacV2RvAYOEtphr2bdsctBV+fiAAA=",
+    "origem": "GSeleme-114.jpg",
+    "nota": "rosto em primeiríssimo plano, metade do quadro"
   },
   "/marca/rubrica.png": {
     "largura": 490,

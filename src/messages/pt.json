@@ -40,16 +40,23 @@
   },
   "portfolio": {
     "titulo": "Portfólio",
-    "verObra": "Ver a obra"
+    "verObra": "Ver a obra",
+    "acervo": "Acervo"
   },
   "sobre": {
     "titulo": "Quem sou eu",
-    "retratoAlt": "Retrato de Gabriela Seleme, em preto e branco, encostada numa parede de madeira."
+    "retratoAlt": "Retrato de Gabriela Seleme, em preto e branco, encostada numa parede de madeira.",
+    "rostoAlt": "Rosto de Gabriela Seleme em primeiríssimo plano, em preto e branco."
   },
   "textos": {
     "titulo": "Textos",
     "vazio": "Nenhum texto publicado ainda.",
-    "ler": "Ler"
+    "ler": "Ler",
+    "rascunho": "Rascunho — visível só em desenvolvimento",
+    "traducaoPendente": "Tradução ainda não aprovada pela autora. Mostrado em português, nas palavras dela.",
+    "story": "Imagem para story",
+    "obrasCitadas": "Obras citadas",
+    "publicadoEm": "Publicado em"
   },
   "contato": {
     "titulo": "Contato",
@@ -60,12 +67,26 @@
   "pendente": {
     "rotulo": "Pendente",
     "aviso": "Conteúdo ainda não fornecido pela artista.",
-    "obraIncompleta": "Esta obra ainda está em rascunho: falta ficha técnica, fotografia ou texto."
+    "campo": {
+      "legenda": "legenda",
+      "texto": "texto da obra",
+      "ano": "ano",
+      "tecnica": "técnica",
+      "dimensoes": "dimensões",
+      "materiais": "materiais",
+      "edicao": "edição",
+      "disponibilidade": "disponibilidade"
+    }
   },
   "rodape": {
     "direitos": "Todos os direitos reservados."
   },
   "marca": {
     "rubricaAlt": "Rubrica de Gabriela Seleme"
+  },
+  "naoEncontrado": {
+    "titulo": "Página não encontrada",
+    "recado": "O endereço não existe, ou a página mudou de lugar.",
+    "voltar": "Ver o portfólio"
   }
 }

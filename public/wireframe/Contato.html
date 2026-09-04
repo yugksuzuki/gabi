@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<meta name="robots" content="noindex, nofollow">
+<title>Gabriela Seleme — Contato</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..600;1,300..500&family=Inter:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f4f2ee; --bg-alt:#eae7e1; --ink:#1a1917; --muted:#635f58;
+  --line:#dcd8d1; --forte:#837e76;
+  --serif:'Cormorant Garamond',Garamond,Georgia,'Times New Roman',serif;
+  --ui:'Inter',system-ui,-apple-system,sans-serif;
+  --margem:120px; --respiro:200px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+     font:400 21px/1.8 var(--serif);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{margin:0;font-family:var(--serif);font-weight:400}
+p{margin:0}
+.display{font-family:var(--serif);font-size:56px;line-height:1.05;letter-spacing:-.005em}
+.titulo{font-family:var(--serif);font-size:34px;line-height:1.15}
+.corpo{font-family:var(--serif);font-size:21px;line-height:1.8;text-align:left}
+.legenda{font-family:var(--ui);font-size:13px;line-height:1.5;letter-spacing:.07em;
+         text-transform:uppercase;color:var(--muted)}
+.navlink{font-family:var(--ui);font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.preco{font-family:var(--ui);font-size:15px;letter-spacing:.02em;color:var(--muted)}
+.consultar{font-family:var(--ui);font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+           border-bottom:1px solid var(--forte);padding-bottom:3px}
+.nota{font-family:var(--ui);font-size:11px;line-height:1.5;letter-spacing:.14em;
+      text-transform:uppercase;color:var(--forte);border:1px dashed var(--forte);
+      padding:5px 9px;display:inline-block}
+.faixa{position:relative;width:100%;overflow:hidden}
+.faixa img{display:block;width:100%;object-fit:cover}
+.faixa .legenda{position:absolute;left:var(--margem);bottom:16px;color:#f4f2ee}
+</style>
+<style>body{width:1440px;margin:0 auto}</style>
+</head><body>
+<div>
+<header style="padding:36px var(--margem) 20px;display:flex;align-items:center;
+               justify-content:space-between;gap:32px;">
+  <a href="Main.html"><img src="img/rubrica.png" alt="Gabriela Seleme"
+     style="display:block;height:52px;width:auto;"></a>
+  <nav style="display:flex;align-items:baseline;gap:38px;"><a href="QuemSouEu.html" class="navlink">A artista</a><a href="Textos.html" class="navlink">Ensaios</a><a href="Contato.html" class="navlink" style="color:var(--muted)">Contato</a>
+    <span class="navlink" style="color:var(--muted);"><span style="color:var(--ink);">PT</span> / EN</span>
+  </nav>
+</header>
+
+<section class="faixa">
+  <img src="img/hero-wide.jpg" alt="" style="height:200px;">
+  <p class="legenda">Faixa em vídeo &middot; sem som &middot; em loop</p>
+</section>
+
+<section style="padding:var(--respiro) var(--margem) 0;">
+  <h1 class="display" style="margin-bottom:72px;">Contato</h1>
+  <div style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:64px;">
+    <div style="grid-column:1 / span 5;">
+      <dl style="margin:0;border-bottom:1px solid var(--line);">
+      <div style="display:grid;grid-template-columns:150px 1fr;column-gap:20px;
+                  border-top:1px solid var(--line);padding:20px 0;">
+        <dt class="legenda" style="padding-top:6px;">E-mail</dt>
+        <dd style="margin:0;"><a href="#" class="corpo" style="border-bottom:1px solid var(--line);
+            padding-bottom:2px;">gseleme.design@gmail.com</a></dd></div>
+      <div style="display:grid;grid-template-columns:150px 1fr;column-gap:20px;
+                  border-top:1px solid var(--line);padding:20px 0;">
+        <dt class="legenda" style="padding-top:6px;">Instagram</dt>
+        <dd style="margin:0;"><a href="#" class="corpo" style="border-bottom:1px solid var(--line);
+            padding-bottom:2px;">@gseleme.design</a></dd></div>
+      <div style="display:grid;grid-template-columns:150px 1fr;column-gap:20px;
+                  border-top:1px solid var(--line);padding:20px 0;">
+        <dt class="legenda" style="padding-top:6px;">WhatsApp</dt>
+        <dd style="margin:0;"><a href="#" class="corpo" style="border-bottom:1px solid var(--line);
+            padding-bottom:2px;">Conversar</a></dd></div></dl>
+      <p style="margin-top:20px;"><span class="nota">WhatsApp confirmado &mdash; +55 44 99992-9186</span></p>
+    </div>
+    <div style="grid-column:7 / span 5;display:flex;flex-direction:column;gap:26px;align-items:flex-start;">
+      <p class="corpo" style="max-width:40ch;">Cada peça é única e se negocia por conversa.</p>
+      <a href="#" class="consultar">Consultar</a>
+      <p class="legenda">Atendimento em português e inglês</p>
+      <span class="nota">Este parágrafo é texto meu, não dela. Ou a Gabi escreve, ou sai</span>
+    </div>
+  </div>
+</section>
+
+<section class="faixa">
+  <img src="img/hero-wide.jpg" alt="" style="height:200px;">
+  <p class="legenda">Rodapé em vídeo &middot; mesma faixa da entrada</p>
+</section>
+<footer style="margin-top:64px;
+               border-top:1px solid var(--line);padding:40px var(--margem);
+               display:flex;flex-wrap:wrap;align-items:baseline;
+               justify-content:space-between;gap:12px 32px;">
+  <p class="legenda">&copy; 2026 Gabriela Seleme</p>
+  <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:22px;">
+    <a href="#" class="legenda">gseleme.design@gmail.com</a>
+    <a href="#" class="legenda">@gseleme.design</a>
+  </div>
+</footer>
+</div>
+</body></html>

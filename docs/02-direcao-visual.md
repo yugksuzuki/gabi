@@ -53,6 +53,13 @@ Ela citou em 11/09/24, prometeu mandar e nunca mandou. **Vale pedir** — ver
 
 ## 2. Cor
 
+> **Atualização de 20/08/2026 — leia antes de aplicar esta seção.**
+> O levantamento do Drive (`06-inventario-de-ativos.md` §3) mostrou que as obras são
+> **monocromáticas**: gesso e massa acrílica sobre tela, em branco osso, cinza, grafite e
+> escorrido de prata. **Não há cor a extrair das obras.** A paleta do site é a paleta do
+> trabalho. O pedido de "cor assinatura" precisa de outra resposta — a rubrica, a textura e o
+> P&B do ateliê. O fluxo descrito abaixo continua válido como método; só o resultado mudou.
+
 **A cor assinatura sai das obras fotografadas. Não invente antes.**
 
 Isso não é cautela — é método. As peças (*Desabrochar*, *Instante*, *Encontro*) têm materiais e
@@ -93,12 +100,22 @@ ficha técnica e corpo longo.
 **Restrição real:** Kelly Wearstler usa tipografia proprietária. Não dá para usar a dela.
 A escolha precisa ser própria e com **licença web verificada**.
 
-Recomendação de partida — open source, licença clara, zero custo, zero bloqueio:
+**DECIDIDO PELA CLIENTE, 27/08/2026 — Cormorant Garamond.** Ela escreveu, na lista de
+correções sobre o Wireframe 3: "usar Cormorant Garamond". Não é sugestão a avaliar, é a
+escolha dela, e ela vence a recomendação que estava aqui. Faz sentido: a folha A3 da bio
+que ela mesma diagramou já está composta em Garamond — a fonte não veio de fora, veio do
+material dela.
 
-| Papel | Sugestão | Por quê |
+| Papel | Fonte | Por quê |
 |---|---|---|
-| Display / títulos | **Fraunces** ou **Instrument Serif** | Fraunces tem eixo óptico e calor; Instrument Serif é mais seca e elegante. Ambas SIL OFL |
-| Interface / corpo | **Inter** | Neutra, excelente em texto pequeno de ficha técnica, hinting sólido |
+| Display, títulos, corpo em prosa | **Cormorant Garamond** | Escolha da cliente. SIL OFL, auto-hospedável com `next/font` sem custo nem trava |
+| Interface, ficha, legenda | **Inter** | Neutra, excelente em texto pequeno, hinting sólido |
+
+Cormorant corre pequeno para o tamanho nominal: 21px de Cormorant lê como ~19px de Inter.
+Corpo de prosa em 21px, não 19px.
+
+> Substituiu **Fraunces / Instrument Serif**, que era a recomendação de partida deste
+> documento até 27/08. Registrado para o próximo passo não reintroduzir o erro.
 
 Caminho de upgrade, se houver verba e a cliente quiser assinatura tipográfica mais forte:
 famílias licenciadas de foundry (Pangram Pangram, Klim, Commercial Type). **Decisão da
@@ -111,7 +128,14 @@ sem salto de layout. `font-display: swap` e métricas de fallback ajustadas.
 
 Fluida com `clamp()`, ancorada em duas âncoras: 390px e 1440px.
 
-- **Display** — nome da obra na página dela, título da home. Muito grande. É o gesto
+**ESCALA COMPRIMIDA, 27/08/2026.** Ela escreveu: "não trabalhar com variação tão grande
+de tamanho de fontes". Menos degraus, e razão menor entre o display e o corpo.
+
+Resolvido em 1440px: display 56px, título 34px, corpo 21px, legenda 13px. A razão
+display/corpo cai de **5,5&times;** (era 104/19) para **2,7&times;**.
+
+- **Display** — nome da obra, título de página. Já não é "muito grande": o gesto passou a
+  ser o respiro e a fotografia, não o corpo da letra
 - **Título** — seções
 - **Corpo** — texto da obra e área editorial. Altura de linha generosa (1.6–1.75),
   medida de 60–70 caracteres. Texto de artista se lê devagar
@@ -130,6 +154,19 @@ template inacabado — exatamente o oposto do posicionamento.
 **Solução: o portfólio não é grade, é sequência editorial.** Cada obra ocupa um bloco próprio
 de tela, com composição alternada (imagem à esquerda / à direita, escala variando entre elas).
 Três blocos em sequência lêem como uma publicação. Três cards lêem como catálogo vazio.
+
+**A sequência ficou, o recheio saiu (27/08/2026).** A versão que intercalava imagens de
+estudo entre as obras — díptico de ateliê, mar, folhagem, processo — foi **rejeitada pela
+cliente**, que riscou uma imagem por vez sobre a prancha. Também saíram a lista índice do
+topo e os blocos de legenda sob cada peça. O que resta em cada bloco é **uma foto da obra e
+o nome dela**, e mais nada; o vídeo da obra toca no lugar da foto quando o ponteiro entra.
+
+O respiro cresceu junto, também a pedido dela: margem lateral de 96 para **120px**,
+intervalo entre seções de 160 para **200px**.
+
+> Obra sem fotografia **não empresta imagem de outra coisa**. Desabrochar e Instante
+> aparecem como moldura vazia marcada `[PENDENTE: fotografia]`. A crítica dela ao wireframe
+> anterior foi exatamente essa: "nem as fotos correspondem às obras".
 
 Isso escala: quando houver oito obras, a sequência vira agrupamento; a estrutura não precisa
 ser refeita.
@@ -204,6 +241,10 @@ Precisa ser combinado com ela e com o fotógrafo, **antes**:
 - **Nomenclatura:** `desabrochar-01-frontal.jpg`, `desabrochar-02-angulo.jpg` — o pipeline
   depende disso
 - **Espaço de cor:** sRGB na entrega para web; manter o original em ProPhoto/AdobeRGB se houver
+
+> Referência pronta: **Encontro já foi fotografada assim** — parede branca, luz difusa,
+> 4 ângulos + 1 detalhe, 3213×5712. Para Desabrochar e Instante, é repetir o que já foi feito.
+> Ver `06-inventario-de-ativos.md`.
 
 Pipeline no site: Sharp (item 16) → `next/image` em AVIF e WebP (item 15) → LQIP (item 18).
 

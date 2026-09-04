@@ -319,6 +319,9 @@ misturadas sob o rótulo "automação".
 | Logo / rubrica | Pendente. Registro da marca parado por causa dela |
 | Data-alvo de estreia | Nunca travada |
 
+> **Superado em 20/08/2026** pelo levantamento do Drive. Ver `06-inventario-de-ativos.md`,
+> que é a versão vigente deste quadro.
+
 ### Não bloqueia, mas melhora muito
 
 - Acesso à apresentação do Canva (a essência escrita por ela)

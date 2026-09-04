@@ -8,17 +8,32 @@ Pressupõe `CLAUDE.md` lido e `02-direcao-visual.md` / `03-modelo-de-dados.md` �
 ## 1. Arquitetura de informação
 
 ```
-/pt                          Portfólio — home. Vídeo de entrada + sequência das três obras
-/pt/obras/[slug]             Obra: galeria, vídeo, ficha técnica, texto, preço, Consultar
-/pt/sobre                    Quem sou eu
-/pt/textos                   Área editorial — listagem
-/pt/textos/[slug]            Texto
+/pt                          Portfólio — home. Vídeo de entrada + as três obras
+/pt/obras/[slug]             Obra: foto com zoom, vídeo por scroll lateral, ficha, texto,
+                             preço, Consultar
+/pt/a-artista                A artista
+/pt/ensaios                  Ensaios — abre com um ensaio expandido, menu por data
+/pt/ensaios/[slug]           Ensaio
 /pt/contato                  Contato
 
 /en, /en/works/[slug], /en/about, /en/writing, /en/writing/[slug], /en/contact
 ```
 
 `/` redireciona por `Accept-Language`, padrão PT. Ver `03-modelo-de-dados.md` §4.
+
+**As rotas mudaram em 27/08/2026, por pedido da cliente.** Ela renomeou duas abas no menu:
+"Quem sou eu" virou **A artista**, "Textos" virou **Ensaios**. O nome visível e a rota
+andam juntos, então `/pt/sobre` → `/pt/a-artista` e `/pt/textos` → `/pt/ensaios`. Os pares
+em inglês (`/en/about`, `/en/writing`) não mudam — já estavam certos.
+
+Trocar agora custa zero: `robots` está fechado e nada foi indexado. Depois da estreia, cada
+troca dessas vira redirecionamento permanente que fica no projeto para sempre.
+
+**A anatomia da página de obra também mudou** (mesma revisão): texto e ficha à esquerda,
+uma foto só à direita com zoom, e a passagem foto → vídeo por scroll lateral no lugar da
+galeria de ângulos. A ficha perdeu a coluna de rótulos e segue o modelo da prancha dela —
+nome, obra e ano, técnica, dimensão, uma linha cada. Ver
+`08-alteracoes-gabriela-27-08-2026.md`.
 
 **A home é o portfólio.** Não existe home separada com "bem-vindo". A primeira coisa que a
 pessoa vê é o vídeo e, na rolagem, a obra. Isso está no material: *"Portfólio — a porta de

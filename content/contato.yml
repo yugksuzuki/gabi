@@ -4,26 +4,20 @@ instagram: gseleme.design
 instagram_url: https://instagram.com/gseleme.design
 
 whatsapp:
-  informado: "+55 44 9992-9186"
-  confirmado: false
-
-  # AINDA NÃO FECHA — e isso não é implicância, é aritmética.
-  # Celular brasileiro tem 9 dígitos (9XXXX-XXXX). "9992-9186" tem 8.
-  # Todo celular de 8 dígitos foi migrado prefixando um 9:
+  # CONFIRMADO por Guilherme em 25/08/2026, abrindo wa.me no celular:
+  # https://wa.me/5544999929186 abre a conversa da Gabriela.
+  #
+  # A hipótese registrada aqui desde 20/08 estava certa. O número informado
+  # ("+55 44 9992-9186") tinha 8 dígitos porque foi anotado antes da migração
+  # que prefixou o 9 em todo celular brasileiro:
   #   9992-9186  ->  9 9992-9186  ->  escrito hoje como 99992-9186
-  #
-  # Duas hipóteses, em ordem de probabilidade:
-  candidato_a: "5544999929186"   # +55 44 99992-9186  <- número antigo migrado. Mais provável.
-  candidato_b: "554499929186"    # +55 44 9992-9186 literal (12 dígitos). Só se for fixo.
-  #
-  # COMO RESOLVER EM 30 SEGUNDOS: abra no celular
-  #   https://wa.me/5544999929186
-  # Se abrir a conversa da Gabriela, é o candidato A. Grave em NEXT_PUBLIC_WHATSAPP e siga.
-  # Se der "número inválido", teste o candidato B. Se nenhum abrir, peça o número a ela
-  # copiado direto do contato do WhatsApp dela — não digitado de memória.
-  #
-  # Enquanto confirmado: false, o botão Consultar cai no fallback mailto:
-  # (ver docs/03-modelo-de-dados.md §6). O site sobe sem isso.
+  numero: "5544999929186"
+  exibicao: "+55 44 99992-9186"
+  confirmado: true
 
   # Nota de contexto, não de bloqueio: DDD 44 é Maringá/PR, e o material do projeto
-  # situa a artista em Balneário Camboriú/SC (DDD 47). Pode ser o número antigo dela.
+  # situa a artista em Balneário Camboriú/SC (DDD 47). É o número antigo dela,
+  # e é o que responde — foi testado.
+  #
+  # NEXT_PUBLIC_WHATSAPP continua existindo e continua tendo precedência: é como
+  # se aponta o Consultar para um número de teste em preview sem tocar no código.

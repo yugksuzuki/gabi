@@ -40,16 +40,23 @@
   },
   "portfolio": {
     "titulo": "Works",
-    "verObra": "View the work"
+    "verObra": "View the work",
+    "acervo": "Collection"
   },
   "sobre": {
     "titulo": "About",
-    "retratoAlt": "Portrait of Gabriela Seleme, in black and white, leaning against a wooden wall."
+    "retratoAlt": "Portrait of Gabriela Seleme, in black and white, leaning against a wooden wall.",
+    "rostoAlt": "Gabriela Seleme’s face in extreme close-up, in black and white."
   },
   "textos": {
     "titulo": "Writing",
     "vazio": "No writing published yet.",
-    "ler": "Read"
+    "ler": "Read",
+    "rascunho": "Draft — visible in development only",
+    "traducaoPendente": "Translation not yet approved by the author. Shown in Portuguese, in her own words.",
+    "story": "Story image",
+    "obrasCitadas": "Works mentioned",
+    "publicadoEm": "Published on"
   },
   "contato": {
     "titulo": "Contact",
@@ -60,12 +67,26 @@
   "pendente": {
     "rotulo": "Pending",
     "aviso": "Content not yet provided by the artist.",
-    "obraIncompleta": "This work is still a draft: details, photography or text are missing."
+    "campo": {
+      "legenda": "caption",
+      "texto": "work text",
+      "ano": "year",
+      "tecnica": "medium",
+      "dimensoes": "dimensions",
+      "materiais": "materials",
+      "edicao": "edition",
+      "disponibilidade": "availability"
+    }
   },
   "rodape": {
     "direitos": "All rights reserved."
   },
   "marca": {
     "rubricaAlt": "Gabriela Seleme's signature"
+  },
+  "naoEncontrado": {
+    "titulo": "Page not found",
+    "recado": "This address does not exist, or the page has moved.",
+    "voltar": "See the works"
   }
 }

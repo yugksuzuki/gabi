@@ -1,7 +1,29 @@
 # Gabriela Seleme — site
 
-Memória de projeto. Leia antes de escrever qualquer linha de código.
-Contexto completo em `docs/00-leitura-de-contexto.md`.
+Memória de projeto. O Claude Code carrega este arquivo automaticamente em toda sessão aberta
+na raiz do repositório. **Leia antes de escrever qualquer linha de código.**
+
+## Protocolo de leitura
+
+Este arquivo é o resumo executivo e a lei do projeto. Os arquivos em `docs/` são a fonte
+completa e **não** são carregados sozinhos — abra sob demanda, o que a tarefa pedir:
+
+| Vou fazer | Leia antes |
+|---|---|
+| Entender o projeto pela primeira vez | `docs/00-leitura-de-contexto.md` |
+| Criar rota, escolher biblioteca, decidir ordem de trabalho | `docs/01-plano-de-execucao.md` |
+| Mexer em CSS, tipografia, cor, escala, animação, layout | `docs/02-direcao-visual.md` |
+| Mexer em schema, i18n, preço, WhatsApp, JSON-LD, SEO | `docs/03-modelo-de-dados.md` |
+| Decidir o que é placeholder e o que é real | `docs/04-pendencias-e-coleta.md` + `docs/06-inventario-de-ativos.md` |
+| Escrever mensagem para a cliente | `docs/05-formulario-gabriela.md` |
+| Mexer em layout, rota, tipografia ou na página de obra | `docs/08-alteracoes-gabriela-27-08-2026.md` **primeiro** — é a revisão mais recente e vence os outros |
+| Decidir o que entra na v1, ou em que ordem trabalhar | `docs/09-plano-ate-08-09-2026.md` |
+
+Em conflito: as **cinco regras invioláveis** abaixo vencem sempre. No resto, `docs/` é mais
+detalhado e ganha do resumo.
+
+Quando terminar uma etapa que muda uma decisão registrada, **atualize o `docs/` correspondente
+no mesmo commit.** Documento desatualizado é pior do que documento inexistente.
 
 ---
 
@@ -59,7 +81,7 @@ licenciada de terceiro. Toda fonte usada precisa de licença web verificada e re
 - Preço armazenado em **BRL**, exibido convertido em **USD** no inglês (informativo)
 - Contato direciona para **WhatsApp Business**
 - Sem pagamento dentro do site
-- **Site e Instagram entram no ar no mesmo dia**
+- **Site e Instagram entram no ar no mesmo dia** — e esse dia é **08/09/2026**
 - Existe um **vídeo de fundo** para a home, já separado por ela
 - Se houver loja algum dia, ela é **dentro** do site — ela recusou a ideia de janela externa
   (Nuvemshop): *"não me parece tão interessante ter essa janela fora do site"*
@@ -105,10 +127,10 @@ Conversa a ter com ela; não decida sozinho.
 |---|---|
 | **Domínio** | Ela comprou `gclm.com.br` (dez/2024). Os contatos são `@gseleme.design`. Ninguém amarrou. Define URL canônica, hreflang, OG, e-mail |
 | **GCLM aparece na v1?** | GCLM é a marca de design (ex-"Umbra"); Gabriela Seleme é a autora. Duas camadas nunca reconciliadas |
-| **Logo** | A rubrica **existe** (`ativos/rubrica-gseleme.png`), mas em raster. Falta o vetor — peça o original à Catherine |
-| **Número do WhatsApp** | Informado `+55 44 9992-9186` — 8 dígitos onde celular tem 9. Provável: `+55 44 99992-9186` → `5544999929186`. Teste abrindo `wa.me/5544999929186` no celular. Ver `content/contato.yml` |
+| **Logo — BLOQUEIO** | Em 27/08 a Gabriela pediu a rubrica no lugar do nome tipografado, "**sempre a logo**", em **todas** as páginas. Isso tirou o vetor de "melhoria" e o transformou em bloqueio: raster escalado no cabeçalho vai aparecer. Pior, o `ativos/rubrica-gseleme.png` que existe é um recorte torto — traz junto a barra escura da foto e as palavras "Gabriela S". Peça o **original vetorial** à Catherine |
+| **Número do WhatsApp** | Informado `+55 44 9992-9186` — 8 dígitos onde celular tem 9, e o **DDD 44 é Maringá/PR**, não Balneário Camboriú/SC. Provável: `+55 44 99992-9186` → `5544999929186`. Teste abrindo `wa.me/5544999929186` no celular. Ver `content/contato.yml` |
 | **Cor assinatura** | As obras são monocromáticas — não há cor a extrair. Precisa de outra resposta ao pedido dela |
-| **Data de estreia** | Nunca travada. O cronograma é desenhado de trás para frente a partir dela |
+| ~~Data de estreia~~ | **TRAVADA: 8 de setembro de 2026** (áudio de 29/08). Deixou de ser pergunta e virou restrição: o que não couber até lá sai do escopo da v1, não do prazo |
 | **Caminho A ou B** | A conversa não registra escolha entre contratação avulsa e assessoria. **Não construa widgets, automação ou tráfego** antes disso estar claro |
 
 ---
@@ -173,6 +195,8 @@ Não versione nada de lá — nem citando, nem resumindo.
 | `docs/04-pendencias-e-coleta.md` | O que falta e como pedir |
 | `docs/05-formulario-gabriela.md` | Documento para enviar à cliente |
 | `docs/06-inventario-de-ativos.md` | O que existe de verdade no Drive, obra por obra |
+| `docs/08-alteracoes-gabriela-27-08-2026.md` | As correções que ela marcou sobre o Wireframe 3, em 27/08 |
+| `docs/09-plano-ate-08-09-2026.md` | O cronograma de trás para frente até a estreia, e a proposta de escopo |
 | `content/` | Bio, ficha e texto de Encontro, contato — conteúdo real, já transcrito |
 | `ativos/` | Rubrica, folha da bio, ficha de Encontro, 2 fotos da obra |
 | `materiais/` | Conversa transcrita, PDFs originais, inventários |

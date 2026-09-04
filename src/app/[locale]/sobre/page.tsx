@@ -3,7 +3,8 @@ import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { dadosDaImagem } from '@/lib/obras'
 import { lerSobre } from '@/lib/sobre'
-import { alternativas } from '@/lib/metadados'
+import { alternativas, cartaoSocial, robotsDaPagina } from '@/lib/metadados'
+import { Prosa } from '@/components/ui/Prosa'
 import type { Idioma } from '@/i18n/routing'
 
 type Props = { params: Promise<{ locale: Idioma }> }
@@ -14,7 +15,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: t('titulo'),
     alternates: alternativas('/sobre', locale),
-    robots: { index: false, follow: false },
+    ...cartaoSocial({ cartao: 'pagina/sobre', titulo: t('titulo'), locale }),
+    robots: robotsDaPagina(),
   }
 }
 
@@ -26,9 +28,12 @@ export default async function Sobre({ params }: Props) {
   const tp = await getTranslations('pendente')
   const tm = await getTranslations('marca')
   const { corpo, revisaoEn } = lerSobre()
-  // Retrato P&B, recortado da folha que ela mesma montou. A folha pareia bio e
-  // retrato: manter o par honra a composição dela.
+  // Retrato P&B da sessão profissional. Até 26/08/2026 esta página servia um
+  // recorte de 690px tirado da folha de Canva da bio — a mesma foto, de
+  // terceira mão. Agora é o original, e continua sendo a foto que ELA escolheu
+  // para a própria folha: a escolha permanece dela, só a fonte melhorou.
   const retrato = dadosDaImagem('/sobre/retrato.jpg')
+  const rosto = dadosDaImagem('/sobre/rosto.jpg')
   const rubrica = dadosDaImagem('/marca/rubrica.png')
 
   // A tradução ainda não foi aprovada por ela. Em vez de traduzir por conta
@@ -66,17 +71,18 @@ export default async function Sobre({ params }: Props) {
       {/* Composição assimétrica: o texto ocupa a coluna estreita da esquerda e
           o retrato sobe na direita, do jeito que a folha dela faz. */}
       <div className="mt-14 grid grid-cols-12 gap-y-12 md:gap-x-12">
-        <div
-          {...(emPortuguesNoIngles ? { lang: 'pt' } : {})}
-          className="col-span-12 max-w-[var(--medida-corpo)] text-corpo md:col-span-7 [&>p]:mb-6"
-        >
-          {corpo.split(/\n{2,}/).map((paragrafo, i) => (
-            <p key={i}>{renderizarParagrafo(paragrafo)}</p>
-          ))}
-        </div>
+        <Prosa
+          texto={corpo}
+          lang={emPortuguesNoIngles ? 'pt' : undefined}
+          className="col-span-12 max-w-[var(--medida-corpo)] text-corpo md:col-span-7"
+        />
 
+        {/* Duas imagens na coluna da direita, espaçadas. A bio tem dez
+            parágrafos: com um retrato só, a metade de baixo da página ficava
+            com texto de um lado e nada do outro. A segunda entra mais abaixo e
+            fecha a coluna — não é enfeite, é o que dá ritmo à leitura longa. */}
         {retrato && (
-          <div className="col-span-12 md:col-span-4 md:col-start-9">
+          <div className="col-span-12 flex flex-col gap-[var(--respiro-secao)] md:col-span-4 md:col-start-9">
             <Image
               src="/sobre/retrato.jpg"
               alt={t('retratoAlt')}
@@ -87,6 +93,19 @@ export default async function Sobre({ params }: Props) {
               sizes="(max-width: 768px) 100vw, 32vw"
               className="h-auto w-full"
             />
+
+            {rosto && (
+              <Image
+                src="/sobre/rosto.jpg"
+                alt={t('rostoAlt')}
+                width={rosto.largura}
+                height={rosto.altura}
+                placeholder="blur"
+                blurDataURL={rosto.lqip}
+                sizes="(max-width: 768px) 100vw, 32vw"
+                className="h-auto w-full"
+              />
+            )}
           </div>
         )}
       </div>
@@ -94,32 +113,3 @@ export default async function Sobre({ params }: Props) {
   )
 }
 
-/**
- * Preserva duas coisas do original dela, e só essas duas.
- *
- * A quebra de linha simples: "Esse caminho, / Essas peças, / São um reflexo de
- * transformação, / De desenvolvimento." são QUATRO linhas na folha que ela
- * escreveu, não uma frase corrida. Achatar isso reescreve o ritmo dela.
- *
- * E a única palavra em negrito na folha inteira: **expressão**.
- */
-function renderizarParagrafo(texto: string) {
-  return texto.split('\n').map((linha, i, todas) => (
-    <span key={i}>
-      {renderizarEnfase(linha)}
-      {i < todas.length - 1 && <br />}
-    </span>
-  ))
-}
-
-function renderizarEnfase(texto: string) {
-  return texto.split(/(\*\*[^*]+\*\*)/g).map((parte, i) =>
-    parte.startsWith('**') && parte.endsWith('**') ? (
-      <strong key={i} className="font-medium">
-        {parte.slice(2, -2)}
-      </strong>
-    ) : (
-      <span key={i}>{parte}</span>
-    )
-  )
-}

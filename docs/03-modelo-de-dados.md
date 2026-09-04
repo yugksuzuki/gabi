@@ -198,7 +198,8 @@ Mensagem pré-preenchida, por idioma:
 - **PT** — `Olá, Gabriela. Vim pelo site e gostaria de saber mais sobre a obra «Desabrochar».`
 - **EN** — `Hello, Gabriela. I came through your website and would like to know more about "Desabrochar".`
 
-**O número não existe ainda** (só o prefixo `+5547`). Portanto:
+**O número não está confirmado.** O informado (`+55 44 9992-9186`) tem 8 dígitos onde celular
+brasileiro tem 9, e o DDD não bate com a cidade. Ver `06-inventario-de-ativos.md` §4. Portanto:
 
 - Número em variável de ambiente, nunca no código
 - **Fallback digno:** sem número configurado, o botão vira `mailto:` para

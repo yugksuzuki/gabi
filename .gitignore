@@ -11,3 +11,24 @@ out/
 # Artefatos de build
 *.tsbuildinfo
 next-env.d.ts
+
+# Vídeo bruto NUNCA entra no git.
+#
+# O teto do GitHub é 100 MB por arquivo, e os masters do projeto passam longe
+# disso: GABI SELEME V1.mp4 tem 519 MB, C9590/C9633 têm 256 MB, C9627/C9668 têm
+# 192 MB. Um `git add .` na pasta de ativos derruba o push inteiro — e como o
+# blob fica no histórico, apagar num commit seguinte não resolve.
+#
+# O vídeo publicado é o CORTE, que mora em public/entrada/ e tem centenas de KB.
+# O bruto fica no Drive. Ver docs/validacao/entrada-video/.
+ativos/**/*.mp4
+ativos/**/*.MP4
+ativos/**/*.mov
+ativos/**/*.MOV
+ativos/**/*.avi
+ativos/**/*.MTS
+
+# Artefatos de execução do Playwright — resultado de rodada, não código.
+test-results/
+playwright-report/
+blob-report/

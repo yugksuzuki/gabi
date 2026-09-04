@@ -5,12 +5,15 @@ import { Link } from '@/i18n/navigation'
 import { routing, type Idioma } from '@/i18n/routing'
 import { acharObra, lerObras, ehPendente } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
-import { alternativas } from '@/lib/metadados'
+import { alternativas, cartaoSocial, robotsDaPagina } from '@/lib/metadados'
 import { buscarCotacaoUSD, exibirPreco } from '@/lib/moeda'
 import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
 import { FichaTecnica } from '@/components/obra/FichaTecnica'
 import { Consultar } from '@/components/obra/Consultar'
+import { Prosa } from '@/components/ui/Prosa'
+import { DadosEstruturados } from '@/components/DadosEstruturados'
+import { grafo, migalhas, obraEmSchema, pessoa } from '@/lib/schema'
 
 type Props = { params: Promise<{ locale: Idioma; slug: string }> }
 
@@ -33,7 +36,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // Description escrita, nunca gerada por template genérico (docs/01 §6).
     // Sem legenda aprovada, não inventa: fica sem description.
     ...(legenda ? { description: legenda } : {}),
-    robots: { index: false, follow: false },
+    // O cartão que aparece quando o link circula no Instagram e no WhatsApp.
+    // Para uma obra é o primeiro contato — docs/01 §6.
+    ...cartaoSocial({
+      cartao: `obra/${slug}`,
+      titulo: obra.titulo,
+      descricao: legenda,
+      locale,
+    }),
+    // A obra decide sozinha: enquanto não for `publicada`, ela não entra no
+    // índice nem que a trava global esteja aberta. É a MESMA condição que o
+    // sitemap usa — duas regras diferentes para a mesma pergunta acabariam
+    // divergindo, e o build já garante que `publicada` implica ficha completa.
+    robots: robotsDaPagina({ temPendencia: obra.estado !== 'publicada' }),
   }
 }
 
@@ -52,7 +67,6 @@ export default async function PaginaObra({ params }: Props) {
   if (!obra) notFound()
 
   const t = await getTranslations('obra')
-  const tp = await getTranslations('pendente')
   const cotacao = await buscarCotacaoUSD()
 
   const texto = obra.texto && !ehPendente(obra.texto) ? obra.texto : null
@@ -61,11 +75,26 @@ export default async function PaginaObra({ params }: Props) {
   const proxima = obras[(obras.findIndex((o) => o.slug === obra.slug) + 1) % obras.length]
 
   const principal = obra.imagens.find((im) => im.papel === 'principal')
-  // Ângulo, detalhe e escala — tudo que não é a principal alimenta a galeria.
-  const galeria = obra.imagens.filter((im) => im !== principal)
+  // A escala sai da grade e fecha a página em largura cheia: ela não mostra a
+  // obra, mostra a obra NUM LUGAR — piso, rodapé, altura de pessoa. É a única
+  // do conjunto que pede o quadro inteiro, e em grade de duas colunas ela ficava
+  // órfã na última linha.
+  const escala = obra.imagens.find((im) => im.papel === 'escala')
+  const galeria = obra.imagens.filter((im) => im !== principal && im !== escala)
+
+  const tPortfolio = await getTranslations('portfolio')
 
   return (
     <article className="pt-[var(--respiro-secao)]">
+      {/* VisualArtwork + Person + BreadcrumbList (docs/03 §7). Campo pendente
+          é omitido, nunca inventado: dado estruturado sai do nosso controle. */}
+      <DadosEstruturados
+        json={grafo(
+          pessoa(locale),
+          obraEmSchema(obra, locale),
+          migalhas(obra, locale, tPortfolio('titulo'))
+        )}
+      />
       {/* 1. Imagem principal, grande, quase sem cerimônia. */}
       <div className="px-[var(--margem-lateral)]">
         <div className="mx-auto max-w-[52rem]">
@@ -74,46 +103,29 @@ export default async function PaginaObra({ params }: Props) {
             alt={localizar(principal?.alt, locale)}
             titulo={obra.titulo}
             prioridade
-            sizes="(max-width: 768px) 100vw, 52rem"
+            // Desconta a margem lateral: declarar 100vw faz o navegador
+            // baixar um arquivo maior do que o que vai desenhar.
+            sizes="(max-width: 768px) calc(100vw - 3rem), 52rem"
           />
         </div>
       </div>
 
-      {/* 2. Título e ano. */}
-      <header className="px-[var(--margem-lateral)] pt-12">
+      {/* 2. Título e ano, na mesma linha de base. O ano é ficha de museu: fica
+          na borda oposta, pequeno, sem competir com o nome da obra. */}
+      <header className="flex flex-wrap items-end justify-between gap-x-10 gap-y-3 px-[var(--margem-lateral)] pt-14">
         <h1 className="font-display text-display leading-[0.95]">{obra.titulo}</h1>
-        <p className="legenda mt-4">{ehPendente(obra.ano) ? <Pendente campo="ano" /> : obra.ano}</p>
-      </header>
-
-      {obra.estado === 'rascunho' && (
-        <p
-          role="status"
-          className="border-line-forte text-ink-muted mx-[var(--margem-lateral)] mt-10 border border-dashed px-5 py-3 text-legenda"
-        >
-          {tp('obraIncompleta')}
+        <p className="legenda pb-3">
+          {ehPendente(obra.ano) ? <Pendente campo="ano" /> : obra.ano}
         </p>
-      )}
+      </header>
 
       <div className="mt-[var(--respiro-secao)] grid grid-cols-12 gap-y-16 px-[var(--margem-lateral)]">
         {/* 5. Texto autoral. Medida curta, entrelinha generosa. */}
         <div className="col-span-12 lg:col-span-6">
           {texto ? (
-            <div className="max-w-[var(--medida-corpo)] text-corpo [&>p]:mb-5">
-              {texto.split(/\n{2,}/).map((paragrafo, i) => (
-                <p key={i}>
-                  {/* Quebra simples é dela: a prancha de Encontro quebra as
-                      frases num ritmo próprio. Não juntar. */}
-                  {paragrafo.split('\n').map((linha, j, todas) => (
-                    <span key={j}>
-                      {linha}
-                      {j < todas.length - 1 && <br />}
-                    </span>
-                  ))}
-                </p>
-              ))}
-            </div>
+            <Prosa texto={texto} />
           ) : (
-            <Pendente campo="texto da obra" />
+            <Pendente campo="texto" />
           )}
         </div>
 
@@ -134,19 +146,38 @@ export default async function PaginaObra({ params }: Props) {
       {/* 3. Galeria: ângulo, detalhe, escala. Duas colunas em tela larga, uma
           no celular, e cada foto no seu próprio tamanho — sem recorte forçado. */}
       {galeria.length > 0 && (
-        <div className="mt-[var(--respiro-secao)] grid grid-cols-1 gap-8 px-[var(--margem-lateral)] md:grid-cols-2">
+        <div className="mt-[var(--respiro-secao)] grid grid-cols-1 items-start gap-8 px-[var(--margem-lateral)] md:grid-cols-2">
           {galeria.map((img) => (
             <figure key={img.src} className="flex flex-col gap-3">
               <ImagemObra
                 src={img.src}
                 alt={localizar(img.alt, locale)}
                 titulo={obra.titulo}
-                sizes="(max-width: 768px) 100vw, 45vw"
+                sizes="(max-width: 768px) calc(100vw - 3rem), 45vw"
               />
               <figcaption className="legenda">{t(img.papel)}</figcaption>
             </figure>
           ))}
         </div>
+      )}
+
+      {/* A obra num lugar. Fecha a sequência, centrada e com ar em volta.
+          NÃO sangra: esta foto é um recorte da prancha de ficha e tem 822px de
+          largura — esticada para 1440 ela seria ampliada quase o dobro, e a
+          única imagem de contexto da página apareceria borrada. Fica no tamanho
+          que a fonte aguenta, e o vazio em volta é composição. */}
+      {escala && (
+        <figure className="mt-[var(--respiro-secao)] flex flex-col gap-3 px-[var(--margem-lateral)]">
+          <div className="mx-auto w-full max-w-[52rem]">
+            <ImagemObra
+              src={escala.src}
+              alt={localizar(escala.alt, locale)}
+              titulo={obra.titulo}
+              sizes="(max-width: 768px) 100vw, 52rem"
+            />
+            <figcaption className="legenda mt-3">{t('escala')}</figcaption>
+          </div>
+        </figure>
       )}
 
       {/* 8. Mantém a pessoa dentro do acervo. */}
