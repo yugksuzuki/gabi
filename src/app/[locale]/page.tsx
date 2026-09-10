@@ -40,11 +40,7 @@ import type { Idioma } from '@/i18n/routing'
  * que CLAUDE.md manda evitar. A obra existe na sequência de qualquer jeito;
  * só não finge ter imagem. Quando a foto chegar, ela cresce sozinha.
  */
-export default async function Portfolio({
-  params,
-}: {
-  params: Promise<{ locale: Idioma }>
-}) {
+export default async function Portfolio({ params }: { params: Promise<{ locale: Idioma }> }) {
   const { locale } = await params
   setRequestLocale(locale)
 
@@ -67,6 +63,7 @@ export default async function Portfolio({
       <div className="flex flex-col gap-[var(--respiro-secao)] pt-[var(--respiro-secao)]">
         {obras.map((obra, i) => {
           const legenda = localizar(obra.legenda, locale)
+          const nota = localizar(obra.nota, locale)
           // A `principal` é a que representa a obra na sequência (docs/03 §1).
           const principal = obra.imagens.find((im) => im.papel === 'principal')
           const temFoto = Boolean(principal)
@@ -143,8 +140,13 @@ export default async function Portfolio({
                     </Link>
                   </h2>
 
+                  {/* Nota da peça — pedido dela em 08/09. Circunstância, não
+                      ficha: fica em corpo de interface, discreta, e some
+                      sozinha quando a peça não tem nota. */}
+                  {nota && <p className="legenda text-ink-muted">{nota}</p>}
+
                   {legenda ? (
-                    <p className="text-ink-muted max-w-[38ch] text-corpo">{legenda}</p>
+                    <p className="text-ink-muted text-corpo max-w-[38ch]">{legenda}</p>
                   ) : (
                     <Pendente campo="legenda" />
                   )}

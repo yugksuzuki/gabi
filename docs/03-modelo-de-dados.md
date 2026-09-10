@@ -32,6 +32,7 @@ type Obra = {
   precoBRL: number | null         // fonte única. USD é derivado, nunca armazenado
   disponibilidade: 'disponivel' | 'reservada' | 'vendida' | 'acervo'
   legenda: Localizado<string>     // uma frase. É o que aparece no portfólio
+  nota?: Localizado<string>       // circunstância: 'Em exposição na…'. Livre, opcional
   texto: Localizado<string>       // texto autoral da obra (MDX)
   imagens: Imagem[]
   video?: Video
@@ -69,6 +70,14 @@ type Video = {
   entrar no ar antes dos preços existirem.
 - **`disponibilidade`** existe porque peça única vendida não sai do site — ela **prova
   repertório**. "Vendida" é sinal de mercado, não motivo de exclusão.
+- **`nota` é livre, e é livre de propósito.** Pedido dela em 08/09/2026: *"na aba principal
+  das peças ter algum lugar p adicionar nota p poder colocar por exemplo 'em exposição em…'"*.
+  Ela pediu uma **nota** e deu um exemplo, não um formato. Modelar como
+  `{exposição, local, data}` seria decidir por ela o que a nota pode dizer — e a primeira
+  coisa a não caber no formulário seria a segunda nota que ela quisesse escrever.
+  **Não é ficha técnica: é circunstância.** A ficha diz o que a obra é e não muda; a nota diz
+  onde ela está, e muda quando a peça troca de sala. Por isso é opcional, não conta como
+  pendência de publicação, e some sozinha quando não existe.
 - **`ordem` é manual.** A sequência das três obras é curadoria.
 - **`papel` na imagem** amarra a spec de fotografia (ver `02-direcao-visual.md` §7) ao layout:
   a `principal` vai para o portfólio, `detalhe` alimenta a galeria da página de obra.

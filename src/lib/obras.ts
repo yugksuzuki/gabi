@@ -87,6 +87,21 @@ export const esquemaObra = z.object({
   precoBRL: z.number().positive().nullable(),
   disponibilidade: talvez(z.enum(['disponivel', 'reservada', 'vendida', 'acervo'])),
   legenda: localizado(z.string()),
+  /**
+   * Nota livre da peça — pedido dela em 08/09/2026, por WhatsApp: "na aba
+   * principal das peças ter algum lugar p adicionar nota p poder colocar por
+   * exemplo 'em exposição em…'".
+   *
+   * Livre de propósito. Ela pediu uma NOTA, não um cadastro de exposições, e
+   * deu um exemplo em vez de um formato. Modelar isso como {exposição, local,
+   * data} seria decidir por ela o que a nota pode dizer — e a primeira coisa
+   * que não caberia no formulário seria a segunda nota que ela quiser escrever.
+   *
+   * Opcional e localizada: obra sem nota não mostra nada, e o campo não conta
+   * como pendência de publicação. Não é ficha técnica, é circunstância — muda
+   * quando a peça troca de sala.
+   */
+  nota: localizado(z.string()).optional(),
   imagens: z.array(imagem).default([]),
   video: video.optional(),
   /**
@@ -172,8 +187,7 @@ export function lerObras(): Obra[] {
       // Frontmatter malformado é erro de programação, não pendência de
       // conteúdo. Falha alto e cedo, com o caminho do arquivo.
       throw new Error(
-        `content/obras/${arquivo} — frontmatter inválido:\n` +
-          z.prettifyError(resultado.error)
+        `content/obras/${arquivo} — frontmatter inválido:\n` + z.prettifyError(resultado.error),
       )
     }
 
@@ -187,7 +201,7 @@ export function lerObras(): Obra[] {
       throw new Error(
         `content/obras/${arquivo} — declarada 'publicada', mas falta:\n` +
           faltando.map((f) => `  - ${f}`).join('\n') +
-          `\n\nOu complete a ficha, ou volte para estado: rascunho.`
+          `\n\nOu complete a ficha, ou volte para estado: rascunho.`,
       )
     }
 

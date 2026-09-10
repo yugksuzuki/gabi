@@ -20,7 +20,7 @@ type Props = { params: Promise<{ locale: Idioma; slug: string }> }
 export function generateStaticParams() {
   // Cada obra pré-construída, nos dois idiomas (SSG, item 01).
   return routing.locales.flatMap((locale) =>
-    lerObras().map((obra) => ({ locale, slug: obra.slug }))
+    lerObras().map((obra) => ({ locale, slug: obra.slug })),
   )
 }
 
@@ -71,6 +71,7 @@ export default async function PaginaObra({ params }: Props) {
 
   const texto = obra.texto && !ehPendente(obra.texto) ? obra.texto : null
   const preco = exibirPreco(obra.precoBRL, locale, cotacao)
+  const nota = localizar(obra.nota, locale)
   const obras = lerObras()
   const proxima = obras[(obras.findIndex((o) => o.slug === obra.slug) + 1) % obras.length]
 
@@ -92,7 +93,7 @@ export default async function PaginaObra({ params }: Props) {
         json={grafo(
           pessoa(locale),
           obraEmSchema(obra, locale),
-          migalhas(obra, locale, tPortfolio('titulo'))
+          migalhas(obra, locale, tPortfolio('titulo')),
         )}
       />
       {/* 1. Imagem principal, grande, quase sem cerimônia. */}
@@ -122,15 +123,17 @@ export default async function PaginaObra({ params }: Props) {
       <div className="mt-[var(--respiro-secao)] grid grid-cols-12 gap-y-16 px-[var(--margem-lateral)]">
         {/* 5. Texto autoral. Medida curta, entrelinha generosa. */}
         <div className="col-span-12 lg:col-span-6">
-          {texto ? (
-            <Prosa texto={texto} />
-          ) : (
-            <Pendente campo="texto" />
-          )}
+          {texto ? <Prosa texto={texto} /> : <Pendente campo="texto" />}
         </div>
 
+        {/* Nota da peça — onde ela está agora. Vem ANTES da ficha de
+            propósito: a ficha é o que a obra é e não muda; a nota é onde ela
+            está, e muda quando a peça troca de sala. Some sozinha se a obra
+            não tiver nota. */}
         {/* 6 e 7. Ficha técnica, depois valor e Consultar. */}
         <div className="col-span-12 flex flex-col gap-12 lg:col-span-5 lg:col-start-8">
+          {nota && <p className="legenda text-ink-muted mb-8">{nota}</p>}
+
           <FichaTecnica obra={obra} idioma={locale} />
 
           <section aria-labelledby="valor" className="flex flex-col gap-5">
