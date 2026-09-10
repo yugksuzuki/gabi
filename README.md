@@ -55,16 +55,28 @@ preserva a página: `/pt/obras/instante` → `/en/works/instante`, nunca a home.
 
 ## Estado
 
-**E0 a E4 e E6 concluídas.** Falta **E5 — conteúdo real**, que depende da
-Gabriela: Desabrochar e Instante não têm foto, ficha nem texto, e Encontro tem a
-ficha pela metade. Ver [`docs/04-pendencias-e-coleta.md`](docs/04-pendencias-e-coleta.md).
+> **Comece por [`docs/10-estado-em-10-09-2026.md`](docs/10-estado-em-10-09-2026.md).** É o
+> estado unificado: o que foi juntado de quatro branches, a data de estreia que passou, e a
+> distância entre o wireframe que a Gabriela aprovou e o site que está construído.
+
+**E0 a E4 e E6 concluídas** — na direção visual anterior. Faltam duas coisas, de naturezas
+diferentes:
+
+- **A revisão de 27/08 ainda não entrou no código.** Ela está aplicada às pranchas em
+  `public/wireframe/`, não no site: o menu ainda diz "Quem sou eu" e "Textos", a tipografia
+  ainda é Fraunces, e a rubrica não aparece no cabeçalho. Ver
+  [`docs/08-alteracoes-gabriela-27-08-2026.md`](docs/08-alteracoes-gabriela-27-08-2026.md).
+- **E5 — conteúdo real**, que depende da Gabriela: Desabrochar e Instante não têm foto, ficha
+  nem texto, e Encontro tem a ficha pela metade. Ver
+  [`docs/04-pendencias-e-coleta.md`](docs/04-pendencias-e-coleta.md).
 
 Auditoria de qualidade em [`docs/validacao/e6/`](docs/validacao/e6/) — zero
 violação AA, Lighthouse celular 87–100. Capturas de cada etapa em
 `docs/validacao/`.
 
 Antes da primeira execução de `npm run testar`, uma vez:
-`npx playwright install chromium`.
+`npx playwright install chromium`. Em ambiente que já tem um Chromium fora do lugar padrão,
+aponte `CHROMIUM_EXECUTAVEL` para ele em vez de baixar de novo.
 
 O site **não é indexável** (`robots` fechado + `noindex`) enquanto houver `[PENDENTE]` em
 rota publicada. Abrir só na estreia, com `ABRIR_INDEXACAO=1`.
