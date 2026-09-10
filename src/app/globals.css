@@ -17,12 +17,14 @@
   --color-accent: var(--accent);
 
   --font-display: var(--fonte-display);
+  --font-corpo: var(--fonte-corpo);
   --font-interface: var(--fonte-interface);
 
   --text-display: var(--texto-display);
   --text-titulo: var(--texto-titulo);
   --text-corpo: var(--texto-corpo);
   --text-legenda: var(--texto-legenda);
+  --text-preco: var(--texto-preco);
 }
 
 @layer base {
@@ -48,7 +50,9 @@
   body {
     background-color: var(--bg);
     color: var(--ink);
-    font-family: var(--fonte-interface);
+    /* O corpo do site é serifado desde a revisão de 27/08 (G4). A neutra não
+       sumiu — recuou para a interface, e quem precisa dela pede por classe. */
+    font-family: var(--fonte-corpo);
     font-size: var(--texto-corpo);
     line-height: var(--altura-corpo);
     -webkit-font-smoothing: antialiased;
@@ -79,6 +83,7 @@
     padding: 0.75rem 1.25rem;
     background-color: var(--ink);
     color: var(--bg);
+    font-family: var(--fonte-interface);
     font-size: var(--texto-legenda);
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -89,6 +94,7 @@
 
   /* O registro de museu: pequeno, entrelinha maior, leve tracking. */
   .legenda {
+    font-family: var(--fonte-interface);
     font-size: var(--texto-legenda);
     line-height: 1.55;
     letter-spacing: 0.07em;

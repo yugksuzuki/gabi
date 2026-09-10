@@ -41,29 +41,54 @@
 
   /* ---- Tipografia ------------------------------------------------------ */
 
-  --fonte-display: var(--fonte-fraunces), Georgia, 'Times New Roman', serif;
+  /* G4 da lista dela (docs/08 §1): "usar Cormorant Garamond". Venceu a escolha
+     anterior, que era nossa. A folha A3 em que ela diagramou a própria bio já
+     estava em Garamond — o site é que estava fora.
+
+     A divisão de trabalho mudou junto: a serifada carrega TAMBÉM o corpo do
+     texto, e a neutra recua para a interface (menu, ficha, legenda, preço,
+     Consultar). Texto de artista se lê em serifada; maquinário de site não
+     disputa atenção. */
+  --fonte-display: var(--fonte-cormorant), Garamond, Georgia, serif;
+  --fonte-corpo: var(--fonte-cormorant), Garamond, Georgia, serif;
   --fonte-interface: var(--fonte-inter), system-ui, -apple-system, sans-serif;
 
   /* Escala fluida com clamp(), ancorada em 390px e 1440px (docs/02 §3).
-     Fora dessas âncoras, congela — não cresce sem fim em monitor largo. */
+     Fora dessas âncoras, congela — não cresce sem fim em monitor largo.
 
-  /* Nome da obra na página dela, título da home. É o gesto. 40 -> 104px */
-  --texto-display: clamp(2.5rem, 1.017rem + 6.095vw, 6.5rem);
-  /* Seções. 28 -> 44px */
-  --texto-titulo: clamp(1.75rem, 1.379rem + 1.524vw, 2.75rem);
-  /* Texto da obra e área editorial. 17 -> 19px */
-  --texto-corpo: clamp(1.0625rem, 1.017rem + 0.19vw, 1.1875rem);
-  /* Ficha técnica, ano, dimensões. O registro de museu. 13 -> 14px */
-  --texto-legenda: clamp(0.8125rem, 0.79rem + 0.095vw, 0.875rem);
+     G5: "não trabalhar com variação tão grande de tamanho de fontes". A escala
+     foi COMPRIMIDA, e é uma compressão grande: o display caiu de 104 para 56px
+     e a razão display/corpo de 5,5x para 2,7x. Os valores de 1440 são os da
+     prancha que ela aprovou; os de 390 saem da prancha de celular, que baixa o
+     título de 34 para 26px — a mesma proporção aplicada ao display. */
 
-  /* Texto de artista se lê devagar: entrelinha generosa, medida curta. */
-  --altura-corpo: 1.7;
-  --medida-corpo: 64ch;
+  /* Nome da obra na página dela, título da home. 42 -> 56px */
+  --texto-display: clamp(2.625rem, 2.3rem + 1.333vw, 3.5rem);
+  /* Seções. 26 -> 34px */
+  --texto-titulo: clamp(1.625rem, 1.439rem + 0.762vw, 2.125rem);
+  /* Texto da obra e área editorial. 20 -> 21px.
+     Não encolhe mais no celular de propósito: a Cormorant tem altura-x baixa e
+     21px dela lêem como ~19px de neutra (docs/02 §3). Encolher aqui seria economizar no
+     único lugar em que o site é lido devagar. */
+  --texto-corpo: clamp(1.25rem, 1.227rem + 0.095vw, 1.3125rem);
+  /* Ficha técnica, legenda, menu. O registro de museu. 13px, sem variar. */
+  --texto-legenda: 0.8125rem;
+  /* O9: o preço em fonte menor que as demais e em cinza. 15px, sem variar. */
+  --texto-preco: 0.9375rem;
+
+  /* Texto de artista se lê devagar: entrelinha generosa, medida curta.
+     1,8 e 580px são os da prancha — G7 pediu mais respiro, e entrelinha é
+     respiro dentro do parágrafo, não só em volta dele. */
+  --altura-corpo: 1.8;
+  --medida-corpo: 36.25rem;
 
   /* ---- Ritmo ----------------------------------------------------------- */
 
-  --margem-lateral: clamp(1.25rem, 0.202rem + 4.31vw, 6rem);
-  --respiro-secao: clamp(4rem, 2.095rem + 7.81vw, 10rem);
+  /* G7: "aumentar o respiro em volta de imagens e textos".
+     Margem 96 -> 120px, seção 160 -> 200px em 1440. No celular a margem é a
+     da prancha: 20px. */
+  --margem-lateral: clamp(1.25rem, -1.071rem + 9.524vw, 7.5rem);
+  --respiro-secao: clamp(4.5rem, 1.529rem + 12.19vw, 12.5rem);
 
   /* ---- Movimento ------------------------------------------------------- */
 

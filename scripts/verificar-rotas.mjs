@@ -8,9 +8,9 @@
 const TEMPLATES = [
   '/',
   '/obras/[slug]',
-  '/sobre',
-  '/textos',
-  '/textos/[slug]',
+  '/a-artista',
+  '/ensaios',
+  '/ensaios/[slug]',
   '/contato',
 ]
 
@@ -18,7 +18,7 @@ function acharTemplate(caminho) {
   if (TEMPLATES.includes(caminho)) return caminho
   const segmentos = caminho.split('/').filter(Boolean)
   const candidatos = TEMPLATES.filter((t) => t.includes('[')).sort(
-    (a, b) => b.split('/').length - a.split('/').length
+    (a, b) => b.split('/').length - a.split('/').length,
   )
   for (const template of candidatos) {
     const partes = template.split('/').filter(Boolean)
@@ -32,12 +32,12 @@ function acharTemplate(caminho) {
 
 const casos = [
   ['/', '/'],
-  ['/sobre', '/sobre'],
-  ['/textos', '/textos'],
+  ['/a-artista', '/a-artista'],
+  ['/ensaios', '/ensaios'],
   ['/contato', '/contato'],
   ['/obras/encontro', '/obras/[slug]'],
   ['/obras/desabrochar', '/obras/[slug]'],
-  ['/textos/um-texto-qualquer', '/textos/[slug]'],
+  ['/ensaios/um-texto-qualquer', '/ensaios/[slug]'],
   ['/rota-que-nao-existe', '/rota-que-nao-existe'],
 ]
 

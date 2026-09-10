@@ -47,7 +47,7 @@ const COR = {
  * arquivo é o que mantém o rastreamento preciso.
  */
 const PASTA_FONTES = 'src/styles/fontes/og'
-const FONTE_FRAUNCES = 'fraunces-og.ttf'
+const FONTE_CORMORANT = 'cormorant-og.ttf'
 const FONTE_INTER = 'inter-og.ttf'
 
 function arquivoDeFonte(nome: string): Buffer {
@@ -61,14 +61,14 @@ function arquivoPublico(src: string): Buffer {
 /**
  * Fontes em TTF instanciado e subsetado (latim + pontuação), porque o Satori
  * não lê woff2 nem eixo variável. São 74 KB que NUNCA vão para o navegador:
- * só o build as usa. Geradas por scripts/gerar-fontes-og.py a partir dos
+ * só o build as usa. Geradas por scripts/gerar-fontes.py a partir dos
  * mesmos arquivos que o site serve — mesma fonte, mesmo desenho.
  */
 export function fontesDoCartao() {
   return [
     {
-      name: 'Fraunces',
-      data: arquivoDeFonte(FONTE_FRAUNCES),
+      name: 'Cormorant',
+      data: arquivoDeFonte(FONTE_CORMORANT),
       weight: 400 as const,
       style: 'normal' as const,
     },
@@ -181,7 +181,7 @@ export function cartaoDeObra({ titulo, ano, tecnica, imagem }: CartaoObra): Reac
           <div
             style={{
               display: 'flex',
-              fontFamily: 'Fraunces',
+              fontFamily: 'Cormorant',
               fontSize: foto ? 84 : 120,
               lineHeight: 1.02,
               color: COR.ink,
@@ -248,7 +248,7 @@ export function cartaoDePagina(titulo: string, subtitulo?: string | null): React
         <div
           style={{
             display: 'flex',
-            fontFamily: 'Fraunces',
+            fontFamily: 'Cormorant',
             fontSize: 104,
             lineHeight: 1.02,
             color: COR.ink,
@@ -295,7 +295,9 @@ export function enderecoDeVolta(): string {
   try {
     const { hostname } = new URL(urlDoSite())
     const provisorio =
-      hostname === 'localhost' || hostname.endsWith('.vercel.app') || hostname.endsWith('.local')
+      hostname === 'localhost' ||
+      hostname.endsWith('.vercel.app') ||
+      hostname.endsWith('.local')
     if (!provisorio) return hostname.replace(/^www\./, '')
   } catch {
     // URL torta não derruba a geração do cartão.
@@ -358,7 +360,7 @@ export function cartaoDeStory({ trecho, origem, rotuloOrigem }: CartaoStory): Re
         <div
           style={{
             display: 'flex',
-            fontFamily: 'Fraunces',
+            fontFamily: 'Cormorant',
             fontSize: tamanho,
             lineHeight: 1.32,
             color: COR.ink,
@@ -367,7 +369,15 @@ export function cartaoDeStory({ trecho, origem, rotuloOrigem }: CartaoStory): Re
           {trecho}
         </div>
 
-        <div style={{ display: 'flex', marginTop: 64, height: 1, width: 180, backgroundColor: COR.line }} />
+        <div
+          style={{
+            display: 'flex',
+            marginTop: 64,
+            height: 1,
+            width: 180,
+            backgroundColor: COR.line,
+          }}
+        />
 
         <div
           style={{

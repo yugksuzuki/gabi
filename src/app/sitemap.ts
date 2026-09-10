@@ -24,7 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   })
 
-  const fixas: Href[] = ['/', '/sobre', '/textos', '/contato']
+  const fixas: Href[] = ['/', '/a-artista', '/ensaios', '/contato']
 
   const obras = lerObras()
     .filter((o) => o.estado === 'publicada')

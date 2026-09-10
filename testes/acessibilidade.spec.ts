@@ -19,9 +19,9 @@ const ROTAS = [
   ['obra completa', '/pt/obras/encontro'],
   ['obra em rascunho', '/pt/obras/instante'],
   ['obra (en)', '/en/works/encontro'],
-  ['quem sou eu', '/pt/sobre'],
+  ['a artista', '/pt/a-artista'],
   ['about (en, texto em pt)', '/en/about'],
-  ['textos vazio', '/pt/textos'],
+  ['ensaios vazio', '/pt/ensaios'],
   ['contato', '/pt/contato'],
   ['contact (en)', '/en/contact'],
 ] as const

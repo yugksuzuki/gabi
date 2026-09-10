@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { fraunces, inter } from '@/styles/fontes'
+import { cormorant, inter } from '@/styles/fontes'
 import './globals.css'
 
 /**
@@ -18,10 +18,10 @@ import './globals.css'
  */
 export default function NaoEncontradoGlobal() {
   return (
-    <html lang="pt" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="pt" className={`${cormorant.variable} ${inter.variable}`}>
       <body className="flex min-h-screen flex-col justify-center px-[var(--margem-lateral)]">
         <h1 className="font-display text-display leading-[0.95]">Página não encontrada</h1>
-        <p className="text-ink-muted mt-10 max-w-[46ch] text-corpo">
+        <p className="text-ink-muted text-corpo mt-10 max-w-[46ch]">
           O endereço não existe, ou a página mudou de lugar.
         </p>
         <Link href="/pt" className="legenda hover:text-ink mt-10 w-fit">

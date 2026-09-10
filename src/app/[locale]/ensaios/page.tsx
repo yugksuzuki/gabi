@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'textos' })
   return {
     title: t('titulo'),
-    alternates: alternativas('/textos', locale),
+    alternates: alternativas('/ensaios', locale),
     ...cartaoSocial({ cartao: 'pagina/textos', titulo: t('titulo'), locale }),
     robots: robotsDaPagina(),
   }
@@ -41,7 +41,7 @@ export default async function Textos({ params }: Props) {
       <h1 className="font-display text-display leading-[0.95]">{t('titulo')}</h1>
 
       {textos.length === 0 ? (
-        <p className="text-ink-muted mt-12 max-w-[var(--medida-corpo)] text-corpo">
+        <p className="text-ink-muted text-corpo mt-12 max-w-[var(--medida-corpo)]">
           {t('vazio')}
         </p>
       ) : (
@@ -49,7 +49,7 @@ export default async function Textos({ params }: Props) {
           {textos.map((texto) => (
             <li key={texto.slug} className="border-line border-b">
               <Link
-                href={{ pathname: '/textos/[slug]', params: { slug: texto.slug } }}
+                href={{ pathname: '/ensaios/[slug]', params: { slug: texto.slug } }}
                 className="group grid grid-cols-12 gap-y-3 py-9 md:gap-x-8"
               >
                 <time
@@ -63,11 +63,11 @@ export default async function Textos({ params }: Props) {
                   <h2 className="font-display text-titulo leading-[1.1] transition-opacity group-hover:opacity-60">
                     {campo(texto.titulo, locale)}
                   </h2>
-                  <p className="text-ink-muted max-w-[52ch] text-corpo">
+                  <p className="text-ink-muted text-corpo max-w-[52ch]">
                     {campo(texto.resumo, locale)}
                   </p>
                   {texto.estado === 'rascunho' && (
-                    <span className="border-line-forte text-ink-muted w-fit border border-dashed px-3 py-1 text-legenda">
+                    <span className="border-line-forte text-ink-muted text-legenda w-fit border border-dashed px-3 py-1">
                       {t('rascunho')}
                     </span>
                   )}

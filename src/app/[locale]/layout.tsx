@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing, type Idioma } from '@/i18n/routing'
-import { fraunces, inter } from '@/styles/fontes'
+import { cormorant, inter } from '@/styles/fontes'
 import { alternativas, cartaoSocial, urlDoSite, robotsDaPagina } from '@/lib/metadados'
 import { Nav } from '@/components/layout/Nav'
 import { Rodape } from '@/components/layout/Rodape'
@@ -62,7 +62,7 @@ export default async function LocaleLayout({
   const t = await getTranslations({ locale, namespace: 'nav' })
 
   return (
-    <html lang={locale} className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang={locale} className={`${cormorant.variable} ${inter.variable}`}>
       <body className="flex min-h-screen flex-col">
         <NextIntlClientProvider>
           <a href="#conteudo" className="pular-para-conteudo">

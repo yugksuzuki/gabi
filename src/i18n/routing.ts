@@ -19,9 +19,19 @@ export const routing = defineRouting({
   pathnames: {
     '/': '/',
     '/obras/[slug]': { pt: '/obras/[slug]', en: '/works/[slug]' },
-    '/sobre': { pt: '/sobre', en: '/about' },
-    '/textos': { pt: '/textos', en: '/writing' },
-    '/textos/[slug]': { pt: '/textos/[slug]', en: '/writing/[slug]' },
+    // G2 e G3 da revisão de 27/08 (docs/08 §1): ela renomeou as duas abas.
+    // "Quem sou eu" virou "A artista" — troca dela, dita em áudio — e "Textos"
+    // virou "Ensaios". A rota acompanha o rótulo: trocar agora custa zero,
+    // porque nada foi indexado; depois da estreia custaria redirecionamento
+    // permanente. O caminho interno (a chave) muda junto com a pasta em
+    // src/app/[locale]/, senão o next-intl não acha a página.
+    // Só o lado português muda: ela renomeou as abas EM PORTUGUÊS. Os pares em
+    // inglês continuam '/about' e '/writing', que docs/01 §1 registra como "já
+    // estavam certos" — "About" e "Writing" são o que essas páginas se chamam
+    // em inglês, e "A artista" não é um pedido de renomear a versão EN.
+    '/a-artista': { pt: '/a-artista', en: '/about' },
+    '/ensaios': { pt: '/ensaios', en: '/writing' },
+    '/ensaios/[slug]': { pt: '/ensaios/[slug]', en: '/writing/[slug]' },
     '/contato': { pt: '/contato', en: '/contact' },
   },
 })

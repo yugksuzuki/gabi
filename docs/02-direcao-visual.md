@@ -121,8 +121,13 @@ Caminho de upgrade, se houver verba e a cliente quiser assinatura tipográfica m
 famílias licenciadas de foundry (Pangram Pangram, Klim, Commercial Type). **Decisão da
 Catherine**, junto com a identidade — não do desenvolvedor sozinho.
 
+A Cormorant entra em **duas faces: normal e itálico**. O itálico não é enfeite — a ficha
+técnica escreve o nome da peça em itálico, seguindo a prancha que ela diagramou (docs/08 §3).
+
 Implementação: `next/font` com auto-hospedagem e subsetting (item 14). Sem requisição externa,
 sem salto de layout. `font-display: swap` e métricas de fallback ajustadas.
+Arquivos gerados por `scripts/gerar-fontes.py`: 26 KB de romano, 28 KB de itálico, 30 KB de
+Inter. Saiu a Fraunces, com 58 KB — o peso total de fontes praticamente não mudou.
 
 ### Escala
 
@@ -137,8 +142,10 @@ display/corpo cai de **5,5&times;** (era 104/19) para **2,7&times;**.
 - **Display** — nome da obra, título de página. Já não é "muito grande": o gesto passou a
   ser o respiro e a fotografia, não o corpo da letra
 - **Título** — seções
-- **Corpo** — texto da obra e área editorial. Altura de linha generosa (1.6–1.75),
-  medida de 60–70 caracteres. Texto de artista se lê devagar
+- **Corpo** — texto da obra e área editorial. Altura de linha **1,8** e medida de 580px
+  (~66 caracteres em Cormorant), os dois valores da prancha que ela aprovou. A entrelinha
+  subiu da faixa antiga de 1,6–1,75 porque G7 pediu mais respiro, e respiro também é dentro
+  do parágrafo. Texto de artista se lê devagar
 - **Legenda** — ficha técnica, ano, dimensões. Pequeno, com entrelinha maior e leve
   espaçamento entre letras. É o registro de museu
 

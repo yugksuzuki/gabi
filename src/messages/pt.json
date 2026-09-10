@@ -6,8 +6,8 @@
   "nav": {
     "rotulo": "Navegação principal",
     "portfolio": "Portfólio",
-    "sobre": "Quem sou eu",
-    "textos": "Textos",
+    "sobre": "A artista",
+    "textos": "Ensaios",
     "contato": "Contato",
     "pularParaConteudo": "Pular para o conteúdo"
   },
@@ -44,12 +44,12 @@
     "acervo": "Acervo"
   },
   "sobre": {
-    "titulo": "Quem sou eu",
+    "titulo": "A artista",
     "retratoAlt": "Retrato de Gabriela Seleme, em preto e branco, encostada numa parede de madeira.",
     "rostoAlt": "Rosto de Gabriela Seleme em primeiríssimo plano, em preto e branco."
   },
   "textos": {
-    "titulo": "Textos",
+    "titulo": "Ensaios",
     "vazio": "Nenhum texto publicado ainda.",
     "ler": "Ler",
     "rascunho": "Rascunho — visível só em desenvolvimento",

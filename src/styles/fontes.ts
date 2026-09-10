@@ -14,30 +14,51 @@ import localFont from 'next/font/local'
  *
  * Os arquivos são RECORTADOS por scripts/gerar-fontes.py, a partir dos
  * originais em src/styles/fontes/originais/ (@fontsource-variable v5.3.0,
- * subset latin). Fraunces: 121 KB -> 58 KB. Inter: 48 KB -> 30 KB. São 85 KB a
- * menos competindo com a foto da obra na primeira visita, e num 4G isso é
- * tempo de LCP. O que saiu foram glifos fora do latim e os eixos SOFT e WONK,
- * que só existem se alguém escrever font-variation-settings à mão — este site
- * não escreve. O eixo `opsz` FICOU: o navegador o aplica sozinho por tamanho de
- * texto, e é ele que dá calor ao nome da obra em corpo grande.
+ * subset latin). Cormorant: 38 KB -> 26 KB, mais 28 KB de itálico. Inter:
+ * 48 KB -> 30 KB.
  *
  * Ambas SIL OFL 1.1 — licenças em src/styles/fontes/LICENSE-*.txt.
  *
- * Duas famílias, e só duas (docs/02 §3): serifada editorial para display e
- * título de obra; neutra para interface, ficha técnica e corpo longo.
+ * ## Por que Cormorant Garamond, e não Fraunces
  *
- * Escolha de partida, não escolha final: um upgrade para família licenciada de
- * foundry é decisão da Catherine junto com a identidade, não do desenvolvedor.
+ * Porque ela pediu. G4 da lista de 27/08 (docs/08 §1) diz "usar Cormorant
+ * Garamond", e isso venceu a escolha anterior — que era nossa, não dela.
+ * A instrução casa com o material: a folha A3 em que ela mesma diagramou a
+ * própria bio já está em Garamond. O site estava numa fonte que ela nunca
+ * escolheu.
+ *
+ * ## A divisão de trabalho mudou junto
+ *
+ * Antes: serifada para display e título, neutra para todo o resto — inclusive
+ * o corpo do texto. Agora a Cormorant carrega TAMBÉM o corpo (21px, no
+ * wireframe que ela aprovou), e a Inter recua para a interface: menu, ficha,
+ * legenda, preço, Consultar. Texto de artista se lê em serifada; o que é
+ * maquinário do site se lê em neutra e não disputa atenção.
+ *
+ * O itálico não é enfeite: a ficha técnica escreve o nome da peça em itálico,
+ * seguindo a prancha que ela diagramou (docs/08 §3, commit 1ec5ae4).
+ *
+ * Escolha dela, não de partida: um upgrade para família licenciada de foundry
+ * seria decisão da Catherine junto com a identidade — mas agora teria de
+ * passar pela Gabriela antes, porque esta escolha tem nome e dono.
  */
 
-export const fraunces = localFont({
-  src: './fontes/fraunces-latin-variavel.woff2',
+export const cormorant = localFont({
+  src: [
+    {
+      path: './fontes/cormorant-latin-variavel.woff2',
+      weight: '300 700',
+      style: 'normal',
+    },
+    {
+      path: './fontes/cormorant-latin-italico.woff2',
+      weight: '300 700',
+      style: 'italic',
+    },
+  ],
   display: 'swap',
-  variable: '--fonte-fraunces',
-  // Eixos opsz e wght. O opsz entra sozinho, por font-optical-sizing: auto.
-  weight: '300 700',
-  style: 'normal',
-  fallback: ['Georgia', 'Times New Roman', 'serif'],
+  variable: '--fonte-cormorant',
+  fallback: ['Garamond', 'Georgia', 'Times New Roman', 'serif'],
 })
 
 export const inter = localFont({
@@ -46,12 +67,5 @@ export const inter = localFont({
   variable: '--fonte-inter',
   weight: '300 700',
   style: 'normal',
-  fallback: [
-    'system-ui',
-    '-apple-system',
-    'Segoe UI',
-    'Helvetica Neue',
-    'Arial',
-    'sans-serif',
-  ],
+  fallback: ['system-ui', '-apple-system', 'Segoe UI', 'Helvetica Neue', 'Arial', 'sans-serif'],
 })

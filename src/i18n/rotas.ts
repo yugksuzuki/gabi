@@ -23,7 +23,7 @@ export function acharTemplate(caminhoInterno: string): CaminhoInterno {
   }
 
   // Com parâmetro: compara segmento a segmento. Mais específico primeiro, para
-  // que '/textos/[slug]' nunca perca para um template mais curto.
+  // que '/ensaios/[slug]' nunca perca para um template mais curto.
   const segmentos = caminhoInterno.split('/').filter(Boolean)
   const candidatos = templates
     .filter((t) => t.includes('['))
@@ -33,7 +33,7 @@ export function acharTemplate(caminhoInterno: string): CaminhoInterno {
     const partes = template.split('/').filter(Boolean)
     if (partes.length !== segmentos.length) continue
     const casa = partes.every(
-      (parte, i) => (parte.startsWith('[') && parte.endsWith(']')) || parte === segmentos[i]
+      (parte, i) => (parte.startsWith('[') && parte.endsWith(']')) || parte === segmentos[i],
     )
     if (casa) return template
   }

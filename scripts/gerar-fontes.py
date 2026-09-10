@@ -14,16 +14,15 @@ baixa, e no orçamento de performance (docs/02 §5) eles competem com a foto da
 obra: o next/font os pré-carrega, e numa conexão 4G cada KB de fonte é um KB que
 a obra espera para aparecer. Duas passadas cortam mais da metade:
 
-  - Recorte de eixos. A Fraunces vem com quatro eixos variáveis: opsz, wght,
-    SOFT e WONK. O `opsz` FICA — o navegador o aplica sozinho por tamanho de
-    texto (font-optical-sizing: auto é o padrão), e é ele que dá calor ao nome
-    da obra em corpo grande. SOFT e WONK SAEM: só funcionam com
-    font-variation-settings escrito à mão, e este site não escreve. Peso morto.
+  - Recorte de eixos. A Cormorant Garamond tem um eixo só, wght (300-700), e
+    ele fica inteiro: o site usa de 300 a 600. Não há eixo a descartar aqui —
+    o corte que sobra é o de glifos.
   - Recorte de glifos para latim + pontuação tipográfica. O subset "latin" do
     Google já é grande; o site escreve português e inglês.
 
-  Fraunces: 121 KB -> 58 KB. Inter: 48 KB -> 26 KB. São 85 KB a menos na
-  primeira visita, sem uma diferença visível de desenho.
+  A Cormorant entra em DUAS faces: normal e itálico. O itálico não é enfeite —
+  a ficha técnica da obra escreve o nome da peça em itálico, seguindo a prancha
+  que a própria Gabriela diagramou (docs/08 §3).
 
 **Os TTF do cartão social** (src/styles/fontes/og/*.ttf). O Satori, motor por
 trás do next/og, não lê woff2 e não interpola eixo variável: precisa de TTF com
@@ -34,14 +33,16 @@ página usem o MESMO desenho. Gerados em lugares diferentes, um dia divergem.
 
 ## De onde vêm os originais
 
-@fontsource-variable/fraunces e @fontsource-variable/inter, v5.3.0, subset latin,
-arquivo variável completo. Ambas SIL OFL 1.1 (licenças em
+@fontsource-variable/cormorant-garamond e @fontsource-variable/inter, v5.3.0,
+subset latin, arquivo variável completo. Ambas SIL OFL 1.1 (licenças em
 src/styles/fontes/LICENSE-*.txt). Para atualizar:
 
-    npm pack @fontsource-variable/fraunces@<versao>
-    tar xzf fontsource-variable-fraunces-<versao>.tgz
-    cp package/files/fraunces-latin-full-normal.woff2 \\
-       src/styles/fontes/originais/fraunces-latin.woff2
+    npm pack @fontsource-variable/cormorant-garamond@<versao>
+    tar xzf fontsource-variable-cormorant-garamond-<versao>.tgz
+    cp package/files/cormorant-garamond-latin-wght-normal.woff2 \\
+       src/styles/fontes/originais/cormorant-garamond-latin.woff2
+    cp package/files/cormorant-garamond-latin-wght-italic.woff2 \\
+       src/styles/fontes/originais/cormorant-garamond-latin-italico.woff2
 """
 
 from pathlib import Path
@@ -71,6 +72,28 @@ UNICODES = (
 )
 
 
+def _completar_gvar(fonte: TTFont) -> None:
+    """Dá a todo glifo uma entrada no gvar, nem que seja vazia.
+
+    A Cormorant Garamond traz glifos no cmap que não aparecem no gvar — o
+    espaço inquebrável (U+00A0) e o soft hyphen (U+00AD) entre eles. Faz
+    sentido para a fonte: são glifos sem contorno, não há o que variar. Mas o
+    subsetter do fontTools percorre os glifos que vai manter e busca cada um no
+    gvar sem perguntar se existe, e estoura em KeyError: 'uni00A0'.
+
+    Preencher com lista vazia diz exatamente a verdade — este glifo não varia —
+    e é o que o subsetter espera encontrar. A alternativa seria tirar os dois do
+    subset, mas o U+00A0 é o espaço que segura "R$ 11.230" e "180 × 115 cm"
+    numa linha só. Ele fica.
+    """
+    if "gvar" not in fonte:
+        return
+    variacoes = fonte["gvar"].variations
+    for nome in fonte.getGlyphOrder():
+        if nome not in variacoes:
+            variacoes[nome] = []
+
+
 def preparar(
     entrada: Path,
     saida: Path,
@@ -80,6 +103,7 @@ def preparar(
 ) -> None:
     fonte = TTFont(entrada)
     fonte = instantiateVariableFont(fonte, limites, inplace=True, updateFontNames=False)
+    _completar_gvar(fonte)
 
     opcoes = Options()
     opcoes.layout_features = [
@@ -106,14 +130,21 @@ def preparar(
 
 
 if __name__ == "__main__":
-    fraunces = ORIGINAIS / "fraunces-latin.woff2"
+    cormorant = ORIGINAIS / "cormorant-garamond-latin.woff2"
+    cormorant_italico = ORIGINAIS / "cormorant-garamond-latin-italico.woff2"
     inter = ORIGINAIS / "inter-latin.woff2"
 
     print("Site (vão para o navegador):")
     preparar(
-        fraunces,
-        FONTES / "fraunces-latin-variavel.woff2",
-        {"SOFT": 0, "WONK": 0, "opsz": (9, 144), "wght": (300, 700)},
+        cormorant,
+        FONTES / "cormorant-latin-variavel.woff2",
+        {"wght": (300, 700)},
+        "woff2",
+    )
+    preparar(
+        cormorant_italico,
+        FONTES / "cormorant-latin-italico.woff2",
+        {"wght": (300, 700)},
         "woff2",
     )
     preparar(
@@ -126,9 +157,9 @@ if __name__ == "__main__":
 
     print("\nCartão social (só o build lê):")
     preparar(
-        fraunces,
-        FONTES / "og" / "fraunces-og.ttf",
-        {"wght": 400, "opsz": 72, "SOFT": 0, "WONK": 0},
+        cormorant,
+        FONTES / "og" / "cormorant-og.ttf",
+        {"wght": 400},
         None,
     )
     preparar(

@@ -32,8 +32,9 @@ npm run dev
 
 /pt                  /en                  Portfólio (é a home)
 /pt/obras/[slug]     /en/works/[slug]     Obra
-/pt/sobre            /en/about            Quem sou eu
-/pt/textos           /en/writing          Textos
+/pt/a-artista        /en/about            A artista
+/pt/ensaios          /en/writing          Ensaios
+/pt/ensaios/[slug]   /en/writing/[slug]   Ensaio
 /pt/contato          /en/contact          Contato
 ```
 
@@ -49,7 +50,7 @@ preserva a página: `/pt/obras/instante` → `/en/works/instante`, nunca a home.
 | corrigir a bio | `content/sobre.mdx` — **texto dela**, não reescreva |
 | mudar rótulo de interface | `src/messages/{pt,en}.json` — só interface, nunca conteúdo autoral |
 | adicionar rota | `src/i18n/routing.ts` **e** `scripts/verificar-rotas.mjs` |
-| escrever um texto | `content/textos/` — copie `_modelo.mdx`, que explica cada campo |
+| escrever um texto | `content/textos/` — copie `_modelo.mdx`. A pasta mantém o nome interno; a rota é `/ensaios` |
 | trocar o vídeo da home | `public/entrada/` (webm + mp4 + poster). Ver `src/lib/entrada.ts` — a proporção do arquivo escolhe o layout |
 | trocar a tipografia | `src/styles/fontes/originais/` e depois `python3 scripts/gerar-fontes.py` |
 
@@ -62,10 +63,13 @@ preserva a página: `/pt/obras/instante` → `/en/works/instante`, nunca a home.
 **E0 a E4 e E6 concluídas** — na direção visual anterior. Faltam duas coisas, de naturezas
 diferentes:
 
-- **A revisão de 27/08 ainda não entrou no código.** Ela está aplicada às pranchas em
-  `public/wireframe/`, não no site: o menu ainda diz "Quem sou eu" e "Textos", a tipografia
-  ainda é Fraunces, e a rubrica não aparece no cabeçalho. Ver
-  [`docs/08-alteracoes-gabriela-27-08-2026.md`](docs/08-alteracoes-gabriela-27-08-2026.md).
+- **A revisão de 27/08 entrou pela metade.** O global está feito (G1–G7): a rubrica no
+  cabeçalho de toda página, "A artista" e "Ensaios" com as rotas novas, Cormorant Garamond
+  auto-hospedada, escala comprimida e mais respiro. **G8** (faixa de vídeo no cabeçalho e no
+  rodapé) está bloqueado por material 16:9 que não existe. Falta o trabalho de página —
+  obra, home, A artista, Ensaios, Contato. Ver
+  [`docs/08-alteracoes-gabriela-27-08-2026.md`](docs/08-alteracoes-gabriela-27-08-2026.md)
+  e o que já foi aplicado em [`docs/10`](docs/10-estado-em-10-09-2026.md) §3.
 - **E5 — conteúdo real**, que depende da Gabriela: Desabrochar e Instante não têm foto, ficha
   nem texto, e Encontro tem a ficha pela metade. Ver
   [`docs/04-pendencias-e-coleta.md`](docs/04-pendencias-e-coleta.md).

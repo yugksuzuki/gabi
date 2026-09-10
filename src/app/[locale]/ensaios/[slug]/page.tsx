@@ -13,7 +13,7 @@ type Props = { params: Promise<{ locale: Idioma; slug: string }> }
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>
-    textosVisiveis().map((texto) => ({ locale, slug: texto.slug }))
+    textosVisiveis().map((texto) => ({ locale, slug: texto.slug })),
   )
 }
 
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: titulo,
     description: campo(texto.resumo, locale),
-    alternates: alternativas({ pathname: '/textos/[slug]', params: { slug } }, locale),
+    alternates: alternativas({ pathname: '/ensaios/[slug]', params: { slug } }, locale),
     ...cartaoSocial({
       cartao: `texto/${slug}`,
       titulo,
@@ -65,14 +65,14 @@ export default async function Texto({ params }: Props) {
           {formatarData(texto.publicadoEm, locale)}
         </time>
 
-        <h1 className="font-display mt-6 text-display leading-[1.02]">
+        <h1 className="font-display text-display mt-6 leading-[1.02]">
           {campo(texto.titulo, locale)}
         </h1>
 
         {texto.estado === 'rascunho' && (
           <p
             role="status"
-            className="border-line-forte text-ink-muted mt-10 w-fit border border-dashed px-4 py-2 text-legenda"
+            className="border-line-forte text-ink-muted text-legenda mt-10 w-fit border border-dashed px-4 py-2"
           >
             {t('rascunho')}
           </p>
@@ -84,7 +84,7 @@ export default async function Texto({ params }: Props) {
         {!traduzido && (
           <p
             role="status"
-            className="border-line-forte text-ink-muted mt-10 border border-dashed px-5 py-3 text-legenda"
+            className="border-line-forte text-ink-muted text-legenda mt-10 border border-dashed px-5 py-3"
           >
             {t('traducaoPendente')}
           </p>
@@ -93,7 +93,7 @@ export default async function Texto({ params }: Props) {
         <Prosa
           texto={corpo}
           lang={idiomaReal === locale ? undefined : idiomaReal}
-          className="mt-14 text-corpo"
+          className="text-corpo mt-14"
         />
 
         {relacionadas.length > 0 && (

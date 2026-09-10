@@ -129,8 +129,9 @@ gabriela-seleme/
 │   │   │   ├── layout.tsx
 │   │   │   ├── page.tsx                    # portfólio
 │   │   │   ├── (obras)/[slug]/page.tsx
-│   │   │   ├── sobre/page.tsx
-│   │   │   ├── textos/[[...slug]]/page.tsx
+│   │   │   ├── a-artista/page.tsx
+│   │   │   ├── ensaios/page.tsx
+│   │   │   ├── ensaios/[slug]/page.tsx
 │   │   │   └── contato/page.tsx
 │   │   ├── api/cotacao/route.ts            # PTAX + cache
 │   │   ├── og/[...params]/route.tsx        # Open Graph dinâmico
@@ -143,7 +144,8 @@ gabriela-seleme/
 │   │   └── ui/
 │   ├── content/
 │   │   ├── obras/{desabrochar,instante,encontro}.mdx
-│   │   └── textos/
+│   │   └── textos/                         # pasta de conteúdo: nome interno,
+│   │                                       # não acompanha a rota /ensaios
 │   ├── lib/
 │   │   ├── obras.ts                        # leitura + validação Zod
 │   │   ├── moeda.ts                        # PTAX, formatação, fallback

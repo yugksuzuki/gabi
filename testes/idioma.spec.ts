@@ -14,8 +14,8 @@ import { expect, test } from '@playwright/test'
 
 const PARES = [
   ['/pt', '/en'],
-  ['/pt/sobre', '/en/about'],
-  ['/pt/textos', '/en/writing'],
+  ['/pt/a-artista', '/en/about'],
+  ['/pt/ensaios', '/en/writing'],
   ['/pt/contato', '/en/contact'],
   ['/pt/obras/encontro', '/en/works/encontro'],
   ['/pt/obras/instante', '/en/works/instante'],
@@ -49,12 +49,12 @@ test('a canônica e o hreflang apontam para o par certo', async ({ page }) => {
 
   await expect(page.locator('link[hreflang="en"]')).toHaveAttribute(
     'href',
-    /\/en\/works\/encontro$/
+    /\/en\/works\/encontro$/,
   )
   // x-default aponta para PT, o padrão do site (docs/03 §4).
   await expect(page.locator('link[hreflang="x-default"]')).toHaveAttribute(
     'href',
-    /\/pt\/obras\/encontro$/
+    /\/pt\/obras\/encontro$/,
   )
 })
 
@@ -76,7 +76,13 @@ test('nenhuma rota publicada mostra a marca de pendência sem aviso', async ({ p
   // Placeholder é visivelmente placeholder (regra 2), mas a MARCA crua
   // `[PENDENTE: ...]` é anotação de conteúdo, não texto de site. Ela nunca deve
   // vazar para a página — o componente <Pendente /> é quem mostra a ausência.
-  for (const rota of ['/pt', '/en', '/pt/obras/encontro', '/pt/obras/instante', '/pt/sobre']) {
+  for (const rota of [
+    '/pt',
+    '/en',
+    '/pt/obras/encontro',
+    '/pt/obras/instante',
+    '/pt/a-artista',
+  ]) {
     await page.goto(rota)
     const corpo = await page.locator('body').innerText()
     expect(corpo, `${rota} vazou a marca de pendência`).not.toMatch(/\[PENDENTE/i)

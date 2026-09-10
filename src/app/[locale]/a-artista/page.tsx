@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'sobre' })
   return {
     title: t('titulo'),
-    alternates: alternativas('/sobre', locale),
+    alternates: alternativas('/a-artista', locale),
     ...cartaoSocial({ cartao: 'pagina/sobre', titulo: t('titulo'), locale }),
     robots: robotsDaPagina(),
   }
@@ -61,7 +61,7 @@ export default async function Sobre({ params }: Props) {
       {emPortuguesNoIngles && (
         <p
           role="status"
-          className="border-line-forte text-ink-muted mt-10 max-w-[var(--medida-corpo)] border border-dashed px-5 py-3 text-legenda"
+          className="border-line-forte text-ink-muted text-legenda mt-10 max-w-[var(--medida-corpo)] border border-dashed px-5 py-3"
         >
           {tp('aviso')} — English translation pending the artist&rsquo;s approval. Shown in
           Portuguese, in her own words.
@@ -74,7 +74,7 @@ export default async function Sobre({ params }: Props) {
         <Prosa
           texto={corpo}
           lang={emPortuguesNoIngles ? 'pt' : undefined}
-          className="col-span-12 max-w-[var(--medida-corpo)] text-corpo md:col-span-7"
+          className="text-corpo col-span-12 max-w-[var(--medida-corpo)] md:col-span-7"
         />
 
         {/* Duas imagens na coluna da direita, espaçadas. A bio tem dez
@@ -112,4 +112,3 @@ export default async function Sobre({ params }: Props) {
     </div>
   )
 }
-
