@@ -1,18 +1,48 @@
 ---
 slug: instante
 titulo: Instante
-ano: "[PENDENTE]"
-tecnica: { pt: "[PENDENTE]", en: "[PENDENTE]" }
-dimensoes: "[PENDENTE]"
+# Ficha transcrita da folha dela (ativos/2.jpg), a mesma que está no álbum
+# "Instante 9.875" do Google Fotos, compartilhado por ela em 08/09/2026.
+ano: 2026
+tecnica:
+  pt: Lã de ovelha e novelo de lã sobre tela
+  en: "[PENDENTE: revisar tradução com a artista]"
+# A folha escreve "110x90" sem dizer qual é qual — o mesmo problema de
+# Encontro. Na foto, o corpo da peça é mais alto do que largo, então a leitura
+# provável é 110 de ALTURA e 90 de LARGURA. Mas atenção: em Encontro a mesma
+# conta deu o contrário (a folha põe a largura primeiro), então as duas folhas
+# não seguem a mesma ordem. CONFIRMAR COM A ARTISTA.
+dimensoes: { altura: 110, largura: 90, unidade: cm }
+medidaNaFicha: 110x90
 materiais: { pt: "[PENDENTE]", en: "[PENDENTE]" }
 edicao: "[PENDENTE]"
-precoBRL: null          # sem preço: renderiza "Sob consulta" / "Price on request"
+# Do nome do álbum, "Instante 9.875" — a mesma convenção que deu o preço de
+# Desabrochar (nome da pasta "Desabrochar 8.350").
+precoBRL: 9875
 disponibilidade: "[PENDENTE]"
 legenda: { pt: "[PENDENTE]", en: "[PENDENTE]" }
-imagens: []
-video: null
-# Campo do modelo de dados, não conteúdo da artista.
-# Vira 'publicada' só quando a ficha estiver completa — o build cobra.
+# O `alt` descreve o que se vê na fotografia. Foi escrito de observação, não
+# transcrito dela — REVISAR COM A ARTISTA antes de publicar.
+imagens:
+  - src: /obras/instante/frontal.jpg
+    papel: principal
+    origem: IMG_7032.JPG
+    alt:
+      pt: >-
+        Instante na parede branca: um volume de lã de ovelha crua, em dobras e
+        rolos cor de creme, de onde desce pela parte de baixo uma cascata de
+        fios de novelo.
+      en: >-
+        Instante on a white wall: a mass of raw sheep's wool in cream-coloured
+        folds and coils, with a cascade of yarn strands falling from its lower
+        edge.
+# Corte de 6s (4s–10s do original) em ida e volta. O bruto fica fora do git.
+video:
+  fonte: arquivo
+  src: /obras/instante/video.mp4
+  webm: /obras/instante/video.webm
+  poster: /obras/instante/poster.jpg
+  origem: "IMG_7031.MOV (1:34, 4K vertical) — álbum Instante 9.875"
 # NOTA DA PEÇA — pedido dela em 08/09/2026, por WhatsApp.
 # Ela: "na aba principal das peças ter algum lugar p adicionar nota p poder
 # colocar por exemplo 'em exposição em…'" e, em seguida: "E dessas todas aliás
@@ -25,9 +55,22 @@ video: null
 nota:
   pt: Em exposição na Galeria Caos
   en: On view at Galeria Caos
+# Campo do modelo de dados, não conteúdo da artista.
+# Vira 'publicada' só quando a ficha estiver completa — o build cobra.
 estado: rascunho
 ordem: 3
-fonte: "NÃO EXISTE pasta desta obra no Drive. Nenhuma foto, nenhum vídeo, nenhum dado."
+fonte: "Álbum Google Fotos 'Instante 9.875' (08/09/2026) — ficha e texto transcritos de 2.jpg; preço do nome do álbum."
 ---
 
-[PENDENTE: obra inteira]
+<!-- TEXTO DA OBRA — transcrito literalmente da folha 2.jpg. Confirmar com a artista antes de publicar.
+     Mesma regra de Encontro: quebra no meio da frase é wrap da caixa de texto e foi desfeita.
+     As três últimas linhas são quebras DELA: "segundo de uma pausa," fecha curta, longe da
+     margem, e as duas seguintes começam em minúscula — é verso, não wrap. Nenhuma palavra mudou. -->
+
+Essa tela é a plena metamorfose, ela já se transformou tantas vezes que eu nem sei mais dizer. Agora, para mim, ela é uma pausa.
+Uma pausa para contemplação num instante de transformação.
+Um instante no céu.
+Um instante de observação num dia ensolarado de nuvens vivas, onde num devaneio uma nuvem em formato de um dragão se transforma num buquê de flores, que é pego por um gigante e de repente: uma cachoeira.
+É um retrato do instante, uma fração de segundo de uma pausa,
+uma pausa para contemplação,
+num instante de transformação.

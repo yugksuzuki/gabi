@@ -10,6 +10,8 @@ tecnica:
 # proporção medida na foto (0,606) bate com 115/180 = 0,639, não com 180/115.
 # Logo: 115 é a LARGURA e 180 é a ALTURA. CONFIRMAR COM A ARTISTA.
 dimensoes: { altura: 180, largura: 115, unidade: cm }
+# Literal da folha — é o que a ficha mostra (O6/O7).
+medidaNaFicha: 115x180
 materiais:
   pt: "[PENDENTE: detalhar — a ficha diz gesso e massa acrílica]"
   en: "[PENDENTE]"
@@ -97,7 +99,15 @@ imagens:
       en: >-
         Encontro installed on a white wall, floor visible: a vertical canvas of
         pale relief, close to a person's height.
-video: { origem: "IMG_6561.MOV / C9668.MP4 / IMG_6562.MP4 — escolher" }
+# Escolhido: IMG_6561.MOV, o mesmo vídeo que está no álbum "Encontro 11.230"
+# que ela compartilhou em 08/09/2026. Corte de 6s (28s–34s, travelling sobre o
+# relevo) em ida e volta. O bruto fica fora do git.
+video:
+  fonte: arquivo
+  src: /obras/encontro/video.mp4
+  webm: /obras/encontro/video.webm
+  poster: /obras/encontro/poster.jpg
+  origem: "IMG_6561.MOV (1:38, 4K vertical) — álbum Encontro 11.230"
 # Campo do modelo de dados, não conteúdo da artista.
 # Vira 'publicada' só quando a ficha estiver completa — o build cobra.
 # NOTA DA PEÇA — pedido dela em 08/09/2026, por WhatsApp.

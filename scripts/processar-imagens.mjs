@@ -87,6 +87,24 @@ const TRABALHOS = [
     nota: 'recortada da prancha de ficha — obra em contexto, com piso',
   },
 
+  // ---- Obra: Desabrochar -------------------------------------------------
+  // A única foto que existe, e ela já é o original: no álbum dela no Google
+  // Fotos o arquivo é este mesmo PNG de 941×1672 (conferido em 10/09/2026).
+  // Menor que LARGURA_MAX, então passa intacto. Aguenta a página; o zoom vai
+  // mostrar pouco — pedir a foto de câmera, se existir.
+  {
+    origem: '53F2C6B0-CF83-4539-95A6-4136DA90A88C.png',
+    destino: '/obras/desabrochar/frontal.jpg',
+    nota: 'ramo de flores de tela metálica na parede clara — a principal',
+  },
+
+  // ---- Obra: Instante ----------------------------------------------------
+  {
+    origem: 'IMG_7032.JPG',
+    destino: '/obras/instante/frontal.jpg',
+    nota: 'lã de ovelha em parede branca, franja descendo — a principal',
+  },
+
   // ---- Ateliê: o segundo registro ----------------------------------------
   // As TRÊS únicas realmente em preto e branco do conjunto de 12 (medido:
   // saturação 0,0; as outras nove ficam entre 9 e 52). docs/06 §3 argumenta

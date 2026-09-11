@@ -5,6 +5,39 @@ Levantado em 20/08/2026 via conector do Google Drive. Substitui a seção "o que
 
 ---
 
+## 0. Atualização de 10/09/2026 — os álbuns dela fecharam o acervo
+
+Em 08/09, às 19:39, ela mandou por WhatsApp três álbuns do Google Fotos, um por obra. O nome
+de cada álbum repete a convenção das pastas do Drive: título e preço. Os mesmos arquivos foram
+postos em `ativos/` e conferidos um a um:
+
+| Álbum | Foto | Vídeo | Folha da obra |
+|---|---|---|---|
+| **Encontro 11.230** | `IMG_7015.JPG` | `IMG_6561.MOV` — 1:38, 4K vertical | `3.jpg` = `ficha-encontro.jpg` (mesmo hash) |
+| **Desabrochar 8.350** | `53F2C6B0-….png` — **941×1672, e é o original**: no álbum é este mesmo PNG | `copy_CAE78986-….mov` — 1:02, 1080×1920 | `1.jpg` |
+| **Instante 9.875** | `IMG_7032.JPG` — 3213×5712 | `IMG_7031.MOV` — 1:34, 4K vertical | `2.jpg` |
+
+`IMG_7032.MP4` (2,8s) é a Live Photo da foto de Instante — descartável.
+
+O que as folhas dizem, literal:
+
+> **Gabriela Seleme / *Desabrochar*, 2025 / Tela de alumínio e arame de aço**
+>
+> **Gabriela Seleme / *Instante*, 2026 / Lã de ovelha e novelo de lã sobre tela 110x90**
+
+Consequências:
+
+- **Instante existe**, com tudo — e tem preço: **R$ 9.875**
+- **Desabrochar não tem medida** na folha. É o único dado de ficha que falta nas três
+- **As obras não são todas gesso.** O §3 abaixo foi escrito olhando só para Encontro — ver a
+  correção lá
+- **Nenhum vídeo é horizontal.** A faixa 16:9 de cabeçalho e rodapé (G8) continua sem material
+
+Os vídeos brutos (90–530 MB) ficam em `ativos/`, **fora do git** pelo `.gitignore`. O que entra no
+site é o corte de 6s em `public/obras/*/` — ver `docs/10` §7.
+
+---
+
 ## 1. O que apareceu — e é muito mais do que fotos
 
 ### A biografia, escrita por ela
@@ -44,7 +77,7 @@ Texto integral transcrito em `content/obras/encontro.mdx`.
 |---|---|
 | Desabrochar | **R$ 8.350** |
 | Encontro | **R$ 11.230** |
-| Instante | — |
+| Instante | **R$ 9.875** — do nome do álbum, 10/09 (§0) |
 
 Confirme com ela antes de publicar: nome de pasta não é tabela de preço.
 
@@ -94,6 +127,9 @@ espelhada como recurso. `DSC04198` destoa: colorida, escura, com rastro de luz n
 
 ### Instante
 
+> **10/09/2026 — chegou inteira.** Foto, vídeo, folha com ficha e texto, e preço no nome do
+> álbum. Ver §0. O parágrafo abaixo é histórico.
+
 **Não existe.** Nenhuma pasta, nenhuma foto, nenhum vídeo, nenhum dado — e o link do Google
 Photos que ela mandou para Instante é o mesmo de Desabrochar. A obra existe como título e nada
 mais.
@@ -101,6 +137,12 @@ mais.
 ---
 
 ## 3. A descoberta que muda a direção visual
+
+> **Corrigido em 10/09/2026.** Esta seção foi escrita quando só Encontro tinha foto, e
+> generalizou Encontro para as três. As fichas de §0 mostram que Desabrochar é metal
+> (grafite translúcido) e Instante é lã crua (creme). A conclusão sobrevive — o conjunto vai
+> do cinza ao creme e **continua sem cor a extrair** — mas "gesso e massa acrílica" vale só
+> para Encontro.
 
 **As obras são monocromáticas.** Gesso e massa acrílica sobre tela: relevo pesado em branco
 osso, cinza, grafite e escorridos de prata metálica. A amostragem de cor das fotos dá
@@ -167,8 +209,9 @@ toca no lugar da foto — o pôster natural do bloco é o primeiro quadro do pr�
 
 | Item | Situação agora |
 |---|---|
-| **Instante** | Nada. Nem foto, nem ficha, nem preço, nem texto — e **nem pasta** (verificado 04/09) |
-| **Desabrochar** | Preço só. Zero fotos — só 2 vídeos |
+| ~~**Instante**~~ | **Resolvido em 10/09** — foto, vídeo, ficha, texto e preço (§0) |
+| **Desabrochar** | Resolvido em 10/09, **menos a medida**: a folha dela não traz dimensões |
+| **Medidas** | `115x180` e `110x90` — qual número é a altura? |
 | **`GSeleme-*.jpg`** | 5 arquivos acima de 10 MB, inacessíveis pelo conector |
 | **Ficha de Desabrochar e Instante** | Ano, técnica, dimensões, materiais, edição |
 | **Textos de Desabrochar e Instante** | Encontro já tem |

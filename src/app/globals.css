@@ -130,6 +130,15 @@
   background-color: var(--bg-alt);
 }
 
+/* O quadro é a caixa do vídeo: é nele que a rubrica se centraliza. Sem ele, no
+   desktop em retrato a rubrica centralizaria na faixa inteira de 1440 e ficaria
+   mais larga que o painel de vídeo por baixo. */
+.entrada__quadro {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
 .entrada__video,
 .entrada__estatica {
   display: block;
@@ -169,8 +178,7 @@
     background-color: transparent;
   }
 
-  .entrada--retrato .entrada__video,
-  .entrada--retrato .entrada__estatica {
+  .entrada--retrato .entrada__quadro {
     /* Proporção nativa: a caixa acompanha o arquivo, o arquivo não se deforma
        para caber na caixa. Em ~415px de largura o quadro de 720 ainda está
        sendo REDUZIDO — nitidez de sobra.
@@ -182,8 +190,279 @@
     width: auto;
     aspect-ratio: 9 / 16;
     max-width: 100%;
-    object-fit: contain;
   }
+}
+
+/* ---- H7: a rubrica se escreve sobre o vídeo ------------------------------ *
+ * Revelação da esquerda para a direita, na direção da mão, uma vez só. A tinta
+ * do PNG é quase-preta; `invert` a torna clara sobre o vídeo — é a
+ * `rubrica-clara` da prancha aprovada, sem um segundo arquivo. */
+.entrada__rubrica {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.entrada__rubrica img {
+  width: 62%;
+  max-width: 26rem;
+  height: auto;
+  filter: invert(1) drop-shadow(0 1px 14px rgb(0 0 0 / 0.35));
+  clip-path: inset(0 100% 0 0);
+  animation: rubrica-escrita 2.6s cubic-bezier(0.45, 0.05, 0.25, 1) 0.6s forwards;
+}
+
+@keyframes rubrica-escrita {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrada__rubrica img {
+    animation: none;
+    clip-path: none;
+  }
+}
+
+/* ---- A sequência da home: foto que vira vídeo (H4/H5) --------------------- */
+.obra-quadro {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-alt);
+}
+
+.obra-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms var(--curva);
+}
+
+.obra-video--tocando {
+  opacity: 1;
+}
+
+/* Revelação suave na rolagem (docs/02 §5: opacidade + deslocamento pequeno).
+   CSS puro, amarrado à rolagem pelo próprio navegador: sem JS, sem listener de
+   scroll, e onde `animation-timeline` não existe a obra simplesmente já está lá.
+   Nunca esconde conteúdo — só o traz. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .revelar {
+      animation: revelar linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@keyframes revelar {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- A obra na página dela: foto e vídeo lado a lado (O1/O2) -------------- */
+.midia {
+  width: 100%;
+  /* O slide ocupa 86% do trilho e tem 9:16. O teto garante que o slide inteiro
+     caiba na altura da tela: obra em destaque absoluto é obra vista inteira. */
+  max-width: calc((100svh - 8rem) * 9 / 16 / 0.86);
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .midia {
+    margin-right: 0;
+  }
+}
+
+.midia__trilho {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.midia__trilho::-webkit-scrollbar {
+  display: none;
+}
+
+.midia__slide {
+  position: relative;
+  flex: 0 0 86%;
+  margin: 0;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background-color: var(--bg-alt);
+}
+
+.midia__slide:only-child {
+  flex-basis: 100%;
+}
+
+.midia__slide img,
+.midia__slide video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.midia__ampliar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.midia__selo {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.3rem 0.65rem;
+  background-color: var(--bg);
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity var(--duracao) var(--curva);
+}
+
+.midia__ampliar:hover .midia__selo,
+.midia__ampliar:focus-visible .midia__selo {
+  opacity: 1;
+}
+
+/* Sem hover, o selo é a única pista de que a foto amplia. */
+@media (hover: none) {
+  .midia__selo {
+    opacity: 1;
+  }
+}
+
+.midia__controles {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.midia__ponto {
+  display: flex;
+  align-items: center;
+  width: 2.5rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.midia__ponto::before {
+  content: '';
+  display: block;
+  width: 1.75rem;
+  height: 2px;
+  background-color: var(--line-forte);
+  transition: background-color var(--duracao) var(--curva);
+}
+
+.midia__ponto[aria-current='true']::before {
+  background-color: var(--ink);
+}
+
+/* ---- Zoom: a foto inteira, ampliada onde a pessoa apontar (O1/O4) --------- */
+html:has(dialog.zoom[open]) {
+  overflow: hidden;
+}
+
+.zoom {
+  width: 100vw;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+.zoom[open] {
+  animation: zoom-entra var(--duracao) var(--curva);
+}
+
+.zoom::backdrop {
+  background-color: var(--bg);
+}
+
+@keyframes zoom-entra {
+  from {
+    opacity: 0;
+  }
+}
+
+.zoom__fechar {
+  position: absolute;
+  top: 1.25rem;
+  right: var(--margem-lateral);
+  z-index: 1;
+  padding: 0.4rem 0.7rem;
+  background-color: var(--bg);
+  color: var(--ink);
+  border: 0;
+  cursor: pointer;
+}
+
+.zoom__palco {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: none;
+  cursor: zoom-in;
+}
+
+.zoom__palco[data-ampliada='true'] {
+  cursor: zoom-out;
+  touch-action: none;
+}
+
+.zoom__palco img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  transition: transform 500ms var(--curva);
+}
+
+.zoom__palco[data-ampliada='true'] img {
+  transform: scale(2.6);
 }
 
 /* Enquanto há movimento, a estática não existe. */

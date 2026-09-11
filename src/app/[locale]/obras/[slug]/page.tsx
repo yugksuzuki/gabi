@@ -11,6 +11,7 @@ import { ImagemObra } from '@/components/ui/ImagemObra'
 import { Pendente } from '@/components/ui/Pendente'
 import { FichaTecnica } from '@/components/obra/FichaTecnica'
 import { Consultar } from '@/components/obra/Consultar'
+import { MidiaObra } from '@/components/obra/MidiaObra'
 import { Prosa } from '@/components/ui/Prosa'
 import { DadosEstruturados } from '@/components/DadosEstruturados'
 import { grafo, migalhas, obraEmSchema, pessoa } from '@/lib/schema'
@@ -53,11 +54,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 /**
- * Anatomia na ordem de leitura de docs/01 §1: imagem principal grande, título e
- * ano, galeria, vídeo, texto autoral, ficha técnica, preço + Consultar,
- * navegação para a obra seguinte.
+ * A página da obra, redesenhada pela revisão de 27/08 (docs/08 §3):
  *
- * O preço NÃO é o elemento mais destacado. Ele informa; não vende.
+ * > "Reformule a visualização para um formato editorial, obra em destaque
+ * > absoluto, uma foto da obra com opção de zoom para ampliação da imagem +
+ * > vídeo da obra — a transição entre uma coisa e outra em forma de scroll para
+ * > o lado, ficha técnica limpa e canal de aquisição discreto. Galeria com
+ * > imagem à direita, texto e detalhes técnicos à esquerda."
+ *
+ *   O1/O2/O4/O5  foto única com zoom + vídeo, lado a lado — MidiaObra.
+ *                A galeria de ângulos, o detalhe e a escala saíram da página
+ *                (os arquivos ficam: são dado da obra, não layout)
+ *   O3           imagem à direita, texto e ficha à esquerda
+ *   O6/O7        ficha como a folha dela, sem rótulos — FichaTecnica
+ *   O8/O9        sem o rótulo "VALOR"; o preço em cinza, menor que o resto
+ *   O10          Consultar como link, não botão com caixa
+ *
+ * No celular, a ordem de leitura é nome → obra → texto → ficha: a obra vem
+ * antes do texto, como numa parede de galeria.
+ *
+ * Em tela larga a obra fica PARADA (sticky) enquanto o texto corre ao lado — a
+ * pessoa lê olhando para a peça. É a obra em destaque absoluto sem precisar ser
+ * maior que a tela.
  */
 export default async function PaginaObra({ params }: Props) {
   const { locale, slug } = await params
@@ -67,6 +85,7 @@ export default async function PaginaObra({ params }: Props) {
   if (!obra) notFound()
 
   const t = await getTranslations('obra')
+  const tPortfolio = await getTranslations('portfolio')
   const cotacao = await buscarCotacaoUSD()
 
   const texto = obra.texto && !ehPendente(obra.texto) ? obra.texto : null
@@ -76,17 +95,25 @@ export default async function PaginaObra({ params }: Props) {
   const proxima = obras[(obras.findIndex((o) => o.slug === obra.slug) + 1) % obras.length]
 
   const principal = obra.imagens.find((im) => im.papel === 'principal')
-  // A escala sai da grade e fecha a página em largura cheia: ela não mostra a
-  // obra, mostra a obra NUM LUGAR — piso, rodapé, altura de pessoa. É a única
-  // do conjunto que pede o quadro inteiro, e em grade de duas colunas ela ficava
-  // órfã na última linha.
-  const escala = obra.imagens.find((im) => im.papel === 'escala')
-  const galeria = obra.imagens.filter((im) => im !== principal && im !== escala)
-
-  const tPortfolio = await getTranslations('portfolio')
+  const altPrincipal = localizar(principal?.alt, locale)
+  // A mídia só entra com a foto COMPLETA: arquivo processado e alt aprovado.
+  // Faltando qualquer um, a moldura assume — mesma regra do ImagemObra.
+  const foto =
+    principal?.largura && principal.altura && principal.lqip && altPrincipal
+      ? {
+          src: principal.src,
+          alt: altPrincipal,
+          largura: principal.largura,
+          altura: principal.altura,
+          lqip: principal.lqip,
+        }
+      : null
+  const video = obra.video?.src
+    ? { mp4: obra.video.src, webm: obra.video.webm, poster: obra.video.poster }
+    : null
 
   return (
-    <article className="pt-[var(--respiro-secao)]">
+    <article className="pt-12 md:pt-20">
       {/* VisualArtwork + Person + BreadcrumbList (docs/03 §7). Campo pendente
           é omitido, nunca inventado: dado estruturado sai do nosso controle. */}
       <DadosEstruturados
@@ -96,94 +123,59 @@ export default async function PaginaObra({ params }: Props) {
           migalhas(obra, locale, tPortfolio('titulo')),
         )}
       />
-      {/* 1. Imagem principal, grande, quase sem cerimônia. */}
-      <div className="px-[var(--margem-lateral)]">
-        <div className="mx-auto max-w-[52rem]">
-          <ImagemObra
-            src={principal?.src ?? ''}
-            alt={localizar(principal?.alt, locale)}
-            titulo={obra.titulo}
-            prioridade
-            // Desconta a margem lateral: declarar 100vw faz o navegador
-            // baixar um arquivo maior do que o que vai desenhar.
-            sizes="(max-width: 768px) calc(100vw - 3rem), 52rem"
-          />
+
+      <div className="grid grid-cols-12 gap-y-12 px-[var(--margem-lateral)] lg:grid-rows-[auto_auto_1fr] lg:gap-x-12 lg:gap-y-16">
+        <header className="col-span-12 lg:col-span-5 lg:col-start-1 lg:row-start-1">
+          <h1 className="font-display text-display leading-[1.05]">{obra.titulo}</h1>
+          <p className="legenda mt-2">
+            {ehPendente(obra.ano) ? <Pendente campo="ano" /> : obra.ano}
+          </p>
+        </header>
+
+        <div className="col-span-12 lg:sticky lg:top-10 lg:col-span-6 lg:col-start-7 lg:row-span-3 lg:row-start-1 lg:self-start">
+          {foto ? (
+            <MidiaObra
+              foto={foto}
+              video={video}
+              rotulos={{
+                midia: t('midia'),
+                ampliar: t('ampliar'),
+                reduzir: t('reduzir'),
+                fechar: t('fechar'),
+                foto: t('foto'),
+                video: t('video'),
+                videoDaObra: t('videoDaObra', { titulo: obra.titulo }),
+              }}
+            />
+          ) : (
+            <div className="mx-auto max-w-[28rem] lg:mr-0">
+              <ImagemObra src="" alt={null} titulo={obra.titulo} />
+            </div>
+          )}
         </div>
-      </div>
 
-      {/* 2. Título e ano, na mesma linha de base. O ano é ficha de museu: fica
-          na borda oposta, pequeno, sem competir com o nome da obra. */}
-      <header className="flex flex-wrap items-end justify-between gap-x-10 gap-y-3 px-[var(--margem-lateral)] pt-14">
-        <h1 className="font-display text-display leading-[0.95]">{obra.titulo}</h1>
-        <p className="legenda pb-3">
-          {ehPendente(obra.ano) ? <Pendente campo="ano" /> : obra.ano}
-        </p>
-      </header>
-
-      <div className="mt-[var(--respiro-secao)] grid grid-cols-12 gap-y-16 px-[var(--margem-lateral)]">
-        {/* 5. Texto autoral. Medida curta, entrelinha generosa. */}
-        <div className="col-span-12 lg:col-span-6">
+        <div className="col-span-12 lg:col-span-5 lg:col-start-1 lg:row-start-2">
           {texto ? <Prosa texto={texto} /> : <Pendente campo="texto" />}
         </div>
 
-        {/* Nota da peça — onde ela está agora. Vem ANTES da ficha de
-            propósito: a ficha é o que a obra é e não muda; a nota é onde ela
-            está, e muda quando a peça troca de sala. Some sozinha se a obra
-            não tiver nota. */}
-        {/* 6 e 7. Ficha técnica, depois valor e Consultar. */}
-        <div className="col-span-12 flex flex-col gap-12 lg:col-span-5 lg:col-start-8">
-          {nota && <p className="legenda text-ink-muted mb-8">{nota}</p>}
+        <div className="col-span-12 flex flex-col items-start gap-7 lg:col-span-5 lg:col-start-1 lg:row-start-3">
+          {/* Nota da peça — onde ela está agora. Vem ANTES da ficha: a ficha é o
+              que a obra é e não muda; a nota muda quando a peça troca de sala. */}
+          {nota && <p className="legenda">{nota}</p>}
 
           <FichaTecnica obra={obra} idioma={locale} />
 
-          <section aria-labelledby="valor" className="flex flex-col gap-5">
-            <h2 id="valor" className="legenda">
-              {t('preco')}
-            </h2>
-            <p className="text-corpo">{preco ?? t('sobConsulta')}</p>
+          <div className="flex flex-col items-start gap-6">
+            {/* O9: cinza e menor que o resto. O preço informa; não vende. */}
+            <p className="font-interface text-preco text-ink-muted tracking-[0.02em]">
+              {preco ?? t('sobConsulta')}
+            </p>
             <Consultar titulo={obra.titulo} idioma={locale} />
-          </section>
+          </div>
         </div>
       </div>
 
-      {/* 3. Galeria: ângulo, detalhe, escala. Duas colunas em tela larga, uma
-          no celular, e cada foto no seu próprio tamanho — sem recorte forçado. */}
-      {galeria.length > 0 && (
-        <div className="mt-[var(--respiro-secao)] grid grid-cols-1 items-start gap-8 px-[var(--margem-lateral)] md:grid-cols-2">
-          {galeria.map((img) => (
-            <figure key={img.src} className="flex flex-col gap-3">
-              <ImagemObra
-                src={img.src}
-                alt={localizar(img.alt, locale)}
-                titulo={obra.titulo}
-                sizes="(max-width: 768px) calc(100vw - 3rem), 45vw"
-              />
-              <figcaption className="legenda">{t(img.papel)}</figcaption>
-            </figure>
-          ))}
-        </div>
-      )}
-
-      {/* A obra num lugar. Fecha a sequência, centrada e com ar em volta.
-          NÃO sangra: esta foto é um recorte da prancha de ficha e tem 822px de
-          largura — esticada para 1440 ela seria ampliada quase o dobro, e a
-          única imagem de contexto da página apareceria borrada. Fica no tamanho
-          que a fonte aguenta, e o vazio em volta é composição. */}
-      {escala && (
-        <figure className="mt-[var(--respiro-secao)] flex flex-col gap-3 px-[var(--margem-lateral)]">
-          <div className="mx-auto w-full max-w-[52rem]">
-            <ImagemObra
-              src={escala.src}
-              alt={localizar(escala.alt, locale)}
-              titulo={obra.titulo}
-              sizes="(max-width: 768px) 100vw, 52rem"
-            />
-            <figcaption className="legenda mt-3">{t('escala')}</figcaption>
-          </div>
-        </figure>
-      )}
-
-      {/* 8. Mantém a pessoa dentro do acervo. */}
+      {/* Mantém a pessoa dentro do acervo. */}
       {proxima.slug !== obra.slug && (
         <nav className="border-line mt-[var(--respiro-secao)] border-t px-[var(--margem-lateral)] pt-8">
           <Link

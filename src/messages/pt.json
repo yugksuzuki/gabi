@@ -1,7 +1,7 @@
 {
   "meta": {
     "tituloPadrao": "Gabriela Seleme",
-    "descricaoPadrao": "Obras de Gabriela Seleme. Gesso e massa acrílica sobre tela."
+    "descricaoPadrao": "Obras de Gabriela Seleme."
   },
   "nav": {
     "rotulo": "Navegação principal",
@@ -36,7 +36,14 @@
     "principal": "Vista frontal",
     "angulo": "Ângulo",
     "detalhe": "Detalhe",
-    "escala": "Escala"
+    "escala": "Escala",
+    "midia": "Foto e vídeo da obra",
+    "ampliar": "Ampliar",
+    "reduzir": "Reduzir",
+    "fechar": "Fechar",
+    "foto": "Foto",
+    "video": "Vídeo",
+    "videoDaObra": "Vídeo de {titulo}"
   },
   "portfolio": {
     "titulo": "Portfólio",

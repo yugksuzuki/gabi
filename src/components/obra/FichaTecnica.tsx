@@ -1,51 +1,42 @@
 import { useTranslations } from 'next-intl'
 import { ehPendente, type Obra } from '@/lib/obras'
 import { localizar } from '@/lib/localizar'
-import { Pendente, type CampoPendente } from '@/components/ui/Pendente'
+import { Pendente } from '@/components/ui/Pendente'
 import type { Idioma } from '@/i18n/routing'
 
 /**
- * Diagramada como REGISTRO DE MUSEU, não como especificação de produto
- * (checklist docs/02 §8). Rótulo pequeno em versalete, valor em corpo,
- * filete de baixíssimo contraste entre as linhas. Nada de tabela de e-commerce.
+ * A ficha como ELA faz — O6 e O7 da revisão de 27/08.
+ *
+ * A tabela com coluna de rótulos foi riscada, e o áudio foi literal: "não
+ * precisa ter tipo assim, nome tananã. Acho que pode ser só organizado do
+ * jeito que tá naquele pdfzinho". O pdfzinho é a folha de cada obra:
+ *
+ *   Gabriela Seleme
+ *   Encontro, 2026
+ *   Gesso e massa acrílica sobre tela 115x180
+ *
+ * Três linhas, o nome da obra em itálico, técnica e medida juntas, sem rótulo,
+ * sem filete. A medida sai como ela escreveu (`medidaNaFicha`); na falta dela,
+ * do dado estruturado.
  */
 export function FichaTecnica({ obra, idioma }: { obra: Obra; idioma: Idioma }) {
   const t = useTranslations('obra')
 
-  const dimensoes = formatarDimensoes(obra.dimensoes)
-  const linhas: { rotulo: string; valor: string | null; campo: CampoPendente }[] = [
-    { rotulo: t('ano'), valor: ehPendente(obra.ano) ? null : String(obra.ano), campo: 'ano' },
-    { rotulo: t('tecnica'), valor: localizar(obra.tecnica, idioma), campo: 'tecnica' },
-    { rotulo: t('dimensoes'), valor: dimensoes, campo: 'dimensoes' },
-    { rotulo: t('materiais'), valor: localizar(obra.materiais, idioma), campo: 'materiais' },
-    { rotulo: t('edicao'), valor: localizar(obra.edicao, idioma), campo: 'edicao' },
-    {
-      rotulo: t('disponibilidade'),
-      valor: ehPendente(obra.disponibilidade)
-        ? null
-        : t(obra.disponibilidade as 'disponivel' | 'reservada' | 'vendida' | 'acervo'),
-      campo: 'disponibilidade',
-    },
-  ]
+  const tecnica = localizar(obra.tecnica, idioma)
+  const medida = obra.medidaNaFicha ?? formatarDimensoes(obra.dimensoes)
 
   return (
-    <section aria-labelledby="ficha" className="max-w-[46ch]">
-      <h2 id="ficha" className="legenda mb-5">
+    <section aria-labelledby="ficha" className="text-corpo leading-[1.55]">
+      <h2 id="ficha" className="sr-only">
         {t('fichaTecnica')}
       </h2>
-      <dl className="border-line border-t">
-        {linhas.map(({ rotulo, valor, campo }) => (
-          <div
-            key={campo}
-            className="border-line grid grid-cols-[9rem_1fr] gap-x-4 border-b py-3"
-          >
-            <dt className="legenda pt-0.5">{rotulo}</dt>
-            <dd className="text-corpo leading-snug">
-              {valor ?? <Pendente campo={campo} />}
-            </dd>
-          </div>
-        ))}
-      </dl>
+      <p>Gabriela Seleme</p>
+      <p>
+        <em>{obra.titulo}</em>, {ehPendente(obra.ano) ? <Pendente campo="ano" /> : obra.ano}
+      </p>
+      <p>
+        {tecnica ?? <Pendente campo="tecnica" />} {medida ?? <Pendente campo="dimensoes" />}
+      </p>
     </section>
   )
 }

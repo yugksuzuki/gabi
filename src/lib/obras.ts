@@ -64,7 +64,11 @@ const imagem = z.object({
 const video = z
   .object({
     fonte: z.enum(['arquivo', 'mux']).optional(),
+    /** H.264 — Safari e iOS. */
     src: z.string().optional(),
+    /** VP9 — vem PRIMEIRO no <video>: Chromium sem codec proprietário e
+     *  Firefox sem decodificador do SO não abrem H.264, e não avisam. */
+    webm: z.string().optional(),
     /** Obrigatório quando houver src: é o que aparece antes e sem JS. */
     poster: z.string().optional(),
     duracaoSegundos: z.number().positive().optional(),
@@ -82,6 +86,13 @@ export const esquemaObra = z.object({
   tecnica: localizado(z.string()),
   materiais: localizado(z.string()),
   dimensoes: talvez(dimensoes),
+  /**
+   * A medida COMO ELA ESCREVE na folha da obra ("115x180"), exibida literal na
+   * ficha — O6/O7 da revisão de 27/08: "organizado do jeito que tá naquele
+   * pdfzinho". O `dimensoes` estruturado continua existindo para o JSON-LD, que
+   * precisa saber qual número é a altura; a ficha não reescreve a dela.
+   */
+  medidaNaFicha: z.string().optional(),
   edicao: localizado(z.string()).optional(),
   /** Fonte única. USD é sempre derivado, nunca armazenado (docs/03 §5). */
   precoBRL: z.number().positive().nullable(),

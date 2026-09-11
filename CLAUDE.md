@@ -95,30 +95,41 @@ licenciada de terceiro. Toda fonte usada precisa de licença web verificada e re
 **Desabrochar · Instante · Encontro.** Três. O layout precisa parecer deliberado em três —
 não uma grade de vinte com dezessete buracos.
 
-**Estado real do acervo** (levantado no Drive — ver `docs/06-inventario-de-ativos.md`):
+**Estado real do acervo** (atualizado em 10/09/2026 com os três álbuns do Google Fotos que ela
+compartilhou em 08/09 — ver `docs/06-inventario-de-ativos.md` §0):
 
-| Obra | Fotos | Ficha | Texto | Preço |
-|---|---|---|---|---|
-| Encontro | 5 | completa | completo | R$ 11.230 |
-| Desabrochar | **0** (só vídeo) | — | — | R$ 8.350 |
-| Instante | **0** | — | — | — |
+| Obra | Foto | Vídeo | Ficha | Texto | Preço |
+|---|---|---|---|---|---|
+| Encontro | 5 | ✓ | completa | completo | R$ 11.230 |
+| Desabrochar | 1 (941px — só isso existe) | ✓ | **falta a medida** | completo | R$ 8.350 |
+| Instante | 1 | ✓ | completa | completo | R$ 9.875 |
 
-Só **uma** das três obras está pronta. Construa para três, publique com o que existir.
+As três têm foto, vídeo, texto e preço. As três seguem `estado: rascunho` — faltam a tradução
+da técnica, a disponibilidade e a revisão dos `alt` com ela. Os preços vêm do **nome da pasta
+ou do álbum**, não de uma tabela: confirmar antes de publicar.
 
-## As obras são monocromáticas
+## As obras são neutras — mas não são todas a mesma matéria
 
-Gesso e massa acrílica sobre tela: relevo em branco osso, cinza, grafite e escorrido de prata.
-A amostragem das fotos dá `#c7c6c2 · #cbcac6 · #c5c4bf` — neutro do começo ao fim.
+Corrigido em 10/09: até aqui este arquivo dizia que as três eram gesso e massa acrílica. Só
+Encontro é. As fichas dela dizem:
 
-**Não existe cor a extrair das obras.** A paleta do site é a paleta do trabalho: branco osso,
-cinza quente, grafite. O pedido dela de "uma cor que seja minha" precisa de outra resposta —
-a assinatura dela é a **rubrica + a textura + o P&B do ateliê**, não um acento cromático.
-Conversa a ter com ela; não decida sozinho.
+- **Encontro** — gesso e massa acrílica sobre tela: branco osso, cinza, grafite, escorrido de prata
+- **Desabrochar** — tela de alumínio e arame de aço: grafite translúcido sobre parede clara
+- **Instante** — lã de ovelha e novelo de lã sobre tela: creme cru
+
+Continua **não existindo cor a extrair**: o conjunto vai do cinza ao creme, sem acento. A
+paleta do site segue sendo a paleta do trabalho — branco osso, cinza quente, grafite — e o
+creme de Instante cabe nela sem esforço. O pedido dela de "uma cor que seja minha" precisa de
+outra resposta — a assinatura dela é a **rubrica + a textura + o P&B do ateliê**, não um
+acento cromático. Conversa a ter com ela; não decida sozinho.
 
 ## Conteúdo que já existe no repositório
 
 `content/sobre.mdx` — a bio **escrita por ela**, transcrita literal. Não reescreva.
 `content/obras/encontro.mdx` — ficha e texto reais, transcritos da prancha dela.
+`content/obras/desabrochar.mdx`, `content/obras/instante.mdx` — idem, das folhas `1.jpg` e `2.jpg`.
+`public/obras/*/video.{webm,mp4}` — os cortes de 6s dos vídeos dela. O bruto fica em `ativos/`,
+fora do git (`.gitignore`): 90–530 MB por arquivo, e o repositório é público.
 `content/contato.yml` — e-mail, Instagram e o WhatsApp **com ressalva** (leia antes de usar).
 `ativos/rubrica-gseleme.png` — a rubrica. Raster; precisa virar SVG a partir do original.
 
@@ -132,7 +143,8 @@ Conversa a ter com ela; não decida sozinho.
 | **GCLM aparece na v1?** | GCLM é a marca de design (ex-"Umbra"); Gabriela Seleme é a autora. Duas camadas nunca reconciliadas |
 | **Logo — BLOQUEIO** | Em 27/08 a Gabriela pediu a rubrica no lugar do nome tipografado, "**sempre a logo**", em **todas** as páginas. Isso tirou o vetor de "melhoria" e o transformou em bloqueio: raster escalado no cabeçalho vai aparecer. Pior, o `ativos/rubrica-gseleme.png` que existe é um recorte torto — traz junto a barra escura da foto e as palavras "Gabriela S". Peça o **original vetorial** à Catherine |
 | **Número do WhatsApp** | Informado `+55 44 9992-9186` — 8 dígitos onde celular tem 9, e o **DDD 44 é Maringá/PR**, não Balneário Camboriú/SC. Provável: `+55 44 99992-9186` → `5544999929186`. Teste abrindo `wa.me/5544999929186` no celular. Ver `content/contato.yml` |
-| **Cor assinatura** | As obras são monocromáticas — não há cor a extrair. Precisa de outra resposta ao pedido dela |
+| **Cor assinatura** | As obras são neutras (cinza a creme) — não há cor a extrair. Precisa de outra resposta ao pedido dela |
+| **Medidas** | Encontro `115x180` e Instante `110x90`: a folha não diz qual é a altura, e as duas parecem seguir ordens diferentes. Desabrochar não tem medida nenhuma |
 | **Data de estreia — REABERTA** | Ela travou **08/09/2026** no áudio de 29/08. O último commit do projeto é de 04/09 e a data passou sem publicação. Repactuar antes de programar qualquer coisa: sem data, não há escopo. Ver `docs/10` §2 |
 | **Caminho A ou B** | A conversa não registra escolha entre contratação avulsa e assessoria. **Não construa widgets, automação ou tráfego** antes disso estar claro |
 
