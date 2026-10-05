@@ -142,6 +142,10 @@ export function MidiaObra({
               placeholder="blur"
               blurDataURL={foto.lqip}
               priority
+              /* É o LCP da página de obra. No Next 16 `priority` não pede mais
+                 prioridade alta sozinho — só tira o lazy — e a foto descia
+                 atrás do pôster do vídeo ao lado (docs/11 §3). */
+              fetchPriority="high"
               sizes="(max-width: 1024px) 86vw, 32rem"
             />
             <span className="midia__selo legenda">

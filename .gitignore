@@ -32,3 +32,6 @@ ativos/**/*.MTS
 test-results/
 playwright-report/
 blob-report/
+
+# Relatórios do Lighthouse CI — resultado de rodada, não código.
+.lighthouseci/

@@ -1,0 +1,49 @@
+# Item 38 do Stack Técnico: o orçamento de performance de docs/02 §5 auditado
+# "a cada publicação" — que é exatamente o que este gatilho é.
+#
+# Não sobe servidor nenhum. Espera a Vercel terminar um deploy (preview ou
+# produção) e audita a URL que ela publicou: brotli, CDN, imagem otimizada na
+# borda — o site que a cliente abre, não uma imitação local dele.
+#
+# Se a Vercel passar a proteger os previews (Deployment Protection), esta
+# auditoria passa a bater numa tela de login. Aí é preciso o segredo
+# VERCEL_AUTOMATION_BYPASS_SECRET e o cabeçalho x-vercel-protection-bypass
+# nas configurações do Lighthouse. Hoje os previews são abertos.
+
+name: Lighthouse
+
+on:
+  deployment_status:
+
+jobs:
+  auditar:
+    # Só deploy concluído, e só do projeto "gabi". O projeto antigo "gabimain"
+    # na mesma conta também dispara deploy para este repositório.
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      !contains(github.event.deployment_status.target_url, 'gabimain')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.deployment.sha }}
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Lighthouse contra o deploy
+        run: pnpm auditar
+        env:
+          URL_AUDITADA: ${{ github.event.deployment_status.target_url }}
+
+      - name: Relatórios
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-${{ github.event.deployment.sha }}
+          path: .lighthouseci/relatorios/
+          retention-days: 30

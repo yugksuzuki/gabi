@@ -74,6 +74,23 @@ export default async function LocaleLayout({
           </main>
           <Rodape />
         </NextIntlClientProvider>
+        {/*
+          Speed Insights (item 31): LCP, CLS e INP de quem visita de verdade, no
+          celular de verdade. O Lighthouse do CI mede um laboratório; isto mede
+          o Instagram. Sem cookie e sem dado pessoal — por isso não depende do
+          consentimento que o GA4 vai pedir.
+
+          Sem o pacote @vercel/speed-insights, de propósito: ele punha ~5KB
+          gzip no bundle de toda página para descobrir o nome da rota, e o
+          orçamento de JS já está no limite (docs/11 §3). O script é o mesmo,
+          servido pela própria Vercel, com `defer` como o pacote fazia; sem o
+          nome da rota, o painel agrupa por endereço — com seis páginas por
+          idioma, é até melhor de ler.
+
+          Só existe no build da Vercel (VERCEL=1). Local, no CI e no teste não
+          há script, não há 404, e o número de laboratório não muda.
+        */}
+        {process.env.VERCEL === '1' && <script defer src="/_vercel/speed-insights/script.js" />}
       </body>
     </html>
   )

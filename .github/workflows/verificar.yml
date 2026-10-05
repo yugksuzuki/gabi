@@ -1,0 +1,54 @@
+# Item 34 do Stack Técnico. Roda a cada push a mesma bateria que se roda à mão
+# antes de mostrar qualquer coisa à cliente: tipos, lint, contraste AA, rotas,
+# moeda, URL, Consultar — e depois o build de produção com os testes de
+# navegador (axe-core, teclado, sem JS, troca de idioma, cabeçalhos).
+#
+# A Vercel publica o preview de qualquer jeito; este check é o que diz se o
+# preview que ela publicou está inteiro.
+
+name: Verificar
+
+on:
+  push:
+  workflow_dispatch:
+
+# Um push novo na mesma branch cancela a rodada antiga — ninguém quer o
+# resultado de um commit que já foi substituído.
+concurrency:
+  group: verificar-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+
+      # Lê a versão do campo `packageManager` do package.json.
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          # A mesma da Vercel (Settings → Node.js Version).
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Tipos, lint e verificações do projeto
+        run: pnpm verificar
+
+      - name: Chromium para os testes
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Build de produção + testes de navegador
+        run: pnpm testar
+
+      - name: Relatório do Playwright (só quando falha)
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-${{ github.sha }}
+          path: test-results/
+          retention-days: 7

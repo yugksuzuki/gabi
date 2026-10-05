@@ -19,6 +19,7 @@ completa e **não** são carregados sozinhos — abra sob demanda, o que a taref
 | Mexer em layout, rota, tipografia ou na página de obra | `docs/08-alteracoes-gabriela-27-08-2026.md` **primeiro** — é a revisão mais recente e vence os outros |
 | **Chegar agora ao projeto, ou retomar depois de um tempo** | `docs/10-estado-em-10-09-2026.md` **antes de tudo** — é o estado unificado e mais recente |
 | Decidir o que entra na v1, ou em que ordem trabalhar | `docs/09-plano-ate-08-09-2026.md` — **cronograma vencido**, ver o `10` |
+| Instalar pacote, mexer em CI, cabeçalho, Lighthouse ou orçamento de performance | `docs/11-stack-cuoncient-05-10-2026.md` — o que da stack Cuoncient entrou, o que não entra e por quê |
 
 Em conflito: as **cinco regras invioláveis** abaixo vencem sempre. No resto, `docs/` é mais
 detalhado e ganha do resumo.
@@ -197,7 +198,8 @@ Não versione nada de lá — nem citando, nem resumindo.
   categoria não se verifica lendo diff.
 - **Toda dependência nova justifica a própria existência** em uma linha no PR. A lista de 39
   ferramentas do Stack Técnico é referência de arquitetura, não ordem de compra —
-  o sequenciamento está em `docs/01-plano-de-execucao.md`.
+  o sequenciamento está em `docs/01-plano-de-execucao.md`. O mesmo vale para o padrão
+  Cuoncient: o que dele não entra, e por quê, está em `docs/11` §4.
 - **pnpm, não npm** (desde 05/10/2026). `pnpm install`, `pnpm dev`, `pnpm verificar`.
 
 ## Documentos
@@ -214,6 +216,7 @@ Não versione nada de lá — nem citando, nem resumindo.
 | `docs/08-alteracoes-gabriela-27-08-2026.md` | As correções que ela marcou sobre o Wireframe 3, em 27/08 |
 | `docs/09-plano-ate-08-09-2026.md` | **Histórico.** O cronograma de trás para frente até a estreia, e a proposta de escopo |
 | `docs/10-estado-em-10-09-2026.md` | **O estado atual.** A unificação das branches, a distância entre o wireframe aprovado e o site, a stack e o que trava |
+| `docs/11-stack-cuoncient-05-10-2026.md` | A stack Cuoncient aplicada: pnpm, GitHub Actions, Lighthouse CI, Speed Insights, cabeçalhos de segurança, e a dívida do LCP |
 | `content/` | Bio, ficha e texto de Encontro, contato — conteúdo real, já transcrito |
 | `ativos/` | Rubrica, folha da bio, ficha de Encontro, 2 fotos da obra |
 | `materiais/` | Conversa transcrita, PDFs originais, inventários |

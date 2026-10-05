@@ -94,16 +94,16 @@ isso a lista abaixo **sequencia**, não corta.
 
 | # | Ferramenta | Condição |
 |---|---|---|
-| 19 | Framer Motion | Só se couber no orçamento de performance |
+| 19 | Framer Motion | Só se couber no orçamento de performance — **hoje não cabe**, ver `docs/11` §4 |
 | 20 | Lenis | Idem |
 | 26 | @react-pdf/renderer | Portfólio para galerias. Precisa do conteúdo real |
 | 28 | Resend | Formulário de galerias/imprensa |
 | 29 | Google Analytics 4 | Precisa de conta e consentimento |
 | 30 | Search Console | Depende do domínio definitivo |
-| 31 | Vercel Speed Insights | |
-| 34 | GitHub Actions | |
+| 31 | Vercel Speed Insights | **Entrou em 05/10/2026** — falta ligar no painel. Ver `docs/11` |
+| 34 | GitHub Actions | **Entrou em 05/10/2026** — `verificar` + `testar` a cada push |
 | 35 | Cloudflare DNS | Depende do domínio definitivo |
-| 38 | Lighthouse CI | |
+| 38 | Lighthouse CI | **Entrou em 05/10/2026** — contra o deploy da Vercel, orçamento do `docs/02` §5 |
 
 ### Fase 3 — quando houver motivo
 

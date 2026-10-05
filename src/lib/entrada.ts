@@ -19,7 +19,7 @@
 export const entrada = {
   mp4: '/entrada/entrada.mp4',
   webm: '/entrada/entrada.webm',
-  poster: '/entrada/poster.jpg',
+  poster: '/entrada/poster.webp',
   largura: 720,
   altura: 1280,
 } as const

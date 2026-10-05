@@ -24,9 +24,13 @@ pnpm dev
 | `pnpm dev` | Servidor de desenvolvimento |
 | `pnpm build` | Build de produção. **Falha** se uma obra `publicada` tiver ficha incompleta |
 | `pnpm verificar` | Tipos, lint, contraste AA, rotas, moeda, URL e o botão Consultar |
-| `pnpm testar` | axe-core (WCAG AA), teclado, sem-JS e troca de idioma, em desktop e celular |
+| `pnpm testar` | axe-core (WCAG AA), teclado, sem-JS, troca de idioma e cabeçalhos de segurança, em desktop e celular |
+| `pnpm auditar` | Lighthouse com o orçamento de `docs/02` §5 (rode `pnpm build` antes). Com `URL_AUDITADA=<preview>`, audita a Vercel |
 | `pnpm imagens` | Processa as fotos (Sharp + LQIP) |
 | `pnpm icone` | Regenera o ícone a partir da rubrica |
+
+O GitHub Actions roda `verificar` + `testar` a cada push e o Lighthouse a cada deploy
+concluído na Vercel. Ver [`docs/11`](docs/11-stack-cuoncient-05-10-2026.md).
 
 ## Rotas
 
@@ -54,7 +58,7 @@ preserva a página: `/pt/obras/instante` → `/en/works/instante`, nunca a home.
 | mudar rótulo de interface | `src/messages/{pt,en}.json` — só interface, nunca conteúdo autoral |
 | adicionar rota | `src/i18n/routing.ts` **e** `scripts/verificar-rotas.mjs` |
 | escrever um texto | `content/textos/` — copie `_modelo.mdx`. A pasta mantém o nome interno; a rota é `/ensaios` |
-| trocar o vídeo da home | `public/entrada/` (webm + mp4 + poster). Ver `src/lib/entrada.ts` — a proporção do arquivo escolhe o layout |
+| trocar o vídeo da home | `public/entrada/` (webm + mp4 + `poster.webp`). Ver `src/lib/entrada.ts` — a proporção do arquivo escolhe o layout |
 | trocar a tipografia | `src/styles/fontes/originais/` e depois `python3 scripts/gerar-fontes.py` |
 
 ## Estado
@@ -62,6 +66,8 @@ preserva a página: `/pt/obras/instante` → `/en/works/instante`, nunca a home.
 > **Comece por [`docs/10-estado-em-10-09-2026.md`](docs/10-estado-em-10-09-2026.md).** É o
 > estado unificado: o que foi juntado de quatro branches, a data de estreia que passou, e a
 > distância entre o wireframe que a Gabriela aprovou e o site que está construído.
+> Depois, [`docs/11`](docs/11-stack-cuoncient-05-10-2026.md): a stack Cuoncient aplicada em
+> 05/10 — pnpm, CI, Lighthouse CI, Speed Insights, cabeçalhos de segurança.
 
 **E0 a E4 e E6 concluídas** — na direção visual anterior. Faltam duas coisas, de naturezas
 diferentes:
@@ -73,8 +79,9 @@ diferentes:
   obra, home, A artista, Ensaios, Contato. Ver
   [`docs/08-alteracoes-gabriela-27-08-2026.md`](docs/08-alteracoes-gabriela-27-08-2026.md)
   e o que já foi aplicado em [`docs/10`](docs/10-estado-em-10-09-2026.md) §3.
-- **E5 — conteúdo real**, que depende da Gabriela: Desabrochar e Instante não têm foto, ficha
-  nem texto, e Encontro tem a ficha pela metade. Ver
+- **E5 — conteúdo real**, que depende da Gabriela: desde 10/09 as três obras têm foto, vídeo,
+  texto e preço, e as três seguem `rascunho` — falta a tradução da técnica, a disponibilidade,
+  a revisão dos `alt` com ela e a medida de Desabrochar. Ver `CLAUDE.md` e
   [`docs/04-pendencias-e-coleta.md`](docs/04-pendencias-e-coleta.md).
 
 Auditoria de qualidade em [`docs/validacao/e6/`](docs/validacao/e6/) — zero

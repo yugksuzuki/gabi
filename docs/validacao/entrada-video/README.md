@@ -58,7 +58,7 @@ ponto de emenda porque não existe corte: o fim da ida é o começo da volta.
 |---|---|---|
 | `entrada.webm` | VP9, crf 40 | 475KB |
 | `entrada.mp4` | H.264, crf 30, `+faststart` | 462KB |
-| `poster.jpg` | primeiro quadro do loop | 46KB |
+| `poster.webp` | primeiro quadro do loop, WebP q82 | 18KB |
 
 O WebM vem primeiro no `<video>` e não é redundância. **H.264 não é livre:**
 Chromium compilado sem codecs proprietários — o padrão em boa parte do Linux —
@@ -70,6 +70,12 @@ que não tocam VP9.
 
 O pôster é o **primeiro quadro do loop**, não um quadro bonito do meio — senão
 há um salto visível no instante em que o vídeo começa.
+
+> **05/10/2026 — o pôster virou WebP e ganhou prioridade.** Ele é o LCP da home
+> (o maior elemento da primeira tela, segundo o Lighthouse), e o JPEG de 46KB
+> descia com prioridade *baixa*, atrás da rubrica e da primeira obra. Agora é
+> `poster.webp` (18KB, mesmo quadro, q82) e é pré-carregado com
+> `fetchpriority="high"` em `Entrada.tsx`. Ver `docs/11` §3.
 
 ## Por que o desktop não sangra
 

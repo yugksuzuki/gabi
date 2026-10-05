@@ -1,3 +1,4 @@
+import { preload } from 'react-dom'
 import { entrada, entradaEhHorizontal } from '@/lib/entrada'
 import { dadosDaImagem } from '@/lib/obras'
 
@@ -26,6 +27,12 @@ import { dadosDaImagem } from '@/lib/obras'
  */
 export function Entrada() {
   const rubrica = dadosDaImagem('/marca/rubrica.png')
+
+  // O pôster é o LCP da home: é o maior elemento da primeira tela, e o vídeo só
+  // assume depois. O `poster` do <video> o navegador descobre tarde e baixa com
+  // prioridade baixa — atrás da rubrica e da primeira obra, que nem aparece
+  // ainda. Este preload põe o pôster na frente da fila (docs/11 §3).
+  preload(entrada.poster, { as: 'image', fetchPriority: 'high' })
 
   return (
     <div
