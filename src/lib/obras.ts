@@ -166,7 +166,7 @@ function pendenciasDePublicacao(o: DadosObra, texto: string): string[] {
   for (const img of o.imagens) {
     // Listada no frontmatter mas ausente do manifesto = arquivo não existe.
     // Melhor derrubar aqui do que servir uma imagem quebrada.
-    if (!MANIFESTO[img.src]) faltando.push(`arquivo de ${img.src} (rode npm run imagens)`)
+    if (!MANIFESTO[img.src]) faltando.push(`arquivo de ${img.src} (rode pnpm imagens)`)
   }
   for (const img of o.imagens) {
     if (!img.alt || ehPendente(img.alt)) {

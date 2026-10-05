@@ -198,6 +198,7 @@ Não versione nada de lá — nem citando, nem resumindo.
 - **Toda dependência nova justifica a própria existência** em uma linha no PR. A lista de 39
   ferramentas do Stack Técnico é referência de arquitetura, não ordem de compra —
   o sequenciamento está em `docs/01-plano-de-execucao.md`.
+- **pnpm, não npm** (desde 05/10/2026). `pnpm install`, `pnpm dev`, `pnpm verificar`.
 
 ## Documentos
 

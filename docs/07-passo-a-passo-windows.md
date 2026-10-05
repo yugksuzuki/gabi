@@ -3,6 +3,11 @@
 Windows. Você já tem Node.js, Git, VS Code e Claude Code — então nada de instalação aqui.
 Tempo total: uns 10 minutos.
 
+> **Atualização de 05/10/2026.** Este guia é de quando o projeto nasceu, e os comandos `npm`
+> abaixo são daquela época. Hoje o projeto usa **pnpm**: rode `npm install -g pnpm` uma vez no
+> PowerShell e, dali em diante, `pnpm install` e `pnpm dev` no lugar de `npm install` e
+> `npm run dev`. Ver `docs/11` §5.
+
 ---
 
 ## Passo 0 — uma decisão antes de tudo: o repositório vai ser privado?

@@ -10,20 +10,23 @@ posicionamento, as cinco regras invioláveis e as decisões já travadas com a c
 
 ## Rodar
 
+O projeto usa **pnpm** (padrão Cuoncient, desde 05/10/2026). Uma vez por máquina:
+`npm install -g pnpm`.
+
 ```bash
-npm install
+pnpm install
 cp .env.example .env.local     # leia os comentários: há decisões em aberto ali
-npm run dev
+pnpm dev
 ```
 
 | Comando | O que faz |
 |---|---|
-| `npm run dev` | Servidor de desenvolvimento |
-| `npm run build` | Build de produção. **Falha** se uma obra `publicada` tiver ficha incompleta |
-| `npm run verificar` | Tipos, lint, contraste AA, rotas, moeda, URL e o botão Consultar |
-| `npm run testar` | axe-core (WCAG AA), teclado, sem-JS e troca de idioma, em desktop e celular |
-| `npm run imagens` | Processa as fotos (Sharp + LQIP) |
-| `npm run icone` | Regenera o ícone a partir da rubrica |
+| `pnpm dev` | Servidor de desenvolvimento |
+| `pnpm build` | Build de produção. **Falha** se uma obra `publicada` tiver ficha incompleta |
+| `pnpm verificar` | Tipos, lint, contraste AA, rotas, moeda, URL e o botão Consultar |
+| `pnpm testar` | axe-core (WCAG AA), teclado, sem-JS e troca de idioma, em desktop e celular |
+| `pnpm imagens` | Processa as fotos (Sharp + LQIP) |
+| `pnpm icone` | Regenera o ícone a partir da rubrica |
 
 ## Rotas
 
@@ -78,8 +81,8 @@ Auditoria de qualidade em [`docs/validacao/e6/`](docs/validacao/e6/) — zero
 violação AA, Lighthouse celular 87–100. Capturas de cada etapa em
 `docs/validacao/`.
 
-Antes da primeira execução de `npm run testar`, uma vez:
-`npx playwright install chromium`. Em ambiente que já tem um Chromium fora do lugar padrão,
+Antes da primeira execução de `pnpm testar`, uma vez:
+`pnpm exec playwright install chromium`. Em ambiente que já tem um Chromium fora do lugar padrão,
 aponte `CHROMIUM_EXECUTAVEL` para ele em vez de baixar de novo.
 
 O site **não é indexável** (`robots` fechado + `noindex`) enquanto houver `[PENDENTE]` em

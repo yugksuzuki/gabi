@@ -12,7 +12,7 @@ import { defineConfig, devices } from '@playwright/test'
  * Um navegador só, Chromium. WebKit e Firefox custam download e tempo e ainda
  * não pagariam por si: nada aqui depende de comportamento específico de motor.
  *
- * Antes da primeira execução, uma vez:  npx playwright install chromium
+ * Antes da primeira execução, uma vez:  pnpm exec playwright install chromium
  */
 /**
  * Escape para ambiente que já tem um Chromium instalado fora do lugar padrão
@@ -47,7 +47,7 @@ export default defineConfig({
   webServer: process.env.URL_DE_TESTE
     ? undefined
     : {
-        command: 'npm run build && npx next start -p 3210',
+        command: 'pnpm build && pnpm exec next start -p 3210',
         url: 'http://127.0.0.1:3210/pt',
         reuseExistingServer: !process.env.CI,
         timeout: 180_000,

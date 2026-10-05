@@ -119,7 +119,7 @@ export function lerTextos(): Texto[] {
 }
 
 /**
- * O que a pessoa vê. Rascunho só aparece rodando `npm run dev` — é a rede de
+ * O que a pessoa vê. Rascunho só aparece rodando `pnpm dev` — é a rede de
  * proteção que faz "nada entra no ar sozinho" ser código e não intenção.
  */
 export function textosVisiveis(): Texto[] {

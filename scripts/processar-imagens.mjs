@@ -7,7 +7,7 @@
  * precisa versionar base64 no frontmatter.
  *
  * Rode depois de trocar qualquer original:
- *   npm run imagens
+ *   pnpm imagens
  *
  * Pode largar o arquivo de câmera CRU em `ativos/` — o script reduz para
  * LARGURA_MAX e respeita a orientação EXIF. Não é preciso preparar nada antes.
