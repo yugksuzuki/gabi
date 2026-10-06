@@ -76,13 +76,20 @@ export default async function Portfolio({ params }: { params: Promise<{ locale: 
                     src={principal?.src ?? ''}
                     alt={localizar(principal?.alt, locale)}
                     titulo={obra.titulo}
-                    // A primeira obra da sequência é o LCP da home.
-                    prioridade={i === 0}
+                    // SEM prioridade, nem na primeira. O LCP da home é o pôster
+                    // da entrada (Entrada.tsx), não esta foto: medido, ela
+                    // começa em 969px no desktop (fora da primeira tela) e
+                    // mostra uma tira de 58px no celular. Com `prioridade` ela
+                    // ganhava um preload no <head> e disputava banda com o
+                    // pôster. Lazy aqui não atrasa nada que se veja: o navegador
+                    // já busca imagem lazy que está perto da tela (docs/11 §3).
                     // Valor fixo, não var(): `sizes` é lido fora da cascata e
                     // não resolve custom property.
                     sizes="(max-width: 768px) calc(100vw - 2.5rem), 34vw"
                   />
-                  {obra.video?.src && <VideoAoPassar mp4={obra.video.src} webm={obra.video.webm} />}
+                  {obra.video?.src && (
+                    <VideoAoPassar mp4={obra.video.src} webm={obra.video.webm} />
+                  )}
                 </Link>
 
                 <div>

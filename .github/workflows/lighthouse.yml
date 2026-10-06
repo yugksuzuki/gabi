@@ -17,8 +17,10 @@ on:
 
 jobs:
   auditar:
-    # Só deploy concluído, e só do projeto "gabi". O projeto antigo "gabimain"
-    # na mesma conta também dispara deploy para este repositório.
+    # Só deploy concluído. O filtro de "gabimain" é guarda: em 05/10 havia dois
+    # projetos extras na Vercel ligados a este repositório (gabimain e
+    # gabi-ssg4), os dois foram apagados, e fica só o "gabi". Se outro projeto
+    # for ligado ao repositório, ele também passa a ser auditado aqui.
     if: >-
       github.event.deployment_status.state == 'success' &&
       !contains(github.event.deployment_status.target_url, 'gabimain')

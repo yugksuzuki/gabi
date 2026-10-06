@@ -6,7 +6,12 @@ type Props = {
   src: string
   alt: string | null
   titulo: string
-  /** A imagem principal da página de obra carrega sem esperar a rolagem. */
+  /**
+   * Carrega sem esperar a rolagem e ganha preload no <head>. Só para a imagem
+   * que É o LCP da página — em qualquer outra, o preload rouba banda do LCP.
+   * Hoje nenhuma página usa: o LCP da home é o pôster da entrada, e o da obra
+   * é a foto de `MidiaObra`, que tem prioridade própria.
+   */
   prioridade?: boolean
   sizes?: string
   className?: string
