@@ -31,7 +31,10 @@ Consequências:
 - **Desabrochar não tem medida** na folha. É o único dado de ficha que falta nas três
 - **As obras não são todas gesso.** O §3 abaixo foi escrito olhando só para Encontro — ver a
   correção lá
-- **Nenhum vídeo é horizontal.** A faixa 16:9 de cabeçalho e rodapé (G8) continua sem material
+- ~~Nenhum vídeo é horizontal.~~ **Corrigido em 05/10/2026:** `GAB/Site gseleme/0722(1).mp4` é
+  horizontal — 2558×1440, P&B, 23s, ela trabalhando a lã. Escapou dos inventários anteriores
+  porque tem 17MB e o conector do Drive não baixa acima de 10MB; veio da pasta local. Virou a
+  entrada da home e as faixas de cabeçalho e rodapé (G8). Ver `docs/12`, "Segunda etapa"
 
 Os vídeos brutos (90–530 MB) ficam em `ativos/`, **fora do git** pelo `.gitignore`. O que entra no
 site é o corte de 6s em `public/obras/*/` — ver `docs/10` §7.
@@ -111,8 +114,9 @@ textura. Nenhuma é reprodução plana perfeitamente corrigida (todas têm leve 
 
 ### `GAB/Site gseleme` — fotografia de processo, e é excelente
 
-A folha da bio + 14 JPG + 5 vídeos, incluindo `GABI SELEME V1.mp4` (545 MB — provavelmente o
-vídeo de entrada da home).
+A folha da bio + 14 JPG + 5 vídeos: `GABI SELEME V1.mp4` (545 MB, **vertical**), `0722(1).mp4`
+(17 MB, **horizontal 2558×1440** — é a entrada da home desde 05/10), `C9627.MP4` e `C9633.MP4`
+(200–270 MB, formato ainda não conferido).
 
 As `DSC*.JPG` **não são obras: são o ateliê**. Preto e branco, vista de cima, a artista
 trabalhando sobre a peça em fibra branca. Editoriais, de revista. Duas usam composição
@@ -223,7 +227,7 @@ toca no lugar da foto — o pôster natural do bloco é o primeiro quadro do pr�
 ### Deixou de bloquear
 
 Bio ✅ · texto de Encontro ✅ · ficha de Encontro ✅ · preços de Encontro e Desabrochar ✅ ·
-vídeo de entrada ✅ (`GABI SELEME V1.mp4`) · fotografia de processo ✅ · logo ✅ (falta vetor)
+vídeo de entrada ✅ (`0722(1).mp4`, desde 05/10) · faixas G8 ✅ (mesmo filme) · fotografia de processo ✅ · logo ✅ (falta vetor)
 
 ### O número de telefone
 

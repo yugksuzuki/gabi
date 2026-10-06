@@ -1,5 +1,10 @@
 # Entrada em vídeo — registro de validação
 
+> **Histórico desde 05/10/2026.** A entrada descrita aqui (2,7s da janela com a cidade, em
+> ping-pong) saiu do site. A entrada agora é o filme horizontal dela, `GAB/Site gseleme/0722(1).mp4`,
+> em dois cortes — paisagem no computador, retrato no celular. Ver `docs/12`, "Segunda etapa",
+> `src/lib/entrada.ts` e as capturas em `docs/validacao/entrada-filme-05-10/`.
+
 `docs/01 §1` e `docs/02 §1` pedem isso desde o começo: **"A home abre em vídeo."**
 O que a Gabriela elogiou na Kelly Wearstler (áudio 03/09/24) não foi o site
 inteiro — foi a entrada, *"um vídeo com imagens dela montando uma mesa,

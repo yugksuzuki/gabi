@@ -106,41 +106,36 @@
 /* ---- Entrada da home ---------------------------------------------------- *
  * Ver src/components/layout/Entrada.tsx e src/lib/entrada.ts.
  *
- * A PROPORÇÃO DO ARQUIVO decide o tratamento, e o `src/lib/entrada.ts` diz qual
- * é. Duas situações, e só duas:
+ * Tela inteira, nos dois tamanhos, de borda a borda — a primeira tela é o filme
+ * dela trabalhando, não uma faixa de menu seguida de uma caixa. Cada tamanho
+ * recebe o próprio corte (paisagem no computador, retrato no celular), então
+ * nenhum dos dois é esticado: o `cover` só apara as bordas.
  *
- * PAISAGEM (`.entrada--paisagem`) — o caso da referência: sangra de borda a
- * borda, nos dois tamanhos de tela. É o tratamento que o vídeo de entrada
- * definitivo vai receber assim que chegar.
+ * Até 05/10 só existia material vertical, e no computador a entrada era um
+ * painel 9:16 no meio da tela. O filme horizontal (`0722(1).mp4`) estava na
+ * pasta dela desde 20/08 e ninguém tinha aberto — docs/06 o registra agora.
  *
- * RETRATO (`.entrada--retrato`) — o caso de hoje: material 9:16, gravado no
- * celular. Sangra no celular, onde a proporção do arquivo É a proporção da
- * tela. No desktop NÃO sangra: esticar 9:16 numa faixa de 1440 obriga o `cover`
- * a ampliar 2x e a descartar 70% do quadro, e movimento que custa qualidade não
- * entra (docs/02 §5). Vira painel na proporção nativa, com ar em volta — o
- * modelo do William Guillon que docs/02 §1 aponta para objeto isolado.
- *
- * A altura vive aqui, e não no componente, porque o pôster e o vídeo precisam
- * concordar em pixel: é o que mantém o CLS em zero na troca entre os dois.
+ * Pôster e vídeo ocupam a MESMA caixa, posicionados um sobre o outro: é o que
+ * mantém o CLS em zero quando o vídeo assume.
  */
 .entrada {
   position: relative;
   width: 100%;
+  height: 100svh;
+  min-height: 32rem;
   overflow: hidden;
-  background-color: var(--bg-alt);
+  background-color: var(--ink);
 }
 
-/* O quadro é a caixa do vídeo: é nele que a rubrica se centraliza. Sem ele, no
-   desktop em retrato a rubrica centralizaria na faixa inteira de 1440 e ficaria
-   mais larga que o painel de vídeo por baixo. */
 .entrada__quadro {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
 }
 
 .entrada__video,
 .entrada__estatica {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
@@ -148,104 +143,90 @@
   object-position: center;
 }
 
-/* ---- Paisagem: sangra sempre --------------------------------------------- */
-
-.entrada--paisagem {
-  height: 62svh;
-  min-height: 18rem;
-}
-
-@media (min-width: 768px) {
-  .entrada--paisagem {
-    height: 78vh;
-  }
-}
-
-/* ---- Retrato: sangra no celular, vira painel no desktop ------------------ */
-
-/* No celular, retrato é a proporção da tela: o vídeo ocupa a tela INTEIRA, de
-   borda a borda, e o menu flutua por cima dele (bloco logo abaixo). É a entrada
-   que ela elogiou na Kelly Wearstler — a primeira tela é a imagem, não uma
-   faixa de menu bege seguida de uma caixa. Até 05/10 eram 64svh: o vídeo
-   terminava no meio da tela e o resto era vazio. */
-.entrada--retrato {
-  height: 100svh;
-  min-height: 32rem;
-}
-
-@media (min-width: 768px) {
-  .entrada--retrato {
-    display: flex;
-    justify-content: center;
-    height: 88vh;
-    padding-block: clamp(1.5rem, 4vh, 3.5rem);
-    padding-inline: var(--margem-lateral);
-    background-color: transparent;
-  }
-
-  .entrada--retrato .entrada__quadro {
-    /* Proporção nativa: a caixa acompanha o arquivo, o arquivo não se deforma
-       para caber na caixa. Em ~415px de largura o quadro de 720 ainda está
-       sendo REDUZIDO — nitidez de sobra.
-
-       Centralizado, com o vazio igual dos dois lados: 9:16 obriga o painel a
-       ser estreito, e nessa largura o vazio todo de um lado só lê como erro de
-       layout em vez de composição. Aqui a assimetria não faz sentido, e
-       docs/02 §4 pede assimetria "quando fizer sentido, não como maneirismo". */
-    width: auto;
-    aspect-ratio: 9 / 16;
-    max-width: 100%;
-  }
-}
-
-/* ---- Entrada em tela cheia: o menu sobre o vídeo (só celular) ------------- *
- * Só na página que tem a entrada em retrato — a home —, e só abaixo de 768px.
- * `:has()` é o que permite isso sem o layout precisar saber em que rota está.
- * Onde o navegador não tem `:has()`, nada quebra: o menu fica em cima do vídeo,
- * como era antes.
+/* ---- O menu sobre o vídeo -------------------------------------------------- *
+ * Na home (a entrada) e nas páginas internas que abrem com faixa de vídeo
+ * (A artista, Contato), o menu flutua sobre o vídeo, claro — como na
+ * referência. `:has()` é o que permite isso sem o layout precisar saber em que
+ * rota está. Onde o navegador não tem `:has()`, nada quebra: o menu fica acima
+ * do vídeo, no papel, como era antes.
  *
- * O degradê escuro no topo não é enfeite: o vídeo abre num céu claro, e texto
- * claro sobre céu claro some. Ele garante leitura do menu sem escurecer a
+ * O degradê escuro no topo não é enfeite: o filme tem quadros quase brancos (a
+ * lã), e texto claro sobre lã some. Ele garante leitura do menu sem escurecer a
  * imagem inteira. */
-@media (max-width: 767px) {
-  body:has(.entrada--retrato) .cabecalho {
-    position: absolute;
-    inset-inline: 0;
-    top: 0;
-    z-index: 10;
-    color: var(--bg);
-  }
+body:has(.entrada, .faixa--cabecalho) .cabecalho {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 10;
+  color: var(--bg);
+}
 
-  /* A rubrica do cabeçalho é tinta escura: invertida, fica clara, como a
-     rubrica grande do centro. */
-  body:has(.entrada--retrato) .cabecalho img {
-    filter: invert(1);
-  }
+/* A rubrica do cabeçalho é tinta escura: invertida, fica clara. */
+body:has(.entrada, .faixa--cabecalho) .cabecalho img {
+  filter: invert(1);
+}
 
-  body:has(.entrada--retrato) .cabecalho .text-ink-muted {
-    color: inherit;
-    opacity: 0.75;
-  }
+body:has(.entrada, .faixa--cabecalho) .cabecalho .text-ink-muted {
+  color: inherit;
+  opacity: 0.75;
+}
 
-  body:has(.entrada--retrato) .cabecalho :focus-visible {
-    outline-color: var(--bg);
-  }
+body:has(.entrada, .faixa--cabecalho) .cabecalho :focus-visible {
+  outline-color: var(--bg);
+}
 
-  .entrada--retrato::before {
-    content: '';
-    position: absolute;
-    inset: 0 0 auto;
-    z-index: 1;
-    height: 12rem;
-    background: linear-gradient(rgb(0 0 0 / 0.55), rgb(0 0 0 / 0));
-    pointer-events: none;
+.entrada::before,
+.faixa--cabecalho::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 1;
+  /* Medido quadro a quadro no corte em retrato (2 quadros/s, 23s): com
+     0,55 → 0 em 12rem, o menu caía a 1,9:1 sobre a lã clara. O degradê agora
+     SEGURA o escuro até a linha do menu e só depois some — no pior quadro o
+     menu fica em 4,9:1 e a rubrica em 5,8:1 (percentil 90 do fundo atrás). */
+  height: 14rem;
+  max-height: 100%;
+  background: linear-gradient(rgb(0 0 0 / 0.65), rgb(0 0 0 / 0.55) 55%, rgb(0 0 0 / 0));
+  pointer-events: none;
+}
+
+/* ---- G8: as faixas de vídeo das páginas internas ---------------------------- *
+ * Ver src/components/layout/FaixaVideo.tsx. Altura de faixa, não de tela: é
+ * moldura da página, não a página. No celular ela precisa caber o menu (duas
+ * linhas) com folga; no computador cresce com a largura. */
+.faixa {
+  position: relative;
+  width: 100%;
+  height: clamp(10rem, 24vw, 21rem);
+  overflow: hidden;
+  background-color: var(--ink);
+}
+
+.faixa img,
+.faixa video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faixa video {
+    display: none;
   }
 }
 
 /* ---- H7: a rubrica se escreve sobre o vídeo ------------------------------ *
- * Revelação da esquerda para a direita, na direção da mão, uma vez só. A tinta
- * do PNG é quase-preta; `invert` a torna clara sobre o vídeo — é a
- * `rubrica-clara` da prancha aprovada, sem um segundo arquivo. */
+ * Revelação da esquerda para a direita, na direção da mão, uma vez só.
+ *
+ * A tinta do PNG é quase-preta; `invert` a torna branca, e `difference` faz o
+ * branco virar o oposto do que passa por baixo: escura sobre a lã clara, clara
+ * sobre o fundo escuro. O filme alterna as duas coisas a cada tomada, e uma cor
+ * fixa sumiria em metade delas. É decorativa (aria-hidden), então o contraste
+ * variável não é questão de acessibilidade — é de ela ser vista. */
 .entrada__rubrica {
   position: absolute;
   inset: 0;
@@ -259,7 +240,8 @@
   width: 62%;
   max-width: 26rem;
   height: auto;
-  filter: invert(1) drop-shadow(0 1px 14px rgb(0 0 0 / 0.35));
+  filter: invert(1);
+  mix-blend-mode: difference;
   clip-path: inset(0 100% 0 0);
   animation: rubrica-escrita 2.6s cubic-bezier(0.45, 0.05, 0.25, 1) 0.6s forwards;
 }
@@ -524,16 +506,10 @@ html:has(dialog.zoom[open]) {
   transform: scale(2.6);
 }
 
-/* Enquanto há movimento, a estática não existe. */
-.entrada__estatica {
-  display: none;
-}
-
+/* O pôster fica sempre embaixo do vídeo (Entrada.tsx). Quem pediu menos
+   movimento recebe só ele: o vídeo sai. */
 @media (prefers-reduced-motion: reduce) {
   .entrada__video {
     display: none;
-  }
-  .entrada__estatica {
-    display: block;
   }
 }

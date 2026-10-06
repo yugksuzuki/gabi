@@ -87,7 +87,7 @@ licenciada de terceiro. Toda fonte usada precisa de licença web verificada e re
 - **Site e Instagram entram no ar no mesmo dia** — ela travou esse dia em **08/09/2026**, e ele
   **passou** sem publicação a partir deste repositório. A regra dos dois no mesmo dia continua
   valendo; a data precisa ser repactuada. Ver `docs/10`
-- Existe um **vídeo de fundo** para a home, já separado por ela
+- Existe um **vídeo de fundo** para a home, já separado por ela — desde 05/10 é `GAB/Site gseleme/0722(1).mp4`, o filme horizontal dela trabalhando a lã (entrada e faixas G8; ver `docs/12`)
 - Se houver loja algum dia, ela é **dentro** do site — ela recusou a ideia de janela externa
   (Nuvemshop): *"não me parece tão interessante ter essa janela fora do site"*
 - Ela quer uma **cor assinatura** (referência: "o amarelo da Vovê Clicou")
@@ -218,7 +218,7 @@ Não versione nada de lá — nem citando, nem resumindo.
 | `docs/09-plano-ate-08-09-2026.md` | **Histórico.** O cronograma de trás para frente até a estreia, e a proposta de escopo |
 | `docs/10-estado-em-10-09-2026.md` | **O estado atual.** A unificação das branches, a distância entre o wireframe aprovado e o site, a stack e o que trava |
 | `docs/11-stack-cuoncient-05-10-2026.md` | A stack Cuoncient aplicada: pnpm, GitHub Actions, Lighthouse CI, Speed Insights, cabeçalhos de segurança, e a dívida do LCP |
-| `docs/12-redesenho-imersivo-05-10-2026.md` | O redesenho de 05/10: entrada em tela cheia no celular, uma obra por tela, A artista e Contato no formato da folha dela, Ensaios fora do menu até haver texto |
+| `docs/12-redesenho-imersivo-05-10-2026.md` | O redesenho de 05/10: entrada em tela cheia com o filme dela, uma obra por tela, A artista e Contato no formato da folha dela com faixas de vídeo (G8), Ensaios fora do menu até haver texto |
 | `content/` | Bio, ficha e texto de Encontro, contato — conteúdo real, já transcrito |
 | `ativos/` | Rubrica, folha da bio, ficha de Encontro, 2 fotos da obra |
 | `materiais/` | Conversa transcrita, PDFs originais, inventários |
