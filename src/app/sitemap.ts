@@ -3,6 +3,7 @@ import { getPathname } from '@/i18n/navigation'
 import { idiomas, routing } from '@/i18n/routing'
 import { lerObras } from '@/lib/obras'
 import { urlDoSite } from '@/lib/metadados'
+import { textosVisiveis } from '@/lib/textos'
 
 type Href = Parameters<typeof getPathname>[0]['href']
 
@@ -24,7 +25,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   })
 
-  const fixas: Href[] = ['/', '/a-artista', '/ensaios', '/contato']
+  // Ensaios entra quando houver ensaio — a mesma regra do menu (Nav.tsx).
+  const temEnsaio = textosVisiveis().length > 0
+  const fixas: Href[] = [
+    '/',
+    '/a-artista',
+    ...(temEnsaio ? ['/ensaios' as const] : []),
+    '/contato',
+  ]
 
   const obras = lerObras()
     .filter((o) => o.estado === 'publicada')

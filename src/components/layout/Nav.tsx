@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
 import { dadosDaImagem } from '@/lib/obras'
+import { textosVisiveis } from '@/lib/textos'
 import { TrocaIdioma } from './TrocaIdioma'
 
 /**
@@ -25,14 +26,22 @@ export function Nav() {
   const t = useTranslations('nav')
   const rubrica = dadosDaImagem('/marca/rubrica.png')
 
+  // Ensaios só aparece no menu quando existe ensaio para ler. Uma aba que leva a
+  // "Nenhum texto publicado ainda." é a primeira impressão de site inacabado —
+  // e ela prometeu os textos duas vezes (docs/08 §5), então a aba volta sozinha
+  // no build em que o primeiro for publicado. A rota continua existindo.
+  const temEnsaio = textosVisiveis().length > 0
+
   const abas = [
     { href: '/a-artista', rotulo: t('sobre') },
-    { href: '/ensaios', rotulo: t('textos') },
+    ...(temEnsaio ? [{ href: '/ensaios', rotulo: t('textos') } as const] : []),
     { href: '/contato', rotulo: t('contato') },
   ] as const
 
   return (
-    <header className="px-[var(--margem-lateral)] pt-8 pb-4 md:pt-10">
+    // `cabecalho` é o gancho do CSS: na home, no celular, ele passa a flutuar
+    // sobre o vídeo de entrada (globals.css, "Entrada em tela cheia").
+    <header className="cabecalho px-[var(--margem-lateral)] pt-8 pb-4 md:pt-10">
       {/* Mobile primeiro: marca em uma linha, navegação na seguinte. */}
       <div className="flex flex-col gap-4 md:flex-row md:items-baseline md:justify-between md:gap-x-8">
         <Link href="/" className="block w-fit transition-opacity hover:opacity-60">

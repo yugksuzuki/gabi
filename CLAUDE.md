@@ -20,6 +20,7 @@ completa e **não** são carregados sozinhos — abra sob demanda, o que a taref
 | **Chegar agora ao projeto, ou retomar depois de um tempo** | `docs/10-estado-em-10-09-2026.md` **antes de tudo** — é o estado unificado e mais recente |
 | Decidir o que entra na v1, ou em que ordem trabalhar | `docs/09-plano-ate-08-09-2026.md` — **cronograma vencido**, ver o `10` |
 | Instalar pacote, mexer em CI, cabeçalho, Lighthouse ou orçamento de performance | `docs/11-stack-cuoncient-05-10-2026.md` — o que da stack Cuoncient entrou, o que não entra e por quê |
+| Mexer na home, em A artista ou em Contato | `docs/12-redesenho-imersivo-05-10-2026.md` — o redesenho de 05/10 a partir da referência, e o que ainda depende de material |
 
 Em conflito: as **cinco regras invioláveis** abaixo vencem sempre. No resto, `docs/` é mais
 detalhado e ganha do resumo.
@@ -217,6 +218,7 @@ Não versione nada de lá — nem citando, nem resumindo.
 | `docs/09-plano-ate-08-09-2026.md` | **Histórico.** O cronograma de trás para frente até a estreia, e a proposta de escopo |
 | `docs/10-estado-em-10-09-2026.md` | **O estado atual.** A unificação das branches, a distância entre o wireframe aprovado e o site, a stack e o que trava |
 | `docs/11-stack-cuoncient-05-10-2026.md` | A stack Cuoncient aplicada: pnpm, GitHub Actions, Lighthouse CI, Speed Insights, cabeçalhos de segurança, e a dívida do LCP |
+| `docs/12-redesenho-imersivo-05-10-2026.md` | O redesenho de 05/10: entrada em tela cheia no celular, uma obra por tela, A artista e Contato no formato da folha dela, Ensaios fora do menu até haver texto |
 | `content/` | Bio, ficha e texto de Encontro, contato — conteúdo real, já transcrito |
 | `ativos/` | Rubrica, folha da bio, ficha de Encontro, 2 fotos da obra |
 | `materiais/` | Conversa transcrita, PDFs originais, inventários |

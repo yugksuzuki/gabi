@@ -163,9 +163,14 @@
 
 /* ---- Retrato: sangra no celular, vira painel no desktop ------------------ */
 
+/* No celular, retrato é a proporção da tela: o vídeo ocupa a tela INTEIRA, de
+   borda a borda, e o menu flutua por cima dele (bloco logo abaixo). É a entrada
+   que ela elogiou na Kelly Wearstler — a primeira tela é a imagem, não uma
+   faixa de menu bege seguida de uma caixa. Até 05/10 eram 64svh: o vídeo
+   terminava no meio da tela e o resto era vazio. */
 .entrada--retrato {
-  height: 64svh;
-  min-height: 20rem;
+  height: 100svh;
+  min-height: 32rem;
 }
 
 @media (min-width: 768px) {
@@ -190,6 +195,50 @@
     width: auto;
     aspect-ratio: 9 / 16;
     max-width: 100%;
+  }
+}
+
+/* ---- Entrada em tela cheia: o menu sobre o vídeo (só celular) ------------- *
+ * Só na página que tem a entrada em retrato — a home —, e só abaixo de 768px.
+ * `:has()` é o que permite isso sem o layout precisar saber em que rota está.
+ * Onde o navegador não tem `:has()`, nada quebra: o menu fica em cima do vídeo,
+ * como era antes.
+ *
+ * O degradê escuro no topo não é enfeite: o vídeo abre num céu claro, e texto
+ * claro sobre céu claro some. Ele garante leitura do menu sem escurecer a
+ * imagem inteira. */
+@media (max-width: 767px) {
+  body:has(.entrada--retrato) .cabecalho {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 10;
+    color: var(--bg);
+  }
+
+  /* A rubrica do cabeçalho é tinta escura: invertida, fica clara, como a
+     rubrica grande do centro. */
+  body:has(.entrada--retrato) .cabecalho img {
+    filter: invert(1);
+  }
+
+  body:has(.entrada--retrato) .cabecalho .text-ink-muted {
+    color: inherit;
+    opacity: 0.75;
+  }
+
+  body:has(.entrada--retrato) .cabecalho :focus-visible {
+    outline-color: var(--bg);
+  }
+
+  .entrada--retrato::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 1;
+    height: 12rem;
+    background: linear-gradient(rgb(0 0 0 / 0.55), rgb(0 0 0 / 0));
+    pointer-events: none;
   }
 }
 
@@ -235,6 +284,16 @@
   width: 100%;
   overflow: hidden;
   background-color: var(--bg-alt);
+}
+
+/* Na tela larga, a foto vai à altura da tela e não passa dela: a obra inteira
+   cabe numa tela só, sem precisar rolar para ver a base. As fotos são 9:16 —
+   largura = altura × 9/16. Em tela larga e baixa manda a altura; em tablet,
+   onde a tela é estreita, a foto para em 55% da largura e o nome cabe ao lado. */
+@media (min-width: 768px) {
+  .obra-quadro {
+    width: min(55%, calc(92svh * 9 / 16));
+  }
 }
 
 .obra-video {
