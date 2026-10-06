@@ -9,7 +9,10 @@
     "sobre": "About",
     "textos": "Writing",
     "contato": "Contact",
-    "pularParaConteudo": "Skip to content"
+    "pularParaConteudo": "Skip to content",
+    "menu": "Menu",
+    "abrirMenu": "Open the menu",
+    "fecharMenu": "Close the menu"
   },
   "idioma": {
     "rotulo": "Language",
@@ -48,7 +51,9 @@
   "portfolio": {
     "titulo": "Works",
     "verObra": "View the work",
-    "acervo": "Collection"
+    "acervo": "Collection",
+    "conhecer": "Discover",
+    "consultar": "Enquire"
   },
   "sobre": {
     "titulo": "About",
@@ -86,7 +91,10 @@
     }
   },
   "rodape": {
-    "direitos": "All rights reserved."
+    "direitos": "All rights reserved.",
+    "obras": "Works",
+    "site": "Gabriela Seleme",
+    "siga": "Contact"
   },
   "marca": {
     "rubricaAlt": "Gabriela Seleme's signature"
@@ -95,5 +103,10 @@
     "titulo": "Page not found",
     "recado": "This address does not exist, or the page has moved.",
     "voltar": "See the works"
+  },
+  "entrada": {
+    "verObras": "See the works",
+    "pausar": "Pause the video",
+    "continuar": "Play the video"
   }
 }

@@ -1,4 +1,5 @@
 import { faixas } from '@/lib/entrada'
+import { BotaoPausa } from './BotaoPausa'
 
 /**
  * Cabeçalho e rodapé dinâmicos — G8 da revisão de 27/08, pedidos página a
@@ -14,19 +15,31 @@ import { faixas } from '@/lib/entrada'
  * para quem pediu menos movimento. Na faixa de cima o menu flutua sobre o
  * vídeo, como na home (globals.css).
  *
- * Decorativa: nada que exista só aqui.
+ * Decorativa: nada que exista só aqui. O botão de pausa é o da entrada
+ * (WCAG 2.2.2): o vídeo da faixa também se move sem parar.
  */
 export function FaixaVideo({ lugar }: { lugar: 'cabecalho' | 'rodape' }) {
   const faixa = faixas[lugar]
 
   return (
-    <div aria-hidden="true" className={`faixa faixa--${lugar}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={faixa.poster} width={1600} height={450} alt="" />
-      <video autoPlay muted loop playsInline preload="metadata" tabIndex={-1}>
-        <source src={faixa.webm} type="video/webm" />
-        <source src={faixa.mp4} type="video/mp4" />
-      </video>
+    <div className={`faixa faixa--${lugar}`}>
+      <div aria-hidden="true" className="faixa__quadro">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={faixa.poster}
+          width={1600}
+          height={450}
+          alt=""
+          // A de baixo fica longe da primeira tela: sem `lazy`, o React
+          // pré-carrega o pôster dela no <head>, disputando banda com o LCP.
+          loading={lugar === 'rodape' ? 'lazy' : undefined}
+        />
+        <video autoPlay muted loop playsInline preload="metadata" tabIndex={-1}>
+          <source src={faixa.webm} type="video/webm" />
+          <source src={faixa.mp4} type="video/mp4" />
+        </video>
+      </div>
+      <BotaoPausa />
     </div>
   )
 }

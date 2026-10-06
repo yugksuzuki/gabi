@@ -110,6 +110,17 @@ material dela.
 |---|---|---|
 | Display, títulos, corpo em prosa | **Cormorant Garamond** | Escolha da cliente. SIL OFL, auto-hospedável com `next/font` sem custo nem trava |
 | Interface, ficha, legenda | **Inter** | Neutra, excelente em texto pequeno, hinting sólido |
+| Títulos e rótulos em caixa alta (desde 06/10) | **Archivo**, largura 125, ExtraBold | SIL OFL 1.1 (Omnibus-Type), licença em `src/styles/fontes/LICENSE-Archivo.txt`. 10 KB. Ver abaixo |
+
+> **06/10/2026 — Archivo Expandida nos títulos em caixa alta.** O Guilherme pediu o site
+> "muito igual" à referência, e o que dá a voz da Kelly Wearstler é o contraste entre uma
+> grotesca larga e pesada em caixa alta (a Druk Wide, licenciada — não entra) e uma serifada
+> clássica no resto. A Archivo faz esse papel com desenho próprio e licença livre. Ela vai
+> **só** em títulos e rótulos em caixa alta: a chamada da entrada, os nomes nos cartões, os
+> painéis, os títulos do rodapé. A Cormorant segue em todo texto — corpo, menu, o nome dela
+> em A artista, a ficha. **Contraria o G4 dela** ("usar Cormorant Garamond"), e o Guilherme
+> decidiu sabendo disso: mostrar a ela antes de dar por fechado. Voltar atrás é apontar
+> `--fonte-titulo` para `--fonte-display` em `tokens.css`. Ver `docs/13`.
 
 Cormorant corre pequeno para o tamanho nominal: 21px de Cormorant lê como ~19px de Inter.
 Corpo de prosa em 21px, não 19px.

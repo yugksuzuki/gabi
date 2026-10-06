@@ -45,6 +45,8 @@ const pares = [
   ['texto', 'ink', 'bg-alt', 4.5],
   ['texto', 'ink-muted', 'bg', 4.5],
   ['texto', 'ink-muted', 'bg-alt', 4.5],
+  ['texto', 'bg', 'ink', 4.5],
+  ['texto', 'papel-suave', 'ink', 4.5],
   ['interface', 'line-forte', 'bg', 3],
   ['interface', 'line-forte', 'bg-alt', 3],
 ]

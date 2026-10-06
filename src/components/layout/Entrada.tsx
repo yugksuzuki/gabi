@@ -1,5 +1,5 @@
 import { entrada } from '@/lib/entrada'
-import { dadosDaImagem } from '@/lib/obras'
+import { BotaoPausa } from './BotaoPausa'
 
 /**
  * A entrada da home — docs/01 §1 e docs/02 §1: "A home abre em vídeo."
@@ -30,19 +30,35 @@ import { dadosDaImagem } from '@/lib/obras'
  * A altura é fixa em unidades de viewport e as duas camadas ocupam a mesma
  * caixa, então não há salto de layout: CLS ≤ 0,05 é teto de merge.
  *
- * H7 da revisão de 27/08: "a logo entra em escrita dinâmica sobre o vídeo".
- * A rubrica se revela da esquerda para a direita, na direção em que a mão
- * escreve — CSS puro, uma vez, e parada para quem pediu menos movimento.
+ * A CHAMADA (05/10, docs/13), no desenho da referência: na base do vídeo, ao
+ * centro, o título em caixa alta, uma linha em serifada e o link em itálico.
+ * Na Kelly Wearstler é o nome da campanha + "Discover More". Aqui é o nome das
+ * três obras, a nota da galeria e "Ver as obras" — tudo conteúdo dela, nada
+ * escrito por nós. Até 05/10 a entrada não dizia nada e ninguém sabia que era
+ * para rolar.
  *
- * Decorativo: o vídeo é atmosfera, não informação. Nada que exista só aqui.
+ * H7 da revisão de 27/08 ("a logo entra em escrita dinâmica sobre o vídeo")
+ * continua: a rubrica se escreve no centro do cabeçalho, que flutua sobre o
+ * vídeo (globals.css, "A rubrica se escreve"). Saiu do meio do quadro porque
+ * na referência o meio do quadro é do filme.
+ *
+ * O vídeo é decorativo (aria-hidden); a chamada não é — é texto e link reais.
+ * O botão de pausa (BotaoPausa) cumpre a WCAG 2.2.2.
  */
-export function Entrada() {
-  const rubrica = dadosDaImagem('/marca/rubrica.png')
+export function Entrada({
+  titulos,
+  nota,
+  rotuloLink,
+}: {
+  titulos: string[]
+  nota: string | null
+  rotuloLink: string
+}) {
   const { retrato, paisagem, aPartirDe } = entrada
 
   return (
-    <div aria-hidden="true" className="entrada">
-      <div className="entrada__quadro">
+    <section className="entrada">
+      <div aria-hidden="true" className="entrada__quadro">
         {/* <img> cru, não next/image: o otimizador do Next não entende <picture>
             com arte diferente por tela, e estes dois arquivos já saem do
             pipeline no tamanho e no formato certos (WebP). */}
@@ -85,19 +101,28 @@ export function Entrada() {
           <source src={retrato.webm} type="video/webm" />
           <source src={retrato.mp4} type="video/mp4" />
         </video>
-
-        {rubrica && (
-          <span className="entrada__rubrica">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/marca/rubrica.png"
-              alt=""
-              width={rubrica.largura}
-              height={rubrica.altura}
-            />
-          </span>
-        )}
       </div>
-    </div>
+
+      <div className="entrada__chamada">
+        <p className="titulo-largo entrada__titulo">
+          {titulos.map((titulo, i) => (
+            <span key={titulo}>
+              {i > 0 && (
+                <span aria-hidden="true" className="entrada__ponto">
+                  {' · '}
+                </span>
+              )}
+              <span className="entrada__nome">{titulo}</span>
+            </span>
+          ))}
+        </p>
+        {nota && <p className="entrada__nota">{nota}</p>}
+        <a href="#obras" className="link-italico">
+          {rotuloLink}
+        </a>
+      </div>
+
+      <BotaoPausa />
+    </section>
   )
 }

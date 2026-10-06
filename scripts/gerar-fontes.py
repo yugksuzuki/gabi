@@ -33,8 +33,9 @@ página usem o MESMO desenho. Gerados em lugares diferentes, um dia divergem.
 
 ## De onde vêm os originais
 
-@fontsource-variable/cormorant-garamond e @fontsource-variable/inter, v5.3.0,
-subset latin, arquivo variável completo. Ambas SIL OFL 1.1 (licenças em
+@fontsource-variable/cormorant-garamond, @fontsource-variable/inter e
+@fontsource-variable/archivo (arquivo "standard", com os eixos wght e wdth),
+v5.3.0, subset latin, arquivo variável completo. Ambas SIL OFL 1.1 (licenças em
 src/styles/fontes/LICENSE-*.txt). Para atualizar:
 
     npm pack @fontsource-variable/cormorant-garamond@<versao>
@@ -133,8 +134,18 @@ if __name__ == "__main__":
     cormorant = ORIGINAIS / "cormorant-garamond-latin.woff2"
     cormorant_italico = ORIGINAIS / "cormorant-garamond-latin-italico.woff2"
     inter = ORIGINAIS / "inter-latin.woff2"
+    archivo = ORIGINAIS / "archivo-latin.woff2"
 
     print("Site (vão para o navegador):")
+    # Archivo, só para títulos e rótulos em caixa alta (docs/13). Fixada na
+    # largura máxima (wdth 125) e no ExtraBold (800): é o único desenho que o
+    # site usa, e fixar os dois eixos derruba o arquivo para um terço.
+    preparar(
+        archivo,
+        FONTES / "archivo-expandida.woff2",
+        {"wdth": 125, "wght": 800},
+        "woff2",
+    )
     preparar(
         cormorant,
         FONTES / "cormorant-latin-variavel.woff2",

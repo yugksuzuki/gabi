@@ -1,5 +1,9 @@
 # Redesenho imersivo — 05 de outubro de 2026
 
+> **Em parte substituído em 06/10** por `docs/13`: a home passou a seguir a referência bloco por
+> bloco. "Uma obra por tela" deu lugar aos cartões, e a rubrica saiu do meio da entrada para o
+> cabeçalho. A artista, Contato, as faixas G8 e o filme continuam como descritos aqui.
+
 Escrito em **segunda, 05/10/2026**. Publicado direto na `main`, por decisão do Guilherme ("não
 precisa ser na versão teste, joga ao vivo").
 

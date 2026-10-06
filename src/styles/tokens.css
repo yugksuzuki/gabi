@@ -33,6 +33,10 @@
      e 3,27:1 sobre --bg-alt — passa o mínimo de 3:1 nos dois fundos. */
   --line-forte: #837e76;
 
+  /* Texto secundário SOBRE o grafite (o rodapé escuro, docs/13). O papel com
+     a luz baixada — nunca cinza frio. Conferido em verificar-contraste.mjs. */
+  --papel-suave: #aaa59c;
+
   /* PENDENTE — a cor assinatura sai das obras fotografadas, e as obras são
      monocromáticas. Ver CLAUDE.md ("As obras são monocromáticas") e
      docs/02 §2: é conversa a ter com a Gabriela, não decisão do código.
@@ -52,6 +56,11 @@
   --fonte-display: var(--fonte-cormorant), Garamond, Georgia, serif;
   --fonte-corpo: var(--fonte-cormorant), Garamond, Georgia, serif;
   --fonte-interface: var(--fonte-inter), system-ui, -apple-system, sans-serif;
+
+  /* A voz dos títulos, em caixa alta: grotesca larga e pesada. Entrou em 05/10
+     para aproximar o site da referência (docs/13). Contraria o G4 dela — para
+     voltar à Cormorant, aponte esta variável para --fonte-display. */
+  --fonte-titulo: var(--fonte-archivo), 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
 
   /* Escala fluida com clamp(), ancorada em 390px e 1440px (docs/02 §3).
      Fora dessas âncoras, congela — não cresce sem fim em monitor largo.

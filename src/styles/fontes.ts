@@ -17,7 +17,7 @@ import localFont from 'next/font/local'
  * subset latin). Cormorant: 38 KB -> 26 KB, mais 28 KB de itálico. Inter:
  * 48 KB -> 30 KB.
  *
- * Ambas SIL OFL 1.1 — licenças em src/styles/fontes/LICENSE-*.txt.
+ * As três SIL OFL 1.1 — licenças em src/styles/fontes/LICENSE-*.txt.
  *
  * ## Por que Cormorant Garamond, e não Fraunces
  *
@@ -59,6 +59,30 @@ export const cormorant = localFont({
   display: 'swap',
   variable: '--fonte-cormorant',
   fallback: ['Garamond', 'Georgia', 'Times New Roman', 'serif'],
+})
+
+/**
+ * Archivo Expandida — títulos e rótulos em caixa alta, e só eles (docs/13).
+ *
+ * Entrou em 05/10/2026, quando o Guilherme pediu o site "muito igual" à
+ * referência. O que dá a voz da Kelly Wearstler é o contraste entre uma
+ * grotesca larga e pesada, em caixa alta, e uma serifada clássica no resto. A
+ * dela é a Druk Wide, licenciada — não entra (CLAUDE.md, regra 5). A Archivo é
+ * SIL OFL, da Omnibus-Type, com eixo de largura: fixada no mais largo (125) e
+ * no ExtraBold, ela faz o mesmo papel com desenho próprio. 10 KB.
+ *
+ * ATENÇÃO: isso contraria o G4 da Gabriela ("usar Cormorant Garamond"). A
+ * Cormorant continua em tudo que é texto — corpo, nome dela em A artista,
+ * ficha, menu. A Archivo é a voz dos títulos. Mostrar a ela antes de dar por
+ * fechado; voltar atrás é trocar uma variável em tokens.css.
+ */
+export const archivo = localFont({
+  src: './fontes/archivo-expandida.woff2',
+  display: 'swap',
+  variable: '--fonte-archivo',
+  weight: '800',
+  style: 'normal',
+  fallback: ['Arial Black', 'Helvetica Neue', 'Arial', 'sans-serif'],
 })
 
 export const inter = localFont({

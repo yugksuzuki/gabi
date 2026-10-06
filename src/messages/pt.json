@@ -9,7 +9,10 @@
     "sobre": "A artista",
     "textos": "Ensaios",
     "contato": "Contato",
-    "pularParaConteudo": "Pular para o conteúdo"
+    "pularParaConteudo": "Pular para o conteúdo",
+    "menu": "Menu",
+    "abrirMenu": "Abrir o menu",
+    "fecharMenu": "Fechar o menu"
   },
   "idioma": {
     "rotulo": "Idioma",
@@ -48,7 +51,9 @@
   "portfolio": {
     "titulo": "Portfólio",
     "verObra": "Ver a obra",
-    "acervo": "Acervo"
+    "acervo": "Acervo",
+    "conhecer": "Conhecer",
+    "consultar": "Consultar"
   },
   "sobre": {
     "titulo": "A artista",
@@ -86,7 +91,10 @@
     }
   },
   "rodape": {
-    "direitos": "Todos os direitos reservados."
+    "direitos": "Todos os direitos reservados.",
+    "obras": "Obras",
+    "site": "Gabriela Seleme",
+    "siga": "Contato"
   },
   "marca": {
     "rubricaAlt": "Rubrica de Gabriela Seleme"
@@ -95,5 +103,10 @@
     "titulo": "Página não encontrada",
     "recado": "O endereço não existe, ou a página mudou de lugar.",
     "voltar": "Ver o portfólio"
+  },
+  "entrada": {
+    "verObras": "Ver as obras",
+    "pausar": "Pausar o vídeo",
+    "continuar": "Continuar o vídeo"
   }
 }

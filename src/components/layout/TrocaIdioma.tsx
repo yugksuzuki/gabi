@@ -29,11 +29,11 @@ export function TrocaIdioma() {
   )
 
   return (
-    <nav aria-label={t('rotulo')} className="flex items-center gap-1">
+    <nav aria-label={t('rotulo')} className="flex items-center gap-1 text-[0.9375rem]">
       {idiomas.map((idioma, i) => (
         <span key={idioma} className="flex items-center">
           {i > 0 && (
-            <span aria-hidden="true" className="text-ink-muted mx-1.5 text-legenda">
+            <span aria-hidden="true" className="text-ink-muted mx-1.5">
               /
             </span>
           )}
@@ -45,7 +45,7 @@ export function TrocaIdioma() {
             }
             locale={idioma}
             hrefLang={idioma}
-            className="text-legenda tracking-[0.12em] uppercase transition-opacity hover:opacity-60"
+            className="text-[0.9375rem] transition-opacity hover:opacity-60"
           >
             {t(idioma)}
           </Link>
