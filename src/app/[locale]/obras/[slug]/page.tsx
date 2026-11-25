@@ -108,9 +108,14 @@ export default async function PaginaObra({ params }: Props) {
           lqip: principal.lqip,
         }
       : null
-  const video = obra.video?.src
-    ? { mp4: obra.video.src, webm: obra.video.webm, poster: obra.video.poster }
-    : null
+  // Na página da obra toca a versão longa, quando existe; o corte curto é o
+  // da home (docs/14).
+  const longo = obra.video?.longo
+  const video = longo
+    ? { mp4: longo.src, webm: longo.webm, poster: longo.poster ?? obra.video?.poster }
+    : obra.video?.src
+      ? { mp4: obra.video.src, webm: obra.video.webm, poster: obra.video.poster }
+      : null
 
   return (
     <article className="pt-12 md:pt-20">

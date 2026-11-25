@@ -35,7 +35,7 @@ const casos = [
   ['/a-artista', '/a-artista'],
   ['/ensaios', '/ensaios'],
   ['/contato', '/contato'],
-  ['/obras/encontro', '/obras/[slug]'],
+  ['/obras/caminhos', '/obras/[slug]'],
   ['/obras/desabrochar', '/obras/[slug]'],
   ['/ensaios/um-texto-qualquer', '/ensaios/[slug]'],
   ['/rota-que-nao-existe', '/rota-que-nao-existe'],

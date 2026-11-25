@@ -17,7 +17,7 @@ const PARES = [
   ['/pt/a-artista', '/en/about'],
   ['/pt/ensaios', '/en/writing'],
   ['/pt/contato', '/en/contact'],
-  ['/pt/obras/encontro', '/en/works/encontro'],
+  ['/pt/obras/caminhos', '/en/works/caminhos'],
   ['/pt/obras/instante', '/en/works/instante'],
 ] as const
 
@@ -37,24 +37,24 @@ for (const [rotaPt, rotaEn] of PARES) {
 test('o slug da obra é o mesmo nos dois idiomas', async ({ page }) => {
   // Nome de peça não se traduz: Guernica é Guernica (docs/03 §1). Só o segmento
   // de seção muda — obras/works.
-  await page.goto('/en/works/encontro')
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Encontro')
+  await page.goto('/en/works/caminhos')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Caminhos')
 })
 
 test('a canônica e o hreflang apontam para o par certo', async ({ page }) => {
-  await page.goto('/pt/obras/encontro')
+  await page.goto('/pt/obras/caminhos')
 
   const canonica = page.locator('link[rel="canonical"]')
-  await expect(canonica).toHaveAttribute('href', /\/pt\/obras\/encontro$/)
+  await expect(canonica).toHaveAttribute('href', /\/pt\/obras\/caminhos$/)
 
   await expect(page.locator('link[hreflang="en"]')).toHaveAttribute(
     'href',
-    /\/en\/works\/encontro$/,
+    /\/en\/works\/caminhos$/,
   )
   // x-default aponta para PT, o padrão do site (docs/03 §4).
   await expect(page.locator('link[hreflang="x-default"]')).toHaveAttribute(
     'href',
-    /\/pt\/obras\/encontro$/,
+    /\/pt\/obras\/caminhos$/,
   )
 })
 
@@ -79,7 +79,7 @@ test('nenhuma rota publicada mostra a marca de pendência sem aviso', async ({ p
   for (const rota of [
     '/pt',
     '/en',
-    '/pt/obras/encontro',
+    '/pt/obras/caminhos',
     '/pt/obras/instante',
     '/pt/a-artista',
   ]) {

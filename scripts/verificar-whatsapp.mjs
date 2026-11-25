@@ -34,17 +34,17 @@ function com(valor, fn) {
 const casos = [
   [
     'padrão: número confirmado',
-    () => com(undefined, () => linkDeConsulta('Encontro', 'pt').canal),
+    () => com(undefined, () => linkDeConsulta('Caminhos', 'pt').canal),
     'whatsapp',
   ],
   [
     'variável vazia não anula',
-    () => com('', () => linkDeConsulta('Encontro', 'pt').canal),
+    () => com('', () => linkDeConsulta('Caminhos', 'pt').canal),
     'whatsapp',
   ],
   [
     'variável tem precedência',
-    () => com('5547999998888', () => linkDeConsulta('Encontro', 'pt').numero),
+    () => com('5547999998888', () => linkDeConsulta('Caminhos', 'pt').numero),
     '5547999998888',
   ],
   // Variável torta NÃO derruba o botão: cai no número confirmado do contato.ts.
@@ -52,12 +52,12 @@ const casos = [
   // inválido no ambiente é estado normal, e não pode custar a chamada para ação.
   [
     'número curto usa o confirmado',
-    () => com('55449992', () => linkDeConsulta('Encontro', 'pt').numero),
+    () => com('55449992', () => linkDeConsulta('Caminhos', 'pt').numero),
     contato.whatsapp,
   ],
   [
     'lixo usa o confirmado',
-    () => com('não é telefone', () => linkDeConsulta('Encontro', 'pt').numero),
+    () => com('não é telefone', () => linkDeConsulta('Caminhos', 'pt').numero),
     contato.whatsapp,
   ],
   // O caminho do mailto: existe para o dia em que não houver número nenhum.
@@ -68,7 +68,7 @@ const casos = [
   ['normalizar: válido', () => normalizarNumero('+55 44 99992-9186'), '5544999929186'],
   [
     'máscara com + e hífen',
-    () => com('+55 (44) 99992-9186', () => linkDeConsulta('Encontro', 'pt').numero),
+    () => com('+55 (44) 99992-9186', () => linkDeConsulta('Caminhos', 'pt').numero),
     contato.whatsapp,
   ],
   [
@@ -93,9 +93,9 @@ for (const [nome, fn, esperado] of casos) {
 // O nome da obra tem que chegar na mensagem, nos dois idiomas. Sem ele a
 // consulta é indistinguível de qualquer outra e o site não serviu para nada.
 for (const idioma of ['pt', 'en']) {
-  const { href } = com(undefined, () => linkDeConsulta('Encontro', idioma))
+  const { href } = com(undefined, () => linkDeConsulta('Caminhos', idioma))
   const texto = decodeURIComponent(href)
-  const ok = texto.includes('Encontro')
+  const ok = texto.includes('Caminhos')
   if (!ok) falhou = true
   console.log(`  ${ok ? 'ok  ' : 'FALHA'}  ${`nome da obra em ${idioma}`.padEnd(28)}`)
 }
@@ -104,7 +104,7 @@ for (const idioma of ['pt', 'en']) {
 // texto que sai daqui e chega no celular dela.
 const proibidas = ['comprar', 'compra', 'buy', 'purchase', 'checkout', 'carrinho']
 for (const idioma of ['pt', 'en']) {
-  const { href } = com(undefined, () => linkDeConsulta('Encontro', idioma))
+  const { href } = com(undefined, () => linkDeConsulta('Caminhos', idioma))
   const texto = decodeURIComponent(href).toLowerCase()
   const achou = proibidas.find((p) => texto.includes(p))
   if (achou) {

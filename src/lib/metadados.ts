@@ -54,7 +54,7 @@ export function cartaoSocial({
   descricao,
   locale,
 }: {
-  /** Caminho do cartão gerado, sem o /og inicial. Ex.: 'obra/encontro'. */
+  /** Caminho do cartão gerado, sem o /og inicial. Ex.: 'obra/caminhos'. */
   cartao: string
   titulo: string
   descricao?: string | null
@@ -97,7 +97,7 @@ export function cartaoSocial({
  * difícil de reverter"* — o buscador guarda o que viu, e um resultado de busca
  * mostrando "PENDENTE: TÉCNICA" no lugar da ficha fica meses no ar.
  *
- * Mas trava só global é grosseira demais para este acervo. Encontro está
+ * Mas trava só global é grosseira demais para este acervo. Caminhos está
  * completa e as outras duas não têm uma única fotografia; esperar as três para
  * abrir qualquer uma significa manter o site inteiro fora do índice por causa
  * de material que talvez demore meses.

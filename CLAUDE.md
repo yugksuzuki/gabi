@@ -22,6 +22,7 @@ completa e **não** são carregados sozinhos — abra sob demanda, o que a taref
 | Instalar pacote, mexer em CI, cabeçalho, Lighthouse ou orçamento de performance | `docs/11-stack-cuoncient-05-10-2026.md` — o que da stack Cuoncient entrou, o que não entra e por quê |
 | Mexer na home, em A artista ou em Contato | `docs/12-redesenho-imersivo-05-10-2026.md` — o redesenho de 05/10 a partir da referência, e o que ainda depende de material |
 | Mexer na home, no cabeçalho, no rodapé ou na fonte dos títulos | `docs/13-home-no-desenho-da-referencia-06-10-2026.md` — a home bloco por bloco no desenho da Kelly Wearstler (06/10), e o que dela não entra |
+| Mexer em vídeo de obra, em `sizes` de imagem, no domínio, ou estranhar o nome "Encontro" em doc antigo | `docs/14-caminhos-videos-longos-dominio-25-11-2026.md` — Encontro virou Caminhos, os vídeos longos, a auditoria de imagens e o domínio na Vercel |
 
 Em conflito: as **cinco regras invioláveis** abaixo vencem sempre. No resto, `docs/` é mais
 detalhado e ganha do resumo.
@@ -95,7 +96,11 @@ licenciada de terceiro. Toda fonte usada precisa de licença web verificada e re
 
 ## Obras iniciais
 
-**Desabrochar · Instante · Encontro.** Três. O layout precisa parecer deliberado em três —
+> **Encontro agora se chama Caminhos** (25/11/2026). Slug, pastas e rota trocaram;
+> `/obras/encontro` redireciona. Os `docs/` anteriores a 25/11 seguem com o nome antigo — são
+> histórico. Ver `docs/14`.
+
+**Desabrochar · Instante · Caminhos.** Três. O layout precisa parecer deliberado em três —
 não uma grade de vinte com dezessete buracos.
 
 **Estado real do acervo** (atualizado em 10/09/2026 com os três álbuns do Google Fotos que ela
@@ -103,7 +108,7 @@ compartilhou em 08/09 — ver `docs/06-inventario-de-ativos.md` §0):
 
 | Obra | Foto | Vídeo | Ficha | Texto | Preço |
 |---|---|---|---|---|---|
-| Encontro | 5 | ✓ | completa | completo | R$ 11.230 |
+| Caminhos | 5 | ✓ | completa | completo | R$ 11.230 |
 | Desabrochar | 1 (941px — só isso existe) | ✓ | **falta a medida** | completo | R$ 8.350 |
 | Instante | 1 | ✓ | completa | completo | R$ 9.875 |
 
@@ -114,9 +119,9 @@ ou do álbum**, não de uma tabela: confirmar antes de publicar.
 ## As obras são neutras — mas não são todas a mesma matéria
 
 Corrigido em 10/09: até aqui este arquivo dizia que as três eram gesso e massa acrílica. Só
-Encontro é. As fichas dela dizem:
+Caminhos é. As fichas dela dizem:
 
-- **Encontro** — gesso e massa acrílica sobre tela: branco osso, cinza, grafite, escorrido de prata
+- **Caminhos** — gesso e massa acrílica sobre tela: branco osso, cinza, grafite, escorrido de prata
 - **Desabrochar** — tela de alumínio e arame de aço: grafite translúcido sobre parede clara
 - **Instante** — lã de ovelha e novelo de lã sobre tela: creme cru
 
@@ -129,9 +134,10 @@ acento cromático. Conversa a ter com ela; não decida sozinho.
 ## Conteúdo que já existe no repositório
 
 `content/sobre.mdx` — a bio **escrita por ela**, transcrita literal. Não reescreva.
-`content/obras/encontro.mdx` — ficha e texto reais, transcritos da prancha dela.
+`content/obras/caminhos.mdx` — ficha e texto reais, transcritos da prancha dela.
 `content/obras/desabrochar.mdx`, `content/obras/instante.mdx` — idem, das folhas `1.jpg` e `2.jpg`.
-`public/obras/*/video.{webm,mp4}` — os cortes de 6s dos vídeos dela. O bruto fica em `ativos/`,
+`public/obras/*/video.{webm,mp4}` — os cortes curtos dos vídeos dela (hover da home).
+`public/obras/*/video-longo.{webm,mp4}` — o vídeo inteiro, que toca na página da obra (`scripts/videos-longos.sh`). O bruto fica em `ativos/`,
 fora do git (`.gitignore`): 90–530 MB por arquivo, e o repositório é público.
 `content/contato.yml` — e-mail, Instagram e o WhatsApp **com ressalva** (leia antes de usar).
 `ativos/rubrica-gseleme.png` — a rubrica. Raster; precisa virar SVG a partir do original.
@@ -147,7 +153,7 @@ fora do git (`.gitignore`): 90–530 MB por arquivo, e o repositório é públic
 | **Logo — BLOQUEIO** | Em 27/08 a Gabriela pediu a rubrica no lugar do nome tipografado, "**sempre a logo**", em **todas** as páginas. Isso tirou o vetor de "melhoria" e o transformou em bloqueio: raster escalado no cabeçalho vai aparecer. Pior, o `ativos/rubrica-gseleme.png` que existe é um recorte torto — traz junto a barra escura da foto e as palavras "Gabriela S". Peça o **original vetorial** à Catherine |
 | **Número do WhatsApp** | Informado `+55 44 9992-9186` — 8 dígitos onde celular tem 9, e o **DDD 44 é Maringá/PR**, não Balneário Camboriú/SC. Provável: `+55 44 99992-9186` → `5544999929186`. Teste abrindo `wa.me/5544999929186` no celular. Ver `content/contato.yml` |
 | **Cor assinatura** | As obras são neutras (cinza a creme) — não há cor a extrair. Precisa de outra resposta ao pedido dela |
-| **Medidas** | Encontro `115x180` e Instante `110x90`: a folha não diz qual é a altura, e as duas parecem seguir ordens diferentes. Desabrochar não tem medida nenhuma |
+| **Medidas** | Caminhos `115x180` e Instante `110x90`: a folha não diz qual é a altura, e as duas parecem seguir ordens diferentes. Desabrochar não tem medida nenhuma |
 | **Data de estreia — REABERTA** | Ela travou **08/09/2026** no áudio de 29/08. O último commit do projeto é de 04/09 e a data passou sem publicação. Repactuar antes de programar qualquer coisa: sem data, não há escopo. Ver `docs/10` §2 |
 | **Caminho A ou B** | A conversa não registra escolha entre contratação avulsa e assessoria. **Não construa widgets, automação ou tráfego** antes disso estar claro |
 
@@ -220,7 +226,8 @@ Não versione nada de lá — nem citando, nem resumindo.
 | `docs/10-estado-em-10-09-2026.md` | **O estado atual.** A unificação das branches, a distância entre o wireframe aprovado e o site, a stack e o que trava |
 | `docs/11-stack-cuoncient-05-10-2026.md` | A stack Cuoncient aplicada: pnpm, GitHub Actions, Lighthouse CI, Speed Insights, cabeçalhos de segurança, e a dívida do LCP |
 | `docs/12-redesenho-imersivo-05-10-2026.md` | O redesenho de 05/10: entrada em tela cheia com o filme dela, uma obra por tela, A artista e Contato no formato da folha dela com faixas de vídeo (G8), Ensaios fora do menu até haver texto |
+| `docs/14-caminhos-videos-longos-dominio-25-11-2026.md` | Encontro → Caminhos, vídeos longos na página da obra, auditoria de imagens, domínio na Vercel |
 | `docs/13-home-no-desenho-da-referencia-06-10-2026.md` | A home no desenho da referência: cabeçalho de três colunas, chamada na entrada, cartões, painéis, rodapé escuro com a rubrica grande, Archivo nos títulos em caixa alta |
-| `content/` | Bio, ficha e texto de Encontro, contato — conteúdo real, já transcrito |
-| `ativos/` | Rubrica, folha da bio, ficha de Encontro, 2 fotos da obra |
+| `content/` | Bio, ficha e texto das três obras, contato — conteúdo real, já transcrito |
+| `ativos/` | Rubrica, folha da bio, ficha de Caminhos, fotos das obras |
 | `materiais/` | Conversa transcrita, PDFs originais, inventários |

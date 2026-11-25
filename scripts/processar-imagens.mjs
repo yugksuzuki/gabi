@@ -48,39 +48,39 @@ async function tapaBranca(width, height) {
 }
 
 const TRABALHOS = [
-  // ---- Obra: Encontro ----------------------------------------------------
+  // ---- Obra: Caminhos ----------------------------------------------------
   // Agora direto do ORIGINAL de câmera. Antes o site servia a frontal a 900px
   // porque o ativo commitado já vinha encolhido à mão; o original tem 3213 de
   // largura e o pipeline entrega 1800. Dobrou a resolução da imagem mais
   // importante do site sem ninguém tocar em layout.
   {
     origem: 'IMG_7015.JPG',
-    destino: '/obras/encontro/frontal.jpg',
+    destino: '/obras/caminhos/frontal.jpg',
     nota: 'obra frontal na parede do ateliê — a principal',
   },
   {
     origem: 'IMG_7017.JPG',
-    destino: '/obras/encontro/angulo-1.jpg',
+    destino: '/obras/caminhos/angulo-1.jpg',
     nota: 'enquadramento aberto, quase de frente, com rodapé',
   },
   {
     origem: 'IMG_7018.JPG',
-    destino: '/obras/encontro/angulo-2.jpg',
+    destino: '/obras/caminhos/angulo-2.jpg',
     nota: 'três quartos, piso à mostra; o relevo lê em profundidade',
   },
   {
     origem: 'IMG_7019.JPG',
-    destino: '/obras/encontro/angulo-3.jpg',
+    destino: '/obras/caminhos/angulo-3.jpg',
     nota: 'três quartos pelo outro lado, mais perto da borda',
   },
   {
     origem: 'IMG_6562.JPG',
-    destino: '/obras/encontro/detalhe.jpg',
+    destino: '/obras/caminhos/detalhe.jpg',
     nota: 'canto superior, textura e escorrido de prata',
   },
   {
-    origem: 'ficha-encontro.jpg',
-    destino: '/obras/encontro/escala.jpg',
+    origem: 'ficha-caminhos.jpg',
+    destino: '/obras/caminhos/escala.jpg',
     // A folha de ficha traz a melhor tomada: obra em parede branca com piso
     // à vista. É a foto de escala que a spec de fotografia pede.
     recorte: { left: 592, top: 0, width: 822, height: 1075 },

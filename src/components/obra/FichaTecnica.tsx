@@ -12,7 +12,7 @@ import type { Idioma } from '@/i18n/routing'
  * jeito que tá naquele pdfzinho". O pdfzinho é a folha de cada obra:
  *
  *   Gabriela Seleme
- *   Encontro, 2026
+ *   Caminhos, 2026
  *   Gesso e massa acrílica sobre tela 115x180
  *
  * Três linhas, o nome da obra em itálico, técnica e medida juntas, sem rótulo,

@@ -57,6 +57,15 @@ const nextConfig: NextConfig = {
   // `robotsDaPagina()`, que mantém fora do índice a obra que ainda tem
   // [PENDENTE]. `/wireframe/` é noindex nos dois estados: são as pranchas do
   // desenho, não o site.
+  // A obra Encontro passou a se chamar Caminhos em 25/11/2026 (docs/14). O
+  // link antigo já circulou — no WhatsApp dela e no Lighthouse —, então ele
+  // leva para o novo em vez de cair no 404.
+  async redirects() {
+    return [
+      { source: '/pt/obras/encontro', destination: '/pt/obras/caminhos', permanent: true },
+      { source: '/en/works/encontro', destination: '/en/works/caminhos', permanent: true },
+    ]
+  },
   async headers() {
     const aberto = process.env.ABRIR_INDEXACAO === '1'
     const fechar = { key: 'X-Robots-Tag', value: 'noindex, nofollow' }

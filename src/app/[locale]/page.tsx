@@ -26,7 +26,7 @@ import type { Idioma } from '@/i18n/routing'
  *
  * O que continua valendo da revisão dela de 27/08 (docs/08 §2):
  *
- *   H1  a lista índice "01 Encontro / 02 / 03" — não volta: os cartões não são
+ *   H1  a lista índice "01 Caminhos / 02 / 03" — não volta: os cartões não são
  *       lista numerada, são as fotos
  *   H2  as imagens de estudo do ateliê — não voltam
  *   H3  os blocos de legenda ("Uma linha sobre a obra…") — não voltam
@@ -105,7 +105,11 @@ export default async function Portfolio({ params }: { params: Promise<{ locale: 
                       titulo={obra.titulo}
                       // SEM prioridade: o LCP da home é o pôster da entrada.
                       // Valor fixo, não var(): `sizes` é lido fora da cascata.
-                      sizes="(max-width: 768px) 76vw, 26vw"
+                      // Os cortes batem com o CSS (.cartoes__trilho vira grade
+                      // a partir de 768px, e a grade para em 64rem): com
+                      // "max-width: 768px" o tablet baixava a foto de celular,
+                      // 3× maior que o cartão.
+                      sizes="(max-width: 767px) 76vw, (max-width: 1100px) 31vw, 22rem"
                     />
                     {obra.video?.src && (
                       <VideoAoPassar mp4={obra.video.src} webm={obra.video.webm} />
@@ -135,7 +139,11 @@ export default async function Portfolio({ params }: { params: Promise<{ locale: 
                 height={painel.foto.altura}
                 placeholder="blur"
                 blurDataURL={painel.foto.lqip}
-                sizes="(max-width: 768px) 100vw, 50vw"
+                // No celular o painel é alto (88svh) e a foto, mais larga que
+                // ele, é recortada nas laterais: a largura que importa é a da
+                // foto escalada para a altura, ~145vw (e ~100vw no tablet em pé). Com 100vw, no iPhone
+                // descia 1200px onde a tela mostra 1700 (docs/14).
+                sizes="(max-width: 767px) 150vw, (orientation: portrait) 100vw, 50vw"
                 className="painel__foto"
               />
             )}

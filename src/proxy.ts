@@ -4,7 +4,7 @@ import { routing } from './i18n/routing'
 /**
  * Convenção `proxy` do Next 16 (substituiu `middleware`). É o que faz `/`
  * redirecionar por Accept-Language com PT como padrão, e o que traduz a rota
- * visível (/en/works/encontro) para a rota interna (/[locale]/obras/[slug]).
+ * visível (/en/works/caminhos) para a rota interna (/[locale]/obras/[slug]).
  */
 export default createMiddleware(routing)
 

@@ -15,7 +15,7 @@ import en from '@/messages/en.json'
 /**
  * Cartões sociais, um por página e por idioma — item 24 do Stack Técnico.
  *
- * `/og/pt/obra/encontro.png` · `/og/en/pagina/sobre.png`
+ * `/og/pt/obra/caminhos.png` · `/og/en/pagina/sobre.png`
  *
  * O `.png` no fim não é enfeite: o matcher do src/proxy.ts ignora caminho com
  * extensão, e é isso que impede o middleware de i18n de tentar prefixar estas

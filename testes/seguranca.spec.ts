@@ -13,7 +13,7 @@ import { expect, test } from '@playwright/test'
 
 const ROTAS = [
   '/pt',
-  '/en/works/encontro',
+  '/en/works/caminhos',
   '/og/pt/pagina/portfolio.png',
   '/wireframe/index.html',
 ]

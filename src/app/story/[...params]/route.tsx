@@ -10,7 +10,7 @@ import en from '@/messages/en.json'
 /**
  * O card de story — 1080×1920, o pedido dela de 30/07/26.
  *
- * `/story/pt/texto/<slug>.png` · `/story/en/obra/encontro.png`
+ * `/story/pt/texto/<slug>.png` · `/story/en/obra/caminhos.png`
  *
  * Ela escreveu que queria compartilhar "um trecho de texto do site para o
  * story, de forma bonita, com link de volta". Isto é site → Instagram, e é

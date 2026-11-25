@@ -34,7 +34,7 @@ const FAIXAS: FaixaAtelie[] = [
   {
     // Díptico: uma reta, uma espelhada. Duas espelhadas seguidas viram padrão
     // repetido; alternada com plano reto, a simetria lê como assinatura.
-    depoisDe: 'encontro',
+    depoisDe: 'caminhos',
     imagens: [
       {
         src: '/atelie/maos.jpg',

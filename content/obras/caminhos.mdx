@@ -1,6 +1,12 @@
 ---
-slug: encontro
-titulo: Encontro
+slug: caminhos
+# RENOMEADA em 25/11/2026: até aqui a obra se chamava "Encontro" (é o nome que
+# está na folha 3.jpg e na pasta do Drive, "Encontro 11.230"). Pedido do
+# Guilherme: a obra passa a se chamar Caminhos, e tudo dela troca junto — slug,
+# pasta de imagens, rota. As URLs antigas (/pt/obras/encontro e
+# /en/works/encontro) redirecionam em next.config.ts. O TEXTO dela não mudou:
+# a última frase continua "É um encontro, entre o movimento e a permanência".
+titulo: Caminhos
 ano: 2026
 tecnica:
   pt: Gesso e massa acrílica sobre tela
@@ -31,83 +37,90 @@ legenda:
 # O `alt` descreve o que se vê na fotografia. Foi escrito de observação, não
 # transcrito dela — REVISAR COM A ARTISTA antes de publicar.
 imagens:
-  - src: /obras/encontro/frontal.jpg
+  - src: /obras/caminhos/frontal.jpg
     papel: principal
     origem: IMG_7015.JPG
     alt:
       pt: >-
-        Vista frontal de Encontro. Relevo em gesso e massa acrílica sobre tela
+        Vista frontal de Caminhos. Relevo em gesso e massa acrílica sobre tela
         vertical, em branco osso, cinza e grafite, com escorridos de prata
         descendo da borda de cima.
       en: >-
-        Encontro seen head-on. Relief in plaster and acrylic paste on a vertical
+        Caminhos seen head-on. Relief in plaster and acrylic paste on a vertical
         canvas, in bone white, grey and graphite, with silver runs falling from
         the top edge.
-  - src: /obras/encontro/angulo-1.jpg
+  - src: /obras/caminhos/angulo-1.jpg
     papel: angulo
     origem: IMG_7017.JPG
     alt:
       pt: >-
-        Encontro quase de frente, num enquadramento mais aberto: a tela sozinha
+        Caminhos quase de frente, num enquadramento mais aberto: a tela sozinha
         na parede branca, o rodapé à mostra, e o relevo projetando sombras
         curtas sobre a própria superfície.
       en: >-
-        Encontro almost head-on, in a wider frame: the canvas alone on the white
+        Caminhos almost head-on, in a wider frame: the canvas alone on the white
         wall, the skirting board in shot, and the relief casting short shadows
         across its own surface.
-  - src: /obras/encontro/angulo-2.jpg
+  - src: /obras/caminhos/angulo-2.jpg
     papel: angulo
     origem: IMG_7018.JPG
     alt:
       pt: >-
-        Encontro vista em três quartos, com o piso à mostra. De lado fica claro
+        Caminhos vista em três quartos, com o piso à mostra. De lado fica claro
         que o relevo é espesso: os vincos saem bem à frente do plano da tela e a
         borda da peça aparece de perfil.
       en: >-
-        Encontro in three-quarter view, with the floor in shot. Seen from the
+        Caminhos in three-quarter view, with the floor in shot. Seen from the
         side the relief reads as thick: the creases stand well forward of the
         plane of the canvas, and the edge of the piece shows in profile.
-  - src: /obras/encontro/angulo-3.jpg
+  - src: /obras/caminhos/angulo-3.jpg
     papel: angulo
     origem: IMG_7019.JPG
     alt:
       pt: >-
-        Encontro em três quartos pelo outro lado e mais perto. A superfície
+        Caminhos em três quartos pelo outro lado e mais perto. A superfície
         ocupa quase todo o quadro e os sulcos de massa correm na diagonal, com
         os escorridos de prata acompanhando a inclinação.
       en: >-
-        Encontro in three-quarter view from the other side, and closer in. The
+        Caminhos in three-quarter view from the other side, and closer in. The
         surface fills most of the frame and the furrows of paste run diagonally,
         the silver runs following the slant.
-  - src: /obras/encontro/detalhe.jpg
+  - src: /obras/caminhos/detalhe.jpg
     papel: detalhe
     origem: IMG_6562.JPG
     alt:
       pt: >-
-        Detalhe do canto superior de Encontro: camadas de massa formando vincos
+        Detalhe do canto superior de Caminhos: camadas de massa formando vincos
         e sulcos, com escorridos de prata e de branco correndo sobre a textura.
       en: >-
-        Detail of the upper corner of Encontro: layers of paste forming creases
+        Detail of the upper corner of Caminhos: layers of paste forming creases
         and furrows, with silver and white runs falling across the texture.
-  - src: /obras/encontro/escala.jpg
+  - src: /obras/caminhos/escala.jpg
     papel: escala
     origem: prancha de ficha (3.jpg)
     alt:
       pt: >-
-        Encontro instalada em parede branca, com o piso à mostra: tela vertical
+        Caminhos instalada em parede branca, com o piso à mostra: tela vertical
         de relevo claro, quase da altura de uma pessoa.
       en: >-
-        Encontro installed on a white wall, floor visible: a vertical canvas of
+        Caminhos installed on a white wall, floor visible: a vertical canvas of
         pale relief, close to a person's height.
 # Escolhido: IMG_6561.MOV, o mesmo vídeo que está no álbum "Encontro 11.230"
 # que ela compartilhou em 08/09/2026. Corte de 6s (28s–34s, travelling sobre o
 # relevo) em ida e volta. O bruto fica fora do git.
 video:
   fonte: arquivo
-  src: /obras/encontro/video.mp4
-  webm: /obras/encontro/video.webm
-  poster: /obras/encontro/poster.jpg
+  src: /obras/caminhos/video.mp4
+  webm: /obras/caminhos/video.webm
+  poster: /obras/caminhos/poster.jpg
   origem: "IMG_6561.MOV (1:38, 4K vertical) — álbum Encontro 11.230"
+  # Versão longa (25/11/2026, docs/14): o vídeo inteiro, IMG_6561.MOV, 1:38, 720×1280, sem
+  # áudio. Toca na página da obra; o corte acima segue na home.
+  duracaoSegundos: 98
+  longo:
+    src: /obras/caminhos/video-longo.mp4
+    webm: /obras/caminhos/video-longo.webm
+    poster: /obras/caminhos/poster-longo.jpg
 # Campo do modelo de dados, não conteúdo da artista.
 # Vira 'publicada' só quando a ficha estiver completa — o build cobra.
 # NOTA DA PEÇA — pedido dela em 08/09/2026, por WhatsApp.

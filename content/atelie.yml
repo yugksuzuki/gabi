@@ -23,10 +23,10 @@
 #
 # ATENÇÃO ao conteúdo: estas fotos mostram um trabalho em FIBRA — lã, fio,
 # enchimento. Não é gesso e massa acrílica sobre tela. É outro corpo de obra da
-# mesma artista, e por isso a legenda diz "Ateliê", nunca "Encontro em processo".
+# mesma artista, e por isso a legenda diz "Ateliê", nunca "Caminhos em processo".
 
 faixas:
-  - depois_de: encontro
+  - depois_de: caminhos
     imagens: [/atelie/maos.jpg, /atelie/espelhada.jpg]
     legenda: Ateliê · trabalho em fibra
   - depois_de: desabrochar

@@ -57,7 +57,7 @@ FONTES = RAIZ / "src" / "styles" / "fontes"
 ORIGINAIS = FONTES / "originais"
 
 # Latin-1 estendido cobre português e inglês. A pontuação tipográfica entra
-# porque o conteúdo dela usa travessão e aspas curvas — «Encontro», o traço em
+# porque o conteúdo dela usa travessão e aspas curvas — «Caminhos», o traço em
 # "reflexão —". Nada de CJK, nada de símbolo que este site nunca vai desenhar.
 UNICODES = (
     set(range(0x20, 0x7F))

@@ -114,14 +114,14 @@ def nota(txt):
     return f'<p style="padding:14px var(--margem) 0;"><span class="nota">{txt}</span></p>'
 
 # --- 01 Portfólio (home) ----------------------------------------------------
-# H1 apagada a lista índice "01 Encontro / 02 Desabrochar / 03 Instante".
+# H1 apagada a lista índice "01 Caminhos / 02 Desabrochar / 03 Instante".
 # H2 apagadas TODAS as imagens de estudo (díptico de ateliê, mar, folhagem,
 #    processo) — ela riscou uma por uma.
 # H3 apagados os blocos de legenda e o "VER A OBRA ->".
 # H4 cada obra com uma foto só, limpa. H5 hover toca o vídeo no lugar da foto.
 # H6 clique abre a página da obra. H7 a logo em escrita dinâmica sobre o vídeo.
 OBRAS_HOME = [
-    ('Encontro',    'img/encontro-frontal.jpg', 'Obra.html', 'esq'),
+    ('Caminhos',    'img/caminhos-frontal.jpg', 'Obra.html', 'esq'),
     ('Desabrochar', None,                       '#',         'dir'),
     ('Instante',    None,                       '#',         'esq'),
 ]
@@ -193,7 +193,7 @@ TXT_PT = ["Essa obra é um convite a uma reflexão &mdash;",
 def obra(en=False):
     t = dict(
         ficha=['Gabriela Seleme',
-               '<em style="font-style:italic;">Encontro</em>, 2026',
+               '<em style="font-style:italic;">Caminhos</em>, 2026',
                ('Oil-based plaster and acrylic paste on canvas 115x180' if en
                 else 'Gesso e massa acrílica sobre tela 115x180')],
         preco='USD 2,050 &middot; approx.' if en else 'R$ 11.230',
@@ -216,7 +216,7 @@ def obra(en=False):
   <!-- O3 texto e ficha à ESQUERDA -->
   <div style="grid-column:1 / span 5;display:flex;flex-direction:column;gap:56px;">
     <div>
-      <h1 class="display" style="margin-bottom:8px;">Encontro</h1>
+      <h1 class="display" style="margin-bottom:8px;">Caminhos</h1>
       <p class="legenda">2026</p>
     </div>
     <div style="max-width:44ch;">{prosa}</div>
@@ -235,7 +235,7 @@ def obra(en=False):
   <div style="grid-column:7 / span 6;">
     <div style="display:flex;gap:20px;overflow:hidden;width:660px;">
       <figure style="margin:0;flex:0 0 auto;position:relative;">
-        <img src="img/encontro-frontal.jpg" alt="" style="display:block;width:580px;height:1030px;object-fit:cover;">
+        <img src="img/caminhos-frontal.jpg" alt="" style="display:block;width:580px;height:1030px;object-fit:cover;">
         <figcaption class="nota" style="position:absolute;right:14px;bottom:14px;background:var(--bg);">
           &#8853; {t['zoom']}</figcaption>
       </figure>
@@ -257,7 +257,7 @@ def obra(en=False):
 </nav>
 {rodape()}
 </div>"""
-    return pagina('Gabriela Seleme — Encontro' + (' (EN)' if en else ''), corpo,
+    return pagina('Gabriela Seleme — Caminhos' + (' (EN)' if en else ''), corpo,
                   lang='en' if en else 'pt')
 
 # --- 04 A artista -----------------------------------------------------------
@@ -451,8 +451,8 @@ def celular():
     return pagina('Gabriela Seleme — Celular', corpo, largura=390)
 
 # --- índice -----------------------------------------------------------------
-TELAS = [('Portfólio','Main.html','1440'), ('Obra — Encontro','Obra.html','1440'),
-         ('Obra — Encontro (EN)','ObraEN.html','1440'), ('A artista','QuemSouEu.html','1440'),
+TELAS = [('Portfólio','Main.html','1440'), ('Obra — Caminhos','Obra.html','1440'),
+         ('Obra — Caminhos (EN)','ObraEN.html','1440'), ('A artista','QuemSouEu.html','1440'),
          ('Ensaios','Textos.html','1440'), ('Contato','Contato.html','1440'),
          ('Home no celular','Celular.html','390')]
 

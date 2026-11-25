@@ -119,7 +119,7 @@ export default async function Contato({ params }: Props) {
               height={rosto.altura}
               placeholder="blur"
               blurDataURL={rosto.lqip}
-              sizes="(max-width: 768px) 100vw, 52vw"
+              sizes="(max-width: 767px) 100vw, 52vw"
               className="col-span-12 mt-[var(--respiro-secao)] h-auto w-full md:col-span-6 md:col-start-7 md:row-span-3 md:row-start-1 md:mt-0 md:w-[calc(100%_+_var(--margem-lateral))] md:max-w-none md:self-start"
             />
           )}

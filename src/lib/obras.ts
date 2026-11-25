@@ -72,6 +72,14 @@ const video = z
     /** Obrigatório quando houver src: é o que aparece antes e sem JS. */
     poster: z.string().optional(),
     duracaoSegundos: z.number().positive().optional(),
+    /**
+     * A versão longa — o vídeo inteiro, não o corte (docs/14). É a que toca na
+     * página da obra. O corte curto (src/webm acima) continua sendo o da home,
+     * onde passa por cima da foto no hover: lá, 1:30 por cartão não se paga.
+     */
+    longo: z
+      .object({ src: z.string(), webm: z.string().optional(), poster: z.string().optional() })
+      .optional(),
     legendas: localizado(z.string()).optional(),
     origem: z.string().optional(),
   })

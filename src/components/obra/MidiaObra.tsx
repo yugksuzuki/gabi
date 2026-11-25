@@ -146,7 +146,7 @@ export function MidiaObra({
                  prioridade alta sozinho — só tira o lazy — e a foto descia
                  atrás do pôster do vídeo ao lado (docs/11 §3). */
               fetchPriority="high"
-              sizes="(max-width: 1024px) 86vw, 32rem"
+              sizes="(max-width: 767px) 86vw, (max-width: 1024px) 66vw, 32rem"
             />
             <span className="midia__selo legenda">
               <span aria-hidden="true">+ </span>

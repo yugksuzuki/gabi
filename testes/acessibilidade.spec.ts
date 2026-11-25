@@ -16,9 +16,9 @@ import { expect, test } from '@playwright/test'
 const ROTAS = [
   ['portfólio', '/pt'],
   ['portfólio (en)', '/en'],
-  ['obra completa', '/pt/obras/encontro'],
+  ['obra completa', '/pt/obras/caminhos'],
   ['obra em rascunho', '/pt/obras/instante'],
-  ['obra (en)', '/en/works/encontro'],
+  ['obra (en)', '/en/works/caminhos'],
   ['a artista', '/pt/a-artista'],
   ['about (en, texto em pt)', '/en/about'],
   ['ensaios vazio', '/pt/ensaios'],
@@ -45,7 +45,7 @@ for (const [nome, rota] of ROTAS) {
 }
 
 test('a página inteira se navega só com teclado', async ({ page }) => {
-  await page.goto('/pt/obras/encontro')
+  await page.goto('/pt/obras/caminhos')
 
   // O primeiro Tab tem que cair no "pular para o conteúdo". É o atalho de quem
   // navega por teclado e não quer atravessar o menu em toda página.
@@ -83,13 +83,13 @@ test('o conteúdo existe sem JavaScript', async ({ browser }) => {
   const contexto = await browser.newContext({ javaScriptEnabled: false })
   const pagina = await contexto.newPage()
 
-  await pagina.goto('/pt/obras/encontro')
-  await expect(pagina.getByRole('heading', { level: 1 })).toHaveText('Encontro')
+  await pagina.goto('/pt/obras/caminhos')
+  await expect(pagina.getByRole('heading', { level: 1 })).toHaveText('Caminhos')
   await expect(pagina.getByRole('link', { name: /consultar/i })).toBeVisible()
   await expect(pagina.getByText('Gesso e massa acrílica sobre tela')).toBeVisible()
 
   await pagina.goto('/pt')
-  await expect(pagina.getByRole('link', { name: 'Encontro' }).first()).toBeVisible()
+  await expect(pagina.getByRole('link', { name: 'Caminhos' }).first()).toBeVisible()
 
   await contexto.close()
 })

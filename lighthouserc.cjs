@@ -24,7 +24,7 @@ const base = (process.env.URL_AUDITADA || 'http://127.0.0.1:3210').replace(/\/$/
 // A home é a porta (vídeo de entrada + as três obras). A obra completa é a
 // página mais pesada em imagem. O inglês entra porque é outro HTML, não outra
 // tradução do mesmo.
-const ROTAS = ['/pt', '/pt/obras/encontro', '/en']
+const ROTAS = ['/pt', '/pt/obras/caminhos', '/en']
 
 module.exports = {
   ci: {
