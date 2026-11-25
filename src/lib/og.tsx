@@ -288,8 +288,8 @@ export const altDoCartao: Record<Idioma, (titulo: string) => string> = {
  *
  * Só imprime o domínio quando ele é de verdade. Endereço de preview da Vercel
  * ou localhost numa imagem que vai para o Instagram é ruído que não leva a
- * lugar nenhum, e o domínio definitivo ainda está em aberto (CLAUDE.md). Até
- * lá, o @ do Instagram, que é onde o story vive de qualquer forma.
+ * lugar nenhum. Com o domínio no ar (gseleme.com.br, docs/14), sai ele; antes
+ * disso, o @ do Instagram, que é onde o story vive de qualquer forma.
  */
 export function enderecoDeVolta(): string {
   try {

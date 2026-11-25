@@ -86,29 +86,40 @@ navegador tem contra quantos a caixa pede (com `object-fit: cover` contado).
 - **Desabrochar** tem só 941px de largura no original (`docs/06`). Na página cabe; no zoom,
   não há o que ampliar.
 
-## 4. Domínio na Vercel
+## 4. Domínio: gseleme.com.br
+
+**Decidido pelo Guilherme em 25/11/2026: o domínio do site é `gseleme.com.br`**, registrado
+no Registro.br. Isso fecha a questão que o `CLAUDE.md` deixava em aberto entre `gclm.com.br` e
+o `gseleme.design` (que nunca foi domínio: é o @ do Instagram e o Gmail dela).
+
+**Forma canônica: `https://gseleme.com.br`, sem www.** O `www` existe e redireciona para ela.
 
 O site lê a URL de `NEXT_PUBLIC_SITE_URL` e, sem ela, de `VERCEL_PROJECT_PRODUCTION_URL`
-(`src/lib/url-do-site.ts`). Com o domínio marcado como produção na Vercel, a canônica e o OG
-passam a apontar para ele no próximo deploy — mas fixar `NEXT_PUBLIC_SITE_URL` é mais seguro.
+(`src/lib/url-do-site.ts`). Com `gseleme.com.br` marcado como principal na Vercel, a segunda já
+é ele — mas fixar a primeira em Production é o que garante canônica, hreflang e OG certos.
 
-Caminho recomendado, mantendo o DNS do Registro.br:
+Caminho, mantendo o DNS do Registro.br:
 
-1. **Vercel →** projeto `gabi` → Settings → Domains → Add: o domínio e o `www`. Anotar os
-   registros que ela pede.
-2. **Registro.br →** domínio → DNS → *Configurar endereçamento* → modo avançado / editar zona:
-   - `A` no domínio raiz → o IP que a Vercel mostrar
-   - `CNAME` em `www` → o alvo que a Vercel mostrar
+1. **Vercel →** projeto `gabi` → Settings → Domains → Add `gseleme.com.br`. Aceitar a sugestão
+   de adicionar `www.gseleme.com.br` **redirecionando para** `gseleme.com.br`.
+2. **Registro.br →** `gseleme.com.br` → DNS → *Configurar endereçamento* → modo avançado /
+   editar zona:
+   - `A` com nome vazio → o IP que a Vercel mostrar
+   - `CNAME` com nome `www` → o alvo que a Vercel mostrar
 3. Esperar a Vercel validar (minutos a horas). O certificado sai sozinho.
-4. **Vercel →** Settings → Environment Variables → `NEXT_PUBLIC_SITE_URL=https://<domínio>`
-   em Production → redeploy.
+4. **Vercel →** Settings → Environment Variables → `NEXT_PUBLIC_SITE_URL=https://gseleme.com.br`,
+   **só em Production** (em Preview, o preview tem de apontar para ele mesmo) → redeploy.
 
 A alternativa (trocar os servidores DNS por `ns1/ns2.vercel-dns.com`) também funciona, mas
-leva o DNS inteiro para a Vercel e derruba e-mail que estiver nesse domínio.
+leva o DNS inteiro para a Vercel e derruba e-mail que algum dia for criado nesse domínio.
 
-**O que o domínio não decide sozinho:** qual domínio é o oficial (`gclm.com.br` ×
-`gseleme.design`) continua em aberto no `CLAUDE.md`, e a **indexação segue fechada**
-(`ABRIR_INDEXACAO`) até as fichas saírem de `[PENDENTE]` — domínio no ar não é site publicado.
+**O que o domínio não decide sozinho:**
+
+- **A indexação segue fechada** (`ABRIR_INDEXACAO`) até as fichas saírem de `[PENDENTE]`.
+  Domínio no ar não é site publicado — e a regra do Instagram no mesmo dia continua valendo.
+- **`gclm.com.br`** continua dela, parado. Redirecionar para `gseleme.com.br` depende da
+  pergunta "GCLM aparece na v1?".
+- **HSTS** segue sem `preload` até o domínio estar estável no ar.
 
 ## Verificado
 

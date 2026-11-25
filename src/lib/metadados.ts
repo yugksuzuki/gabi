@@ -11,9 +11,8 @@ export { urlDoSite }
  * (itens 06 e 25 do Stack Técnico; docs/03 §4).
  *
  * NEXT_PUBLIC_SITE_URL é o que faz canônica e Open Graph existirem de verdade.
- * O domínio definitivo ainda está EM ABERTO: ela comprou gclm.com.br mas os
- * contatos são @gseleme.design, e ninguém amarrou as pontas (CLAUDE.md).
- * Enquanto isso, a URL vem do ambiente — nunca fixa no código.
+ * O domínio é gseleme.com.br (docs/14); a URL vem do ambiente — ver
+ * src/lib/url-do-site.ts.
  */
 /**
  * O próprio tipo do next-intl: rota sem parâmetro é string literal, rota com

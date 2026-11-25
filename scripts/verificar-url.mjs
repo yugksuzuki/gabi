@@ -13,11 +13,11 @@ const casos = [
   ['tudo ausente', {}, LOCAL],
   ['NEXT_PUBLIC_SITE_URL vazia', { NEXT_PUBLIC_SITE_URL: '' }, LOCAL],
   ['só espaços', { NEXT_PUBLIC_SITE_URL: '   ' }, LOCAL],
-  ['valor normal', { NEXT_PUBLIC_SITE_URL: 'https://gseleme.design' }, 'https://gseleme.design'],
+  ['valor normal', { NEXT_PUBLIC_SITE_URL: 'https://gseleme.com.br' }, 'https://gseleme.com.br'],
   [
     'com barra no fim',
-    { NEXT_PUBLIC_SITE_URL: 'https://gseleme.design/' },
-    'https://gseleme.design',
+    { NEXT_PUBLIC_SITE_URL: 'https://gseleme.com.br/' },
+    'https://gseleme.com.br',
   ],
   [
     'vazia, cai na Vercel',

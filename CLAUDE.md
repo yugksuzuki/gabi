@@ -148,7 +148,7 @@ fora do git (`.gitignore`): 90–530 MB por arquivo, e o repositório é públic
 
 | Questão | Por que trava |
 |---|---|
-| **Domínio** | Ela comprou `gclm.com.br` (dez/2024). Os contatos são `@gseleme.design`. Ninguém amarrou. Define URL canônica, hreflang, OG, e-mail |
+| **Domínio — o que sobrou** | **Decidido em 25/11/2026: `gseleme.com.br`** (docs/14). Em aberto só o resto: o que fazer com `gclm.com.br` (comprado em dez/2024 — redirecionar para cá? depende de "GCLM aparece na v1?") e se vai haver e-mail no domínio (hoje é `gseleme.design@gmail.com`) |
 | **GCLM aparece na v1?** | GCLM é a marca de design (ex-"Umbra"); Gabriela Seleme é a autora. Duas camadas nunca reconciliadas |
 | **Logo — BLOQUEIO** | Em 27/08 a Gabriela pediu a rubrica no lugar do nome tipografado, "**sempre a logo**", em **todas** as páginas. Isso tirou o vetor de "melhoria" e o transformou em bloqueio: raster escalado no cabeçalho vai aparecer. Pior, o `ativos/rubrica-gseleme.png` que existe é um recorte torto — traz junto a barra escura da foto e as palavras "Gabriela S". Peça o **original vetorial** à Catherine |
 | **Número do WhatsApp** | Informado `+55 44 9992-9186` — 8 dígitos onde celular tem 9, e o **DDD 44 é Maringá/PR**, não Balneário Camboriú/SC. Provável: `+55 44 99992-9186` → `5544999929186`. Teste abrindo `wa.me/5544999929186` no celular. Ver `content/contato.yml` |

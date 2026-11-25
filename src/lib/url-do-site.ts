@@ -5,9 +5,10 @@
  * tem nada a ver com rota, e isolado assim dá para testar sem subir o framework
  * (scripts/verificar-url.mjs).
  *
- * O domínio definitivo ainda está EM ABERTO: ela comprou gclm.com.br mas os
- * contatos são @gseleme.design, e ninguém amarrou as pontas (CLAUDE.md).
- * Por isso a URL vem do ambiente — nunca fixa no código.
+ * O domínio é gseleme.com.br (definido pelo Guilherme em 25/11/2026, docs/14).
+ * A URL continua vindo do ambiente, não fixa no código: com o domínio marcado
+ * como principal na Vercel, VERCEL_PROJECT_PRODUCTION_URL já é ele, e preview
+ * de PR segue apontando para o próprio preview.
  */
 
 const LOCAL = 'http://localhost:3000'

@@ -16,9 +16,10 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
  *   `base-uri` e `object-src` fecham injeção de <base> e de plugin. Nada de
  *   `script-src` aqui: o Next injeta script inline, e uma CSP de script mal
  *   calibrada quebra a hidratação sem aviso. Fica para quando houver nonce.
- * - HSTS sem `preload` e sem `includeSubDomains`: o domínio definitivo ainda
- *   está em aberto (CLAUDE.md). Preload é compromisso que não se desfaz em
- *   semanas, e não se assume isso pelo domínio de outra pessoa.
+ * - HSTS sem `preload` e sem `includeSubDomains`: o domínio é gseleme.com.br
+ *   desde 25/11/2026 (docs/14), mas ainda nem entrou no ar. Preload é
+ *   compromisso que não se desfaz em semanas, e não se assume isso pelo
+ *   domínio de outra pessoa antes de ele estar estável.
  * - Permissions-Policy: câmera, microfone e localização desligados. O site não
  *   pede nenhum dos três, e assim nenhum script de terceiro pode pedir.
  */
